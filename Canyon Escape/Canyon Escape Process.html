@@ -1,0 +1,974 @@
+<!doctype html><html lang="en"><head><style type="text/css">.mui-textfield.mui-textfield--float-label > label {-webkit-transition:all .15s ease-out;-moz-transition:all .15s ease-out;-o-transition:all .15s ease-out;transition:all .15s ease-out;}</style><style type="text/css">@keyframes mui-btn-inserted{from{transform:none;}to{transform:none;}}.mui-btn{animation-duration:0.0001s;animation-name:mui-btn-inserted;}@keyframes mui-dropdown-inserted{from{transform:none;}to{transform:none;}}[data-mui-toggle="dropdown"]{animation-duration:0.0001s;animation-name:mui-dropdown-inserted;}@keyframes mui-btn-inserted,mui-dropdown-inserted{from{transform:none;}to{transform:none;}}.mui-btn[data-mui-toggle="dropdown"]{animation-duration:0.0001s;animation-name:mui-btn-inserted,mui-dropdown-inserted;}@keyframes mui-tab-inserted{from{transform:none;}to{transform:none;}}[data-mui-toggle="tab"]{animation-duration:0.0001s;animation-name:mui-tab-inserted;}@keyframes mui-textfield-inserted{from{transform:none;}to{transform:none;}}.mui-textfield > input{animation-duration:0.0001s;animation-name:mui-textfield-inserted;}@keyframes mui-textfield-inserted{from{transform:none;}to{transform:none;}}.mui-textfield > textarea{animation-duration:0.0001s;animation-name:mui-textfield-inserted;}@keyframes mui-select-inserted{from{transform:none;}to{transform:none;}}.mui-select > select{animation-duration:0.0001s;animation-name:mui-select-inserted;}@keyframes mui-node-inserted{from{transform:none;}to{transform:none;}}.mui-select > select ~ .mui-event-trigger{animation-duration:0.0001s;animation-name:mui-node-inserted;}@keyframes mui-node-disabled{from{transform:none;}to{transform:none;}}.mui-select > select:disabled ~ .mui-event-trigger{animation-duration:0.0001s;animation-name:mui-node-disabled;}</style>   
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://wyattdave.github.io/Auto-Review/assets/css/mui.min.css" rel="stylesheet" type="text/css">
+    <link href="https://wyattdave.github.io/Auto-Review/assets/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://wyattdave.github.io/Auto-Review/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wyattdave.github.io/Auto-Review/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="https://wyattdave.github.io/Auto-Review/assets/img/favicon.ico">
+    <script src="https://wyattdave.github.io/Auto-Review/mu/js/mui.min.js"></script> 
+</head>
+<body> 
+    <div id="sidebar2">
+        <div>
+            <img src="https://wyattdave.github.io/Auto-Review/assets/img/logo.svg" alt="Logo" id="target-logo" style="width:50px; padding-right:10px">
+            <img src="https://wyattdave.github.io/Auto-Review/assets/img/download.png" id="target-downloadSVG" style="width:48px; padding-right:10px; z-index: 1000;">
+            <img src="https://wyattdave.github.io/Auto-Review/assets/img/key icon.png" id="target-keyIcon" style="width:48px; padding-right:10px; z-index: 1000;">
+            
+            <button id="target-downloadPNG" style="visibility: hidden;" class="mui-btn mui-btn--primary">PNG</button>
+          </div>
+        <h4 class="rotateDIV"><b id="target-flowName">Canyon Escape</b><br><span id="target-id">F65502D4-6758-EE11-BE6F-000D3A5A7615</span> </h4>
+    </div>  
+    <div id="content2" class="mui-container-fluid">     
+      <button id="load" style="visibility:hidden">Load</button>
+      <button style="position:fixed; left:150px; top:30px; font-size:20px; display:none" id="target-zoomIn" class="mui-btn mui-btn--primary">+ </button>
+      <button style="position:fixed; left:225px; top:30px; font-size:20px; display:none" id="target-zoomOut" class="mui-btn mui-btn--primary">- </button>
+      <button style="position:fixed; left:300px; top:30px; display:none; display:none" id="target-reset" class="mui-btn mui-btn--primary">x </button> 
+      <input type="range" min="-10" max="50" value="0" id="target-zoom" class="slider"> 
+    <div id="target-svgDom" style="width:100%"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 2933.875 2079" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc>#fillArrows: true
+	#lineWidth: 2
+	#fill:#569AE5
+	#background: white
+	#acyclicer: greedy
+	#ranker: tight-tree
+	#.data: visual=database fill=#EBDAF9
+	#.trigger: visual=roundrect fill=#569AE5
+	#.if: visual=rhomb fill=#2596be
+	#.switch: visual=ellipse fill=#2596be
+	#.scope: visual=frame fill=#808080
+	#.foreach: visual=transceiver fill=#00C1A0
+	#.until: visual=sender fill=#00C1A0
+	#.var: visual=input fill=#9925be
+	#.terminate: visual=receiver fill=#cc4747
+	#.var: visual=input fill=#EBDAF9
+	
+	[&lt;trigger&gt; *When_a_new_email_arrives_(V2)]-&gt;[&lt;var&gt;sOption]
+	[&lt;var&gt;sOption]-&gt;[&lt;var&gt;aOptions]
+	[&lt;var&gt;NewLine]-&gt;[&lt;var&gt;Extract_Query]
+	[&lt;var&gt;Extract_Query]-&gt;[&lt;scope&gt;start]
+	[&lt;scope&gt;start]-&gt;[Send_an_email_V2_start]
+	[Send_an_email_V2_start]-&gt;[&lt;terminate&gt;Terminate_Start]
+	[&lt;if&gt;Condition_Cheat]--:&gt; [&lt;scope&gt;Main]
+	[&lt;scope&gt;Main]-&gt;[&lt;until&gt;Do_until]
+	[&lt;until&gt;Do_until]-&gt;[&lt;var&gt;Set_variable]
+	[&lt;if&gt;Condition_not_valid]-&gt; Yes[&lt;if&gt;Condition_pickup]
+	[Get_file_content_using_path_item]-&gt;[Send_an_email_V2_pick_up]
+	[Send_an_email_V2_pick_up]-&gt;[&lt;terminate&gt;Terminate]
+	[&lt;if&gt;Condition_pickup]-&gt; Yes[Get_file_content_using_path_item]
+	[&lt;if&gt;Condition_pickup]-&gt; Yes[&lt;if&gt;Condition_use]
+	[Get_a_row_item]-&gt;[Send_an_email_V2_use]
+	[Send_an_email_V2_use]-&gt;[&lt;terminate&gt;Terminate_use]
+	[&lt;if&gt;Condition_use]-&gt; Yes[Get_a_row_item]
+	[&lt;if&gt;Condition_drop]-&gt; Yes[&lt;if&gt;Condition_blocked_path]
+	[Send_an_email_V2_not_move_path]-&gt;[&lt;terminate&gt;Terminate_not_move]
+	[&lt;if&gt;Condition_blocked_path]-&gt; Yes[Send_an_email_V2_not_move_path]
+	[&lt;if&gt;Condition_blocked_path]-&gt; Yes[Get_a_row_next_Sq]
+	[Get_a_row_next_Sq]-&gt;[&lt;if&gt;Condition_have_needed_item]
+	[&lt;if&gt;Condition_have_needed_item]-&gt; Yes[Send_an_email_V2_move]
+	[&lt;if&gt;Condition_have_needed_item]-&gt; No[Send_an_email_V2_not_move]
+	[&lt;if&gt;Condition_use]-&gt; Yes[&lt;if&gt;Condition_missing_item]
+	[&lt;if&gt;Condition_missing_item]-&gt; Yes[Send_an_email_V2_not_move_item]
+	[Send_an_email_V2_not_move_item]-&gt;[&lt;terminate&gt;Terminate_no_move_item]
+	[&lt;if&gt;Condition_missing_item]-&gt; Yes[&lt;if&gt;Condition_speak]
+	[Send_an_email_V2_speak]-&gt;[&lt;terminate&gt;Terminate_speak]
+	[&lt;if&gt;Condition_speak]-&gt; Yes[Send_an_email_V2_speak]
+	[&lt;if&gt;Condition_speak]-&gt; Yes[&lt;if&gt;Condition_no_speak]
+	[Send_an_email_V2_no_one_to_speak_to]-&gt;[&lt;terminate&gt;Terminate_no_speak]
+	[&lt;if&gt;Condition_no_speak]-&gt; Yes[Send_an_email_V2_no_one_to_speak_to]
+	[&lt;if&gt;Condition_no_speak]-&gt; Yes[&lt;if&gt;Condition_Challenge_Correct]
+	[&lt;if&gt;Condition_Challenge_Correct]-&gt; Yes[Send_an_email_V2_challenge_correct]
+	[Send_an_email_V2_challenge_correct]-&gt;[&lt;terminate&gt;Terminate_correct]
+	[&lt;if&gt;Condition_Challenge_Correct]-&gt; Yes[&lt;if&gt;Condition_Challenge_Incorrect]
+	[&lt;if&gt;Condition_Challenge_Incorrect]-&gt; Yes[Send_an_email_V2_challenge_incorrect]
+	[Send_an_email_V2_challenge_incorrect]-&gt;[&lt;terminate&gt;Terminate_incorrect]
+	[Html_to_text]-&gt;[&lt;if&gt;Condition_not_valid]
+	[&lt;if&gt;Condition_not_valid]-&gt; Yes[Send_an_email_V2_error]
+	[Send_an_email_V2_error]-&gt;[&lt;terminate&gt;Terminate_not_valid]
+	[&lt;until&gt;Do_until]-&gt;[Get_a_row_current_Sq]
+	[&lt;var&gt;get_drop_item]-&gt;[&lt;if&gt;Condition_drop]
+	[&lt;if&gt;Condition_drop]-&gt; Yes[Send_an_email_V2_drop]
+	[Send_an_email_V2_drop]-&gt;[&lt;terminate&gt;Terminate_drop]
+	[&lt;if&gt;Condition_die]-&gt; Yes[&lt;var&gt;get_drop_item]
+	[&lt;if&gt;Condition_Challenge_Incorrect]-&gt; Yes[&lt;if&gt;Condition_survive]
+	[&lt;if&gt;Condition_survive]-&gt; Yes[Send_an_email_V2_survive_correct]
+	[Send_an_email_V2_survive_correct]-&gt;[&lt;terminate&gt;Terminate_correct_2]
+	[&lt;if&gt;Condition_survive]-&gt; Yes[&lt;if&gt;Condition_die]
+	[&lt;if&gt;Condition_die]-&gt; Yes[Send_an_email_V2_die]
+	[Send_an_email_V2_die]-&gt;[&lt;terminate&gt;Terminate_die]
+	[Get_a_row_current_Sq]-&gt;[Html_to_text]
+	[&lt;var&gt;Extract_Query]-&gt;[&lt;if&gt;Condition_Cheat]
+	[&lt;if&gt;Condition_Cheat]-&gt; Yes[Delete_email]
+	[Delete_email]-&gt;[&lt;scope&gt;Exit_game]
+	[Send_an_email_V2_move_already_moved]-&gt;[&lt;terminate&gt;Terminate_Cheat]
+	[&lt;scope&gt;Exit_game]-&gt;[Send_an_email_V2_move_already_moved]
+	[&lt;var&gt;aOptions]-&gt;[&lt;var&gt;NewLine]</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+		<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="white">
+				<rect x="0.0" y="0.0" height="2079.0" width="2933.9" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<path d="M1415.4 31.0 L1415.375 51 L1415.375 64.33333333333333 L1415.4 64.3 " fill="none"></path>
+					<path d="M1410.0 57.7 L1415.4 57.7 L1420.7 57.7 L1415.4 71.0 Z"></path>
+					<path d="M1415.4 102.0 L1415.375 122 L1415.375 135.33333333333334 L1415.4 135.3 " fill="none"></path>
+					<path d="M1410.0 128.7 L1415.4 128.7 L1420.7 128.7 L1415.4 142.0 Z"></path>
+					<path d="M1415.4 244.0 L1415.375 264 L1415.375 277.3333333333333 L1415.4 277.3 " fill="none"></path>
+					<path d="M1410.0 270.7 L1415.4 270.7 L1420.7 270.7 L1415.4 284.0 Z"></path>
+					<path d="M1350.9 308.7 L1165.75 335 L1165.75 356.0833333333333 L1165.8 356.1 " fill="none"></path>
+					<path d="M1160.4 349.4 L1165.8 349.4 L1171.1 349.4 L1165.8 362.8 Z"></path>
+					<path d="M1165.8 393.8 L1165.75 421.5 L1165.75 434.8333333333333 L1165.8 434.8 " fill="none"></path>
+					<path d="M1160.4 428.2 L1165.8 428.2 L1171.1 428.2 L1165.8 441.5 Z"></path>
+					<path d="M1165.8 472.5 L1165.75 492.5 L1165.75 505.8333333333333 L1165.8 505.8 " fill="none"></path>
+					<path d="M1160.4 499.2 L1165.8 499.2 L1171.1 499.2 L1165.8 512.5 Z"></path>
+					<g stroke-dasharray="4 4">
+						<path d="M1422.3 401.5 L1349 421.5 L1349 428.1666666666667 L1349.0 428.2 " fill="none"></path>
+					</g>
+					<path d="M1343.7 428.2 L1349.0 428.2 L1354.3 428.2 L1349.0 441.5 Z"></path>
+					<path d="M1349.0 472.5 L1349 492.5 L1349 505.8333333333333 L1349.0 505.8 " fill="none"></path>
+					<path d="M1343.7 499.2 L1349.0 499.2 L1354.3 499.2 L1349.0 512.5 Z"></path>
+					<path d="M1308.5 542.6 L1250.5 563.5 L1250.5 576.8333333333334 L1250.5 576.8 " fill="none"></path>
+					<path d="M1245.2 570.2 L1250.5 570.2 L1255.8 570.2 L1250.5 583.5 Z"></path>
+					<text x="1277.6" y="804.0" stroke="none">Yes</text>
+					<path d="M1376.6 772.0 L1315.625 792 L1315.625 805.3333333333334 L1315.6 805.3 " fill="none"></path>
+					<path d="M1310.3 798.7 L1315.6 798.7 L1321.0 798.7 L1315.6 812.0 Z"></path>
+					<path d="M143.5 937.3 L143.5 965 L143.5 986.0833333333334 L143.5 986.1 " fill="none"></path>
+					<path d="M138.2 979.4 L143.5 979.4 L148.8 979.4 L143.5 992.8 Z"></path>
+					<path d="M143.5 1023.8 L143.5 1051.5 L143.5 1072.5833333333333 L143.5 1072.6 " fill="none"></path>
+					<path d="M138.2 1065.9 L143.5 1065.9 L148.8 1065.9 L143.5 1079.3 Z"></path>
+					<text x="105.5" y="898.3" stroke="none">Yes</text>
+					<path d="M1200.9 839.5 L143.5 878.5 L143.5 899.5833333333334 L143.5 899.6 " fill="none"></path>
+					<path d="M138.2 892.9 L143.5 892.9 L148.8 892.9 L143.5 906.3 Z"></path>
+					<text x="1464.1" y="890.5" stroke="none">Yes</text>
+					<path d="M1391.2 858.5 L1456.125 878.5 L1456.125 891.8333333333334 L1456.1 891.8 " fill="none"></path>
+					<path d="M1450.8 885.2 L1456.1 885.2 L1461.5 885.2 L1456.1 898.5 Z"></path>
+					<path d="M400.8 1023.8 L400.75 1051.5 L400.75 1072.5833333333333 L400.8 1072.6 " fill="none"></path>
+					<path d="M395.4 1065.9 L400.8 1065.9 L406.1 1065.9 L400.8 1079.3 Z"></path>
+					<path d="M400.8 1110.3 L400.75 1138 L400.75 1159.0833333333333 L400.8 1159.1 " fill="none"></path>
+					<path d="M395.4 1152.4 L400.8 1152.4 L406.1 1152.4 L400.8 1165.8 Z"></path>
+					<text x="362.8" y="984.8" stroke="none">Yes</text>
+					<path d="M1358.6 925.7 L400.75 965 L400.75 986.0833333333334 L400.8 986.1 " fill="none"></path>
+					<path d="M395.4 979.4 L400.8 979.4 L406.1 979.4 L400.8 992.8 Z"></path>
+					<text x="2310.8" y="1740.0" stroke="none">Yes</text>
+					<path d="M2419.0 1708.0 L2348.75 1728 L2348.75 1741.3333333333333 L2348.8 1741.3 " fill="none"></path>
+					<path d="M2343.4 1734.7 L2348.8 1734.7 L2354.1 1734.7 L2348.8 1748.0 Z"></path>
+					<path d="M2188.1 1865.5 L2188.125 1885.5 L2188.125 1906.5833333333333 L2188.1 1906.6 " fill="none"></path>
+					<path d="M2182.8 1899.9 L2188.1 1899.9 L2193.5 1899.9 L2188.1 1913.3 Z"></path>
+					<text x="2150.1" y="1826.5" stroke="none">Yes</text>
+					<path d="M2262.4 1794.5 L2188.125 1814.5 L2188.125 1827.8333333333333 L2188.1 1827.8 " fill="none"></path>
+					<path d="M2182.8 1821.2 L2188.1 1821.2 L2193.5 1821.2 L2188.1 1834.5 Z"></path>
+					<text x="2517.4" y="1826.5" stroke="none">Yes</text>
+					<path d="M2435.1 1794.5 L2509.375 1814.5 L2509.375 1827.8333333333333 L2509.4 1827.8 " fill="none"></path>
+					<path d="M2504.0 1821.2 L2509.4 1821.2 L2514.7 1821.2 L2509.4 1834.5 Z"></path>
+					<path d="M2509.4 1865.5 L2509.375 1885.5 L2509.375 1898.8333333333333 L2509.4 1898.8 " fill="none"></path>
+					<path d="M2504.0 1892.2 L2509.4 1892.2 L2514.7 1892.2 L2509.4 1905.5 Z"></path>
+					<text x="2331.1" y="1984.0" stroke="none">Yes</text>
+					<path d="M2434.0 1952.0 L2369.125 1972 L2369.125 1985.3333333333333 L2369.1 1985.3 " fill="none"></path>
+					<path d="M2363.8 1978.7 L2369.1 1978.7 L2374.5 1978.7 L2369.1 1992.0 Z"></path>
+					<text x="2657.6" y="1984.0" stroke="none">No</text>
+					<path d="M2584.8 1952.0 L2649.625 1972 L2649.625 1985.3333333333333 L2649.6 1985.3 " fill="none"></path>
+					<path d="M2644.3 1978.7 L2649.6 1978.7 L2655.0 1978.7 L2649.6 1992.0 Z"></path>
+					<text x="1611.6" y="977.0" stroke="none">Yes</text>
+					<path d="M1535.4 945.0 L1603.625 965 L1603.625 978.3333333333334 L1603.6 978.3 " fill="none"></path>
+					<path d="M1598.3 971.7 L1603.6 971.7 L1609.0 971.7 L1603.6 985.0 Z"></path>
+					<text x="657.8" y="1071.3" stroke="none">Yes</text>
+					<path d="M1450.6 1015.5 L695.75 1051.5 L695.75 1072.5833333333333 L695.8 1072.6 " fill="none"></path>
+					<path d="M690.4 1065.9 L695.8 1065.9 L701.1 1065.9 L695.8 1079.3 Z"></path>
+					<path d="M695.8 1110.3 L695.75 1138 L695.75 1159.0833333333333 L695.8 1159.1 " fill="none"></path>
+					<path d="M690.4 1152.4 L695.8 1152.4 L701.1 1152.4 L695.8 1165.8 Z"></path>
+					<text x="1762.8" y="1063.5" stroke="none">Yes</text>
+					<path d="M1684.9 1031.5 L1754.75 1051.5 L1754.75 1064.8333333333333 L1754.8 1064.8 " fill="none"></path>
+					<path d="M1749.4 1058.2 L1754.8 1058.2 L1760.1 1058.2 L1754.8 1071.5 Z"></path>
+					<path d="M979.1 1196.8 L979.125 1224.5 L979.125 1245.5833333333333 L979.1 1245.6 " fill="none"></path>
+					<path d="M973.8 1238.9 L979.1 1238.9 L984.5 1238.9 L979.1 1252.3 Z"></path>
+					<text x="941.1" y="1157.8" stroke="none">Yes</text>
+					<path d="M1643.0 1101.0 L979.125 1138 L979.125 1159.0833333333333 L979.1 1159.1 " fill="none"></path>
+					<path d="M973.8 1152.4 L979.1 1152.4 L984.5 1152.4 L979.1 1165.8 Z"></path>
+					<text x="1908.0" y="1150.0" stroke="none">Yes</text>
+					<path d="M1832.8 1118.0 L1900 1138 L1900 1151.3333333333333 L1900.0 1151.3 " fill="none"></path>
+					<path d="M1894.7 1144.7 L1900.0 1144.7 L1905.3 1144.7 L1900.0 1158.0 Z"></path>
+					<path d="M1269.6 1283.3 L1269.625 1311 L1269.625 1332.0833333333333 L1269.6 1332.1 " fill="none"></path>
+					<path d="M1264.3 1325.4 L1269.6 1325.4 L1275.0 1325.4 L1269.6 1338.8 Z"></path>
+					<text x="1231.6" y="1244.3" stroke="none">Yes</text>
+					<path d="M1765.8 1190.5 L1269.625 1224.5 L1269.625 1245.5833333333333 L1269.6 1245.6 " fill="none"></path>
+					<path d="M1264.3 1238.9 L1269.6 1238.9 L1275.0 1238.9 L1269.6 1252.3 Z"></path>
+					<text x="2108.4" y="1236.5" stroke="none">Yes</text>
+					<path d="M2007.7 1204.5 L2100.375 1224.5 L2100.375 1237.8333333333333 L2100.4 1237.8 " fill="none"></path>
+					<path d="M2095.0 1231.2 L2100.4 1231.2 L2105.7 1231.2 L2100.4 1244.5 Z"></path>
+					<text x="1578.3" y="1330.8" stroke="none">Yes</text>
+					<path d="M1913.6 1284.4 L1616.25 1311 L1616.25 1332.0833333333333 L1616.3 1332.1 " fill="none"></path>
+					<path d="M1610.9 1325.4 L1616.3 1325.4 L1621.6 1325.4 L1616.3 1338.8 Z"></path>
+					<path d="M1616.3 1369.8 L1616.25 1397.5 L1616.25 1418.5833333333333 L1616.3 1418.6 " fill="none"></path>
+					<path d="M1610.9 1411.9 L1616.3 1411.9 L1621.6 1411.9 L1616.3 1425.3 Z"></path>
+					<text x="2306.8" y="1323.0" stroke="none">Yes</text>
+					<path d="M2207.0 1291.0 L2298.75 1311 L2298.75 1324.3333333333333 L2298.8 1324.3 " fill="none"></path>
+					<path d="M2293.4 1317.7 L2298.8 1317.7 L2304.1 1317.7 L2298.8 1331.0 Z"></path>
+					<text x="1920.6" y="1417.3" stroke="none">Yes</text>
+					<path d="M2115.9 1377.5 L1958.625 1397.5 L1958.625 1418.5833333333333 L1958.6 1418.6 " fill="none"></path>
+					<path d="M1953.3 1411.9 L1958.6 1411.9 L1964.0 1411.9 L1958.6 1425.3 Z"></path>
+					<path d="M1958.6 1456.3 L1958.625 1484 L1958.625 1505.0833333333333 L1958.6 1505.1 " fill="none"></path>
+					<path d="M1953.3 1498.4 L1958.6 1498.4 L1964.0 1498.4 L1958.6 1511.8 Z"></path>
+					<path d="M1447.5 685.5 L1447.5 705.5 L1447.5 718.8333333333334 L1447.5 718.8 " fill="none"></path>
+					<path d="M1442.2 712.2 L1447.5 712.2 L1452.8 712.2 L1447.5 725.5 Z"></path>
+					<text x="1709.0" y="811.8" stroke="none">Yes</text>
+					<path d="M1577.3 770.9 L1701 792 L1701 813.0833333333334 L1701.0 813.1 " fill="none"></path>
+					<path d="M1695.7 806.4 L1701.0 806.4 L1706.3 806.4 L1701.0 819.8 Z"></path>
+					<path d="M1701.0 850.8 L1701 878.5 L1701 899.5833333333334 L1701.0 899.6 " fill="none"></path>
+					<path d="M1695.7 892.9 L1701.0 892.9 L1706.3 892.9 L1701.0 906.3 Z"></path>
+					<path d="M1389.5 542.6 L1447.5 563.5 L1447.5 576.8333333333334 L1447.5 576.8 " fill="none"></path>
+					<path d="M1442.2 570.2 L1447.5 570.2 L1452.8 570.2 L1447.5 583.5 Z"></path>
+					<path d="M2500.8 1621.5 L2500.75 1641.5 L2500.75 1654.8333333333333 L2500.8 1654.8 " fill="none"></path>
+					<path d="M2495.4 1648.2 L2500.8 1648.2 L2506.1 1648.2 L2500.8 1661.5 Z"></path>
+					<text x="2768.9" y="1747.8" stroke="none">Yes</text>
+					<path d="M2603.5 1701.8 L2760.875 1728 L2760.875 1749.0833333333333 L2760.9 1749.1 " fill="none"></path>
+					<path d="M2755.5 1742.4 L2760.9 1742.4 L2766.2 1742.4 L2760.9 1755.8 Z"></path>
+					<path d="M2760.9 1786.8 L2760.875 1814.5 L2760.875 1827.8333333333333 L2760.9 1827.8 " fill="none"></path>
+					<path d="M2755.5 1821.2 L2760.9 1821.2 L2766.2 1821.2 L2760.9 1834.5 Z"></path>
+					<text x="2462.8" y="1582.5" stroke="none">Yes</text>
+					<path d="M2548.7 1550.5 L2500.75 1570.5 L2500.75 1583.8333333333333 L2500.8 1583.8 " fill="none"></path>
+					<path d="M2495.4 1577.2 L2500.8 1577.2 L2506.1 1577.2 L2500.8 1590.5 Z"></path>
+					<text x="2470.0" y="1409.5" stroke="none">Yes</text>
+					<path d="M2386.5 1377.5 L2462 1397.5 L2462 1410.8333333333333 L2462.0 1410.8 " fill="none"></path>
+					<path d="M2456.7 1404.2 L2462.0 1404.2 L2467.3 1404.2 L2462.0 1417.5 Z"></path>
+					<text x="2222.9" y="1503.8" stroke="none">Yes</text>
+					<path d="M2353.9 1464.0 L2260.875 1484 L2260.875 1505.0833333333333 L2260.9 1505.1 " fill="none"></path>
+					<path d="M2255.5 1498.4 L2260.9 1498.4 L2266.2 1498.4 L2260.9 1511.8 Z"></path>
+					<path d="M2260.9 1542.8 L2260.875 1570.5 L2260.875 1583.8333333333333 L2260.9 1583.8 " fill="none"></path>
+					<path d="M2255.5 1577.2 L2260.9 1577.2 L2266.2 1577.2 L2260.9 1590.5 Z"></path>
+					<text x="2612.4" y="1496.0" stroke="none">Yes</text>
+					<path d="M2538.5 1464.0 L2604.375 1484 L2604.375 1497.3333333333333 L2604.4 1497.3 " fill="none"></path>
+					<path d="M2599.0 1490.7 L2604.4 1490.7 L2609.7 1490.7 L2604.4 1504.0 Z"></path>
+					<text x="2716.0" y="1582.5" stroke="none">Yes</text>
+					<path d="M2660.1 1550.5 L2708 1570.5 L2708 1583.8333333333333 L2708.0 1583.8 " fill="none"></path>
+					<path d="M2702.7 1577.2 L2708.0 1577.2 L2713.3 1577.2 L2708.0 1590.5 Z"></path>
+					<path d="M2708.0 1621.5 L2708 1641.5 L2708 1662.5833333333333 L2708.0 1662.6 " fill="none"></path>
+					<path d="M2702.7 1655.9 L2708.0 1655.9 L2713.3 1655.9 L2708.0 1669.3 Z"></path>
+					<path d="M1447.5 614.5 L1447.5 634.5 L1447.5 647.8333333333334 L1447.5 647.8 " fill="none"></path>
+					<path d="M1442.2 641.2 L1447.5 641.2 L1452.8 641.2 L1447.5 654.5 Z"></path>
+					<path d="M1455.6 315.0 L1507.5 335 L1507.5 348.3333333333333 L1507.5 348.3 " fill="none"></path>
+					<path d="M1502.2 341.7 L1507.5 341.7 L1512.8 341.7 L1507.5 355.0 Z"></path>
+					<text x="1772.5" y="433.5" stroke="none">Yes</text>
+					<path d="M1618.5 396.9 L1764.5 421.5 L1764.5 434.8333333333333 L1764.5 434.8 " fill="none"></path>
+					<path d="M1759.2 428.2 L1764.5 428.2 L1769.8 428.2 L1764.5 441.5 Z"></path>
+					<path d="M1764.5 472.5 L1764.5 492.5 L1764.5 505.8333333333333 L1764.5 505.8 " fill="none"></path>
+					<path d="M1759.2 499.2 L1764.5 499.2 L1769.8 499.2 L1764.5 512.5 Z"></path>
+					<path d="M1764.5 614.5 L1764.5 634.5 L1764.5 647.8333333333334 L1764.5 647.8 " fill="none"></path>
+					<path d="M1759.2 641.2 L1764.5 641.2 L1769.8 641.2 L1764.5 654.5 Z"></path>
+					<path d="M1764.5 543.5 L1764.5 563.5 L1764.5 576.8333333333334 L1764.5 576.8 " fill="none"></path>
+					<path d="M1759.2 570.2 L1764.5 570.2 L1769.8 570.2 L1764.5 583.5 Z"></path>
+					<path d="M1415.4 173.0 L1415.375 193 L1415.375 206.33333333333334 L1415.4 206.3 " fill="none"></path>
+					<path d="M1410.0 199.7 L1415.4 199.7 L1420.7 199.7 L1415.4 213.0 Z"></path>
+					<g data-name="*When_a_new_email_arrives_(V2)">
+						<g fill="#569AE5" stroke="#33322E" data-name="*When_a_new_email_arrives_(V2)">
+							<rect x="1270.0" y="0.0" rx="15.5" ry="15.5" height="31.0" width="290.0" data-name="*When_a_new_email_arrives_(V2)"></rect>
+						</g>
+						<g transform="translate(1270, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="*When_a_new_email_arrives_(V2)">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="*When_a_new_email_arrives_(V2)">
+								<text x="137.0" y="13.5" stroke="none" text-anchor="middle" data-name="*When_a_new_email_arrives_(V2)">*When_a_new_email_arrives_(V2)</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="sOption">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="sOption">
+							<path d="M1385.0 71.0 L1454.0 71.0 L1446.0 102.0 L1377.0 102.0 Z" data-name="sOption"></path>
+						</g>
+						<g transform="translate(1377, 71)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="sOption">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="sOption">
+								<text x="30.5" y="13.5" stroke="none" text-anchor="middle" data-name="sOption">sOption</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="aOptions">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="aOptions">
+							<path d="M1380.0 142.0 L1459.0 142.0 L1451.0 173.0 L1372.0 173.0 Z" data-name="aOptions"></path>
+						</g>
+						<g transform="translate(1372, 142)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="aOptions">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="aOptions">
+								<text x="35.5" y="13.5" stroke="none" text-anchor="middle" data-name="aOptions">aOptions</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="NewLine">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="NewLine">
+							<path d="M1381.0 213.0 L1457.0 213.0 L1449.0 244.0 L1373.0 244.0 Z" data-name="NewLine"></path>
+						</g>
+						<g transform="translate(1373, 213)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NewLine">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="NewLine">
+								<text x="34.0" y="13.5" stroke="none" text-anchor="middle" data-name="NewLine">NewLine</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Extract_Query">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="Extract_Query">
+							<path d="M1359.0 284.0 L1480.0 284.0 L1472.0 315.0 L1351.0 315.0 Z" data-name="Extract_Query"></path>
+						</g>
+						<g transform="translate(1351, 284)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Extract_Query">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Extract_Query">
+								<text x="56.5" y="13.5" stroke="none" text-anchor="middle" data-name="Extract_Query">Extract_Query</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="start">
+						<g fill="#808080" stroke="#33322E" data-name="start">
+							<rect x="1133.0" y="363.0" height="31.0" width="66.5" data-name="start"></rect>
+							<path d="M1133.0 394.0 L1176.3 394.0 L1191.8 378.5 L1191.8 363.0" fill="none" data-name="start"></path>
+						</g>
+						<g transform="translate(1133, 363)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="start">
+								<text x="25.3" y="13.5" stroke="none" text-anchor="middle" data-name="start">start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_start">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_start">
+							<rect x="1058.0" y="442.0" height="31.0" width="215.0" data-name="Send_an_email_V2_start"></rect>
+						</g>
+						<g transform="translate(1058, 442)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_start">
+								<text x="99.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_start">Send_an_email_V2_start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_Start">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_Start">
+							<path d="M1087.0 513.0 L1237.0 513.0 L1237.0 544.0 L1087.0 544.0 L1095.0 528.5 Z" data-name="Terminate_Start"></path>
+						</g>
+						<g transform="translate(1095, 513)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_Start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_Start">
+								<text x="63.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_Start">Terminate_Start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Cheat">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Cheat">
+							<path d="M1507.5 355.0 L1619.0 378.3 L1507.5 401.5 L1397.0 378.3 Z" data-name="Condition_Cheat"></path>
+						</g>
+						<g transform="translate(1434, 362.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Cheat">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Cheat">
+								<text x="66.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Cheat">Condition_Cheat</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Main">
+						<g fill="#808080" stroke="#33322E" data-name="Main">
+							<rect x="1314.0" y="442.0" height="31.0" width="69.5" data-name="Main"></rect>
+							<path d="M1314.0 473.0 L1360.3 473.0 L1375.8 457.5 L1375.8 442.0" fill="none" data-name="Main"></path>
+						</g>
+						<g transform="translate(1314, 442)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Main">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Main">
+								<text x="26.8" y="13.5" stroke="none" text-anchor="middle" data-name="Main">Main</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Do_until">
+						<g fill="#00C1A0" stroke="#33322E" data-name="Do_until">
+							<path d="M1309.0 513.0 L1382.0 513.0 L1390.0 528.5 L1382.0 544.0 L1309.0 544.0 Z" data-name="Do_until"></path>
+						</g>
+						<g transform="translate(1309, 513)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Do_until">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Do_until">
+								<text x="32.5" y="13.5" stroke="none" text-anchor="middle" data-name="Do_until">Do_until</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Set_variable">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="Set_variable">
+							<path d="M1201.0 584.0 L1308.0 584.0 L1300.0 615.0 L1193.0 615.0 Z" data-name="Set_variable"></path>
+						</g>
+						<g transform="translate(1193, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Set_variable">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Set_variable">
+								<text x="49.5" y="13.5" stroke="none" text-anchor="middle" data-name="Set_variable">Set_variable</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_not_valid">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_not_valid">
+							<path d="M1447.5 726.0 L1577.5 748.8 L1447.5 772.5 L1318.0 748.8 Z" data-name="Condition_not_valid"></path>
+						</g>
+						<g transform="translate(1361.25, 733.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_not_valid">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_not_valid">
+								<text x="78.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_not_valid">Condition_not_valid</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_pickup">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_pickup">
+							<path d="M1315.6 812.0 L1430.5 835.3 L1315.6 858.5 L1201.0 835.3 Z" data-name="Condition_pickup"></path>
+						</g>
+						<g transform="translate(1239.25, 819.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_pickup">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_pickup">
+								<text x="68.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_pickup">Condition_pickup</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_file_content_using_path_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_file_content_using_path_item">
+							<rect x="0.0" y="906.0" height="31.0" width="287.0" data-name="Get_file_content_using_path_item"></rect>
+						</g>
+						<g transform="translate(0, 906)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_file_content_using_path_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_file_content_using_path_item">
+								<text x="135.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_file_content_using_path_item">Get_file_content_using_path_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_pick_up">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_pick_up">
+							<rect x="23.0" y="993.0" height="31.0" width="242.0" data-name="Send_an_email_V2_pick_up"></rect>
+						</g>
+						<g transform="translate(23, 993)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_pick_up">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_pick_up">
+								<text x="113.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_pick_up">Send_an_email_V2_pick_up</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate">
+							<path d="M88.0 1079.0 L191.0 1079.0 L191.0 1110.0 L88.0 1110.0 L96.0 1094.5 Z" data-name="Terminate"></path>
+						</g>
+						<g transform="translate(96, 1079)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate">
+								<text x="39.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate">Terminate</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_use">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_use">
+							<path d="M1456.1 899.0 L1554.0 921.8 L1456.1 945.5 L1359.0 921.8 Z" data-name="Condition_use"></path>
+						</g>
+						<g transform="translate(1391.5, 906.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_use">
+								<text x="57.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_use">Condition_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_item">
+							<rect x="328.0" y="993.0" height="31.0" width="145.0" data-name="Get_a_row_item"></rect>
+						</g>
+						<g transform="translate(328, 993)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_item">
+								<text x="64.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_item">Get_a_row_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_use">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_use">
+							<rect x="296.0" y="1079.0" height="31.0" width="209.0" data-name="Send_an_email_V2_use"></rect>
+						</g>
+						<g transform="translate(296, 1079)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_use">
+								<text x="96.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_use">Send_an_email_V2_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_use">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_use">
+							<path d="M326.0 1166.0 L468.0 1166.0 L468.0 1197.0 L326.0 1197.0 L334.0 1181.5 Z" data-name="Terminate_use"></path>
+						</g>
+						<g transform="translate(334, 1166)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_use">
+								<text x="59.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_use">Terminate_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_drop">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_drop">
+							<path d="M2500.8 1662.0 L2603.5 1684.8 L2500.8 1708.5 L2398.0 1684.8 Z" data-name="Condition_drop"></path>
+						</g>
+						<g transform="translate(2432.25, 1669.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_drop">
+								<text x="60.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_drop">Condition_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_blocked_path">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_blocked_path">
+							<path d="M2348.8 1748.0 L2505.0 1771.3 L2348.8 1794.5 L2193.0 1771.3 Z" data-name="Condition_blocked_path"></path>
+						</g>
+						<g transform="translate(2245, 1755.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_blocked_path">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_blocked_path">
+								<text x="96.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_blocked_path">Condition_blocked_path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move_path">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move_path">
+							<rect x="2037.0" y="1835.0" height="31.0" width="303.0" data-name="Send_an_email_V2_not_move_path"></rect>
+						</g>
+						<g transform="translate(2037, 1835)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move_path">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move_path">
+								<text x="143.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move_path">Send_an_email_V2_not_move_path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_not_move">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_not_move">
+							<path d="M2089.0 1913.0 L2280.0 1913.0 L2280.0 1944.0 L2089.0 1944.0 L2097.0 1928.5 Z" data-name="Terminate_not_move"></path>
+						</g>
+						<g transform="translate(2097, 1913)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_not_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_not_move">
+								<text x="83.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_not_move">Terminate_not_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_next_Sq">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_next_Sq">
+							<rect x="2421.0" y="1835.0" height="31.0" width="177.0" data-name="Get_a_row_next_Sq"></rect>
+						</g>
+						<g transform="translate(2421, 1835)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_next_Sq">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_next_Sq">
+								<text x="80.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_next_Sq">Get_a_row_next_Sq</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_have_needed_item">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_have_needed_item">
+							<path d="M2509.4 1906.0 L2699.5 1928.8 L2509.4 1952.5 L2320.0 1928.8 Z" data-name="Condition_have_needed_item"></path>
+						</g>
+						<g transform="translate(2383.25, 1913.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_have_needed_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_have_needed_item">
+								<text x="118.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_have_needed_item">Condition_have_needed_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_move">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_move">
+							<rect x="2258.0" y="1992.0" height="31.0" width="223.0" data-name="Send_an_email_V2_move"></rect>
+						</g>
+						<g transform="translate(2258, 1992)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_move">
+								<text x="103.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_move">Send_an_email_V2_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move">
+							<rect x="2521.0" y="1992.0" height="31.0" width="258.0" data-name="Send_an_email_V2_not_move"></rect>
+						</g>
+						<g transform="translate(2521, 1992)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move">
+								<text x="121.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move">Send_an_email_V2_not_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_missing_item">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_missing_item">
+							<path d="M1603.6 985.0 L1757.0 1008.3 L1603.6 1031.5 L1451.0 1008.3 Z" data-name="Condition_missing_item"></path>
+						</g>
+						<g transform="translate(1502, 992.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_missing_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_missing_item">
+								<text x="94.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_missing_item">Condition_missing_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move_item">
+							<rect x="545.0" y="1079.0" height="31.0" width="301.0" data-name="Send_an_email_V2_not_move_item"></rect>
+						</g>
+						<g transform="translate(545, 1079)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move_item">
+								<text x="142.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move_item">Send_an_email_V2_not_move_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_no_move_item">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_no_move_item">
+							<path d="M577.0 1166.0 L806.0 1166.0 L806.0 1197.0 L577.0 1197.0 L585.0 1181.5 Z" data-name="Terminate_no_move_item"></path>
+						</g>
+						<g transform="translate(585, 1166)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_no_move_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_no_move_item">
+								<text x="102.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_no_move_item">Terminate_no_move_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_speak">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_speak">
+							<path d="M1754.8 1072.0 L1866.5 1094.8 L1754.8 1118.5 L1643.0 1094.8 Z" data-name="Condition_speak"></path>
+						</g>
+						<g transform="translate(1680.25, 1079.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_speak">
+								<text x="66.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_speak">Condition_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_speak">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_speak">
+							<rect x="865.0" y="1166.0" height="31.0" width="228.0" data-name="Send_an_email_V2_speak"></rect>
+						</g>
+						<g transform="translate(865, 1166)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_speak">
+								<text x="106.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_speak">Send_an_email_V2_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_speak">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_speak">
+							<path d="M895.0 1252.0 L1056.0 1252.0 L1056.0 1283.0 L895.0 1283.0 L903.0 1267.5 Z" data-name="Terminate_speak"></path>
+						</g>
+						<g transform="translate(903, 1252)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_speak">
+								<text x="68.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_speak">Terminate_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_no_speak">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_no_speak">
+							<path d="M1900.0 1158.0 L2034.5 1181.3 L1900.0 1204.5 L1766.0 1181.3 Z" data-name="Condition_no_speak"></path>
+						</g>
+						<g transform="translate(1810.75, 1165.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_no_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_no_speak">
+								<text x="81.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_no_speak">Condition_no_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_no_one_to_speak_to">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_no_one_to_speak_to">
+							<rect x="1096.0" y="1252.0" height="31.0" width="348.0" data-name="Send_an_email_V2_no_one_to_speak_to"></rect>
+						</g>
+						<g transform="translate(1096, 1252)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_no_one_to_speak_to">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_no_one_to_speak_to">
+								<text x="166.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_no_one_to_speak_to">Send_an_email_V2_no_one_to_speak_to</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_no_speak">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_no_speak">
+							<path d="M1170.0 1339.0 L1361.0 1339.0 L1361.0 1370.0 L1170.0 1370.0 L1178.0 1354.5 Z" data-name="Terminate_no_speak"></path>
+						</g>
+						<g transform="translate(1178, 1339)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_no_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_no_speak">
+								<text x="83.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_no_speak">Terminate_no_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Challenge_Correct">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Challenge_Correct">
+							<path d="M2100.4 1245.0 L2287.5 1267.8 L2100.4 1291.5 L1914.0 1267.8 Z" data-name="Condition_Challenge_Correct"></path>
+						</g>
+						<g transform="translate(1976.25, 1252.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Challenge_Correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Challenge_Correct">
+								<text x="116.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Challenge_Correct">Condition_Challenge_Correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_challenge_correct">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_challenge_correct">
+							<rect x="1455.0" y="1339.0" height="31.0" width="322.0" data-name="Send_an_email_V2_challenge_correct"></rect>
+						</g>
+						<g transform="translate(1455, 1339)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_challenge_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_challenge_correct">
+								<text x="153.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_challenge_correct">Send_an_email_V2_challenge_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_correct">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_correct">
+							<path d="M1528.0 1425.0 L1696.0 1425.0 L1696.0 1456.0 L1528.0 1456.0 L1536.0 1440.5 Z" data-name="Terminate_correct"></path>
+						</g>
+						<g transform="translate(1536, 1425)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_correct">
+								<text x="72.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_correct">Terminate_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Challenge_Incorrect">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Challenge_Incorrect">
+							<path d="M2298.8 1331.0 L2494.5 1354.3 L2298.8 1377.5 L2103.0 1354.3 Z" data-name="Condition_Challenge_Incorrect"></path>
+						</g>
+						<g transform="translate(2168.25, 1338.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Challenge_Incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Challenge_Incorrect">
+								<text x="122.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Challenge_Incorrect">Condition_Challenge_Incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_challenge_incorrect">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_challenge_incorrect">
+							<rect x="1791.0" y="1425.0" height="31.0" width="336.0" data-name="Send_an_email_V2_challenge_incorrect"></rect>
+						</g>
+						<g transform="translate(1791, 1425)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_challenge_incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_challenge_incorrect">
+								<text x="160.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_challenge_incorrect">Send_an_email_V2_challenge_incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_incorrect">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_incorrect">
+							<path d="M1864.0 1512.0 L2046.0 1512.0 L2046.0 1543.0 L1864.0 1543.0 L1872.0 1527.5 Z" data-name="Terminate_incorrect"></path>
+						</g>
+						<g transform="translate(1872, 1512)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_incorrect">
+								<text x="79.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_incorrect">Terminate_incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Html_to_text">
+						<g fill="#569AE5" stroke="#33322E" data-name="Html_to_text">
+							<rect x="1390.0" y="655.0" height="31.0" width="115.0" data-name="Html_to_text"></rect>
+						</g>
+						<g transform="translate(1390, 655)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Html_to_text">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Html_to_text">
+								<text x="49.5" y="13.5" stroke="none" text-anchor="middle" data-name="Html_to_text">Html_to_text</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_error">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_error">
+							<rect x="1592.0" y="820.0" height="31.0" width="218.0" data-name="Send_an_email_V2_error"></rect>
+						</g>
+						<g transform="translate(1592, 820)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_error">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_error">
+								<text x="101.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_error">Send_an_email_V2_error</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_not_valid">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_not_valid">
+							<path d="M1605.0 906.0 L1790.0 906.0 L1790.0 937.0 L1605.0 937.0 L1613.0 921.5 Z" data-name="Terminate_not_valid"></path>
+						</g>
+						<g transform="translate(1613, 906)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_not_valid">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_not_valid">
+								<text x="80.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_not_valid">Terminate_not_valid</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_current_Sq">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_current_Sq">
+							<rect x="1348.0" y="584.0" height="31.0" width="199.0" data-name="Get_a_row_current_Sq"></rect>
+						</g>
+						<g transform="translate(1348, 584)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_current_Sq">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_current_Sq">
+								<text x="91.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_current_Sq">Get_a_row_current_Sq</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="get_drop_item">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="get_drop_item">
+							<path d="M2444.0 1591.0 L2566.0 1591.0 L2558.0 1622.0 L2436.0 1622.0 Z" data-name="get_drop_item"></path>
+						</g>
+						<g transform="translate(2436, 1591)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="get_drop_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="get_drop_item">
+								<text x="57.0" y="13.5" stroke="none" text-anchor="middle" data-name="get_drop_item">get_drop_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_drop">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_drop">
+							<rect x="2653.0" y="1756.0" height="31.0" width="216.0" data-name="Send_an_email_V2_drop"></rect>
+						</g>
+						<g transform="translate(2653, 1756)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_drop">
+								<text x="100.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_drop">Send_an_email_V2_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_drop">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_drop">
+							<path d="M2682.0 1835.0 L2831.0 1835.0 L2831.0 1866.0 L2682.0 1866.0 L2690.0 1850.5 Z" data-name="Terminate_drop"></path>
+						</g>
+						<g transform="translate(2690, 1835)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_drop">
+								<text x="62.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_drop">Terminate_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_die">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_die">
+							<path d="M2604.4 1504.0 L2698.5 1527.3 L2604.4 1550.5 L2511.0 1527.3 Z" data-name="Condition_die"></path>
+						</g>
+						<g transform="translate(2542.25, 1511.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_die">
+								<text x="54.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_die">Condition_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_survive">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_survive">
+							<path d="M2462.0 1418.0 L2581.0 1440.8 L2462.0 1464.5 L2344.0 1440.8 Z" data-name="Condition_survive"></path>
+						</g>
+						<g transform="translate(2383.5, 1425.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_survive">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_survive">
+								<text x="71.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_survive">Condition_survive</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_survive_correct">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_survive_correct">
+							<rect x="2110.0" y="1512.0" height="31.0" width="302.0" data-name="Send_an_email_V2_survive_correct"></rect>
+						</g>
+						<g transform="translate(2110, 1512)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_survive_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_survive_correct">
+								<text x="143.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_survive_correct">Send_an_email_V2_survive_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_correct_2">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_correct_2">
+							<path d="M2163.0 1591.0 L2351.0 1591.0 L2351.0 1622.0 L2163.0 1622.0 L2171.0 1606.5 Z" data-name="Terminate_correct_2"></path>
+						</g>
+						<g transform="translate(2171, 1591)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_correct_2">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_correct_2">
+								<text x="82.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_correct_2">Terminate_correct_2</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_die">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_die">
+							<rect x="2606.0" y="1591.0" height="31.0" width="204.0" data-name="Send_an_email_V2_die"></rect>
+						</g>
+						<g transform="translate(2606, 1591)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_die">
+								<text x="94.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_die">Send_an_email_V2_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_die">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_die">
+							<path d="M2636.0 1669.0 L2773.0 1669.0 L2773.0 1700.0 L2636.0 1700.0 L2644.0 1684.5 Z" data-name="Terminate_die"></path>
+						</g>
+						<g transform="translate(2644, 1669)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_die">
+								<text x="56.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_die">Terminate_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Delete_email">
+						<g fill="#569AE5" stroke="#33322E" data-name="Delete_email">
+							<rect x="1705.0" y="442.0" height="31.0" width="119.0" data-name="Delete_email"></rect>
+						</g>
+						<g transform="translate(1705, 442)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Delete_email">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Delete_email">
+								<text x="51.5" y="13.5" stroke="none" text-anchor="middle" data-name="Delete_email">Delete_email</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Exit_game">
+						<g fill="#808080" stroke="#33322E" data-name="Exit_game">
+							<rect x="1707.0" y="513.0" height="31.0" width="114.5" data-name="Exit_game"></rect>
+							<path d="M1707.0 544.0 L1798.3 544.0 L1813.8 528.5 L1813.8 513.0" fill="none" data-name="Exit_game"></path>
+						</g>
+						<g transform="translate(1707, 513)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Exit_game">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Exit_game">
+								<text x="49.3" y="13.5" stroke="none" text-anchor="middle" data-name="Exit_game">Exit_game</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_move_already_moved">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_move_already_moved">
+							<rect x="1587.0" y="584.0" height="31.0" width="355.0" data-name="Send_an_email_V2_move_already_moved"></rect>
+						</g>
+						<g transform="translate(1587, 584)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_move_already_moved">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_move_already_moved">
+								<text x="169.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_move_already_moved">Send_an_email_V2_move_already_moved</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_Cheat">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_Cheat">
+							<path d="M1681.0 655.0 L1841.0 655.0 L1841.0 686.0 L1681.0 686.0 L1689.0 670.5 Z" data-name="Terminate_Cheat"></path>
+						</g>
+						<g transform="translate(1689, 655)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_Cheat">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_Cheat">
+								<text x="68.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_Cheat">Terminate_Cheat</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg></div>
+</div>
+<div id="myModal" class="modal">
+  <div class="modal-content"><div>
+    <span class="close">×</span>
+      <div id="target-detail">
+        <table style="width:90%">
+          <tbody><tr>
+            <td style="vertical-align:top; width:100px;">
+              <img src="https://wyattdave.github.io/Auto-Review/assets/img/autoreview icon 300 v2.png" id="target-image" style="height:80px;">
+          </td>
+          <td style="vertical-align:top">
+            <p id="target-modal"></p>
+          </td>
+          <td style="vertical-align:top">
+            <p id="target-modal2"></p>
+          </td>
+        </tr>
+        </tbody></table>
+        <p id="target-modal3"></p>
+      </div>
+      <div id="target-key" style="display:none">
+      <img src="https://wyattdave.github.io/Auto-Review/assets/img/key2.png" style="width:80%">
+      </div>
+    </div>
+  </div>
+<div id="modalData" style="display:none">[{"name":"sOption","step":"InitializeVariable","type":"InitializeVariable","id":"6a712f0b-c84b-468c-aa42-dc6d52965519","hashId":"6a712f0b-c84b-468c-aa42-dc6d52965519###1","tier":"Standard","connector":"","imgURL":null,"runAfter":"","exception":"Non-Exception","index":1,"complexity":1,"detail":"{\"variables\":[{\"name\":\"sOption\",\"type\":\"string\"}]}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|trigger|","positionInfo":"","environmentVariables":"null","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|0","positionType":"|trigger","nested":""},{"name":"aOptions","step":"InitializeVariable","type":"InitializeVariable","id":"0f269f8c-9ab4-4c8e-8083-5d177812a834","hashId":"0f269f8c-9ab4-4c8e-8083-5d177812a834###2","tier":"Standard","connector":"","imgURL":null,"runAfter":"sOption:Succeeded","exception":"Non-Exception","index":2,"complexity":1,"detail":"{\"variables\":[{\"name\":\"aOptions\",\"type\":\"array\",\"value\":\"@json('[\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"north\\\",\\r\\n\\t\\t\\\"return\\\":\\\"North\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"east\\\",\\r\\n\\t\\t\\\"return\\\":\\\"East\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"south\\\",\\r\\n\\t\\t\\\"return\\\":\\\"South\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"west\\\",\\r\\n\\t\\t\\\"return\\\":\\\"West\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"combine\\\",\\r\\n\\t\\t\\\"return\\\":\\\"Use\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"drop \\\",\\r\\n\\t\\t\\\"return\\\":\\\"Drop\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"speak\\\",\\r\\n\\t\\t\\\"return\\\":\\\"Person\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"ask \\\",\\r\\n\\t\\t\\\"return\\\":\\\"Person\\\"\\r\\n\\t},\\r\\n\\t{\\t\\r\\n\\t\\t\\\"val\\\":\\\"pick up\\\",\\r\\n\\t\\t\\\"return\\\":\\\"PickUp\\\"\\r\\n},\\r\\n\\t{\\t\\r\\n\\t\\t\\\"val\\\":\\\"pickup\\\",\\r\\n\\t\\t\\\"return\\\":\\\"PickUp\\\"\\r\\n},\\r\\n\\t{\\t\\r\\n\\t\\t\\\"val\\\":\\\"answer \\\",\\r\\n\\t\\t\\\"return\\\":\\\"Answer\\\"\\r\\n},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"say \\\",\\r\\n\\t\\t\\\"return\\\":\\\"Person\\\"\\r\\n\\t},\\r\\n\\t{\\r\\n\\t\\t\\\"val\\\":\\\"use \\\",\\r\\n\\t\\t\\\"return\\\":\\\"Use\\\"\\r\\n\\t}\\r\\n]')\"}]}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|sOption|","positionInfo":"","environmentVariables":"null","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|1","positionType":"|InitializeVariable","nested":""},{"name":"Extract_Query","step":"Compose","type":"Compose","id":"db1a48b6-7a6c-4aeb-b6de-1c5d5180ce3a","hashId":"db1a48b6-7a6c-4aeb-b6de-1c5d5180ce3a###3","tier":"Standard","connector":"","imgURL":null,"runAfter":"NewLine:Succeeded","exception":"Non-Exception","index":3,"complexity":2,"detail":"\"@split(split(triggerOutputs()?['body/Subject'],'?')[1],'&amp;')\"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|NewLine|","positionInfo":"","environmentVariables":"null","environmentB":false,"notes":"0=id,1=left hand, 2=right hand, 3 = status, 4 emailId","parent":"root","branch":"Yes","positionIndex":"|60","positionType":"|Compose","nested":""},{"name":"start","step":"Scope","type":"Scope","id":"df5f45f5-f600-42b0-aa1d-f130e5ccffff","hashId":"df5f45f5-f600-42b0-aa1d-f130e5ccffff###4","tier":"Standard","connector":"","imgURL":null,"runAfter":"Extract_Query:Failed","exception":"Exception","index":4,"complexity":-1,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Extract_Query|","positionInfo":"","environmentVariables":"[]","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|3","positionType":"|Compose","nested":""},{"name":"Send_an_email_(V2)_start","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###5","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":5,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?1&amp;empty&amp;empty&amp;travelling&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p><span style="\\\&quot;font-family:" 'lucida="" console'\\\"="">\\n┏━━━┓━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>\\n┃┏━┓┃━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>\\n┃┃━┗┛┏━━┓━┏━┓━┏┓━┏┓┏━━┓┏━┓━━━━━━<br>\\n┃┃━┏┓┗━┓┃━┃┏┓┓┃┃━┃┃┃┏┓┃┃┏┓┓━━━━━<br>\\n┃┗━┛┃┃┗┛┗┓┃┃┃┃┃┗━┛┃┃┗┛┃┃┃┃┃━━━━━<br>\\n┗━━━┛┗━━━┛┗┛┗┛┗━┓┏┛┗━━┛┗┛┗┛━━━━━<br>\\n━━━━━━━━━━━━━━┏━┛┃━━━━━━━━━━━━━━<br>\\n━━━━━━━━━━━━━━┗━━┛━━━━━━━━━━━━━━<br>\\n</span></p>\\n<p><span style="\\\&quot;font-family:" 'lucida="" console'\\\"="">\\n━━━┏━━━┓━━━━━━━━━━━━━━━━━━━━━━━━<br>\\n━━━┃┏━━┛━━━━━━━━━━━━━━━━━━━━━━━━<br>\\n━━━┃┗━━┓┏━━┓┏━━┓┏━━┓━┏━━┓┏━━┓━━━<br>\\n━━━┃┏━━┛┃━━┫┃┏━┛┗━┓┃━┃┏┓┃┃┏┓┃━━━<br>\\n━━━┃┗━━┓┣━━┃┃┗━┓┃┗┛┗┓┃┗┛┃┃┃━┫━━━<br>\\n━━━┗━━━┛┗━━┛┗━━┛┗━━━┛┃┏━┛┗━━┛━━━<br>\\n━━━━━━━━━━━━━━━━━━━━━┃┃━━━━━━━━━<br>\\n━━━━━━━━━━━━━━━━━━━━━┗┛━━━━━━━━━</span></p>\\n<br>\\n<a href="\\\&quot;https://dev.to/wyattdave\\\&quot;">By David Wyatt</a>\\n<br>\\n<p>Welcome to Canyon Escape, you are an intriped explorer in the model of Indian Jones, while exploring the deepest jungle in Peru you stumble into a canyon. With no way back you trek through, hoping to find an escape, and maybe a lost treasue or 2,</p>\\n<br>\\n<h3>Instructions</h3>\\n<b>Commands</b>\\n<p>head north/east/south/west</p>\\n<p>speak to elder/tribesman</p>\\n<p>pick up knife/rope</p>\\n<p>use knife/rope</p>\\n<p>drop knife/rope</p>\\n<p>answer 4/shark</p>\\n<br>\\n<b>Commands</b>\\n<p> You have your right and left hand to hold things, if you pickup and both hands are full you will automatically drop what is in your left hand</p>\\n<br>\\n<b>FYI</b> \\n<p>Don't edit the subject or add additional text that is not needed</p>\\n<br>\\n<p>To start reply with compass direction</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|start|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"start","branch":"Yes","positionIndex":"|4","positionType":"|Scope","nested":"4"},{"name":"Terminate_Start","step":"Terminate","type":"Terminate","id":"a858eed5-fd2e-492f-b4c4-6b9defefe01e","hashId":"a858eed5-fd2e-492f-b4c4-6b9defefe01e###6","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_start:Succeeded","exception":"Non-Exception","index":6,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_start|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"start","branch":"Yes","positionIndex":"|5","positionType":"|OpenApiConnection","nested":"4"},{"name":"Main","step":"Scope","type":"Scope","id":"5f4d0797-5b05-43fd-81fc-06793da427c5","hashId":"5f4d0797-5b05-43fd-81fc-06793da427c5###7","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_Cheat:Succeeded","exception":"Non-Exception","index":7,"complexity":-1,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_Cheat|","positionInfo":"","environmentVariables":"[]","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|55","positionType":"|If","nested":""},{"name":"Do_until","step":"Until","type":"Until","id":"409a5bea-583a-4447-8537-81f47eb8d236","hashId":"409a5bea-583a-4447-8537-81f47eb8d236###8","tier":"Standard","connector":"","imgURL":null,"runAfter":"","exception":"Non-Exception","index":8,"complexity":4,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"PT5M","position":"|Main|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|7","positionType":"|Scope","nested":"7"},{"name":"Set_variable","step":"SetVariable","type":"SetVariable","id":"b9697607-b78e-460e-baac-ad5abfa059c6","hashId":"b9697607-b78e-460e-baac-ad5abfa059c6###9","tier":"Standard","connector":"","imgURL":null,"runAfter":"","exception":"Non-Exception","index":9,"complexity":2,"detail":"{\"name\":\"sOption\",\"value\":\"@{if(contains(toLower(split(triggerOutputs()?['body/Body'],'From:')[0]),variables('aOptions')[iterationIndexes('Do_until')]?['val']),variables('aOptions')[iterationIndexes('Do_until')]?['return'],'')}\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Do_until|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Do_until","branch":"Yes","positionIndex":"|8","positionType":"|Until","nested":"8|7"},{"name":"Condition_pickup","step":"If","type":"If","id":"eaa63150-7483-4ae3-87c9-db5d690557ce","hashId":"eaa63150-7483-4ae3-87c9-db5d690557ce###10","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_not_valid:Succeeded","exception":"Non-Exception","index":10,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_not_valid|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|40","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_pick_up","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###11","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"Get_file_content_using_path_item:Succeeded","exception":"Non-Exception","index":11,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"@if(not(equals(outputs('Get_a_row_current_Sq')?['body/Item'],'')),\\nif(equals(outputs('Extract_Query')[1],'empty'),\\nconcat(\\n'canyonEscape?'\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[0]\\n,\\n'&amp;'\\n,\\noutputs('Get_a_row_current_Sq')?['body/Item']\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[2]\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[3]\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n)\\t\\n,\\nconcat(\\n'canyonEscape?'\\t\\t\\t\\n,\\n\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t,\\n'&amp;'\\n,\\n outputs('Extract_Query')[1]\\n,\\n'&amp;'\\n,\\noutputs('Get_a_row_current_Sq')?['body/Item']\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[3]\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n)\\n\\t)\\n,\\nreplace(triggerOutputs()?['body/Subject'],'RE:','')\\n)\",\"emailMessage/Body\":\"<p>@{if(not(equals(outputs('Get_a_row_current_Sq')?['body/Item'],'')),\\nif(equals(outputs('Extract_Query')[1],'empty'),\\nconcat(\\n'You pick up the '\\n\\t\\t,\\n\\t\\t\\toutputs('Get_a_row_current_Sq')?['body/Item']\\n\\t\\t,\\n\\t\\t\\t' in your right hand'\\n)\\t\\n,\\nconcat(\\n'You pick up the '\\n\\t\\t,\\n\\t\\t\\toutputs('Get_a_row_current_Sq')?['body/Item']\\n\\t\\t,\\n\\t\\t\\t' in your left hand, dropping anything you were already holding in that hand'\\n)\\t\\n\\t)\\n,\\n'Unable to pick up anything'\\n\\n)}</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Attachments\":[{\"Name\":\"@outputs('Get_a_row_current_Sq')?['body/Attachment']\",\"ContentBytes\":\"@body('Get_file_content_using_path_item')\"}],\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Get_file_content_using_path_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_pickup","branch":"Yes","positionIndex":"|13","positionType":"|OpenApiConnection","nested":"10|7"},{"name":"Terminate","step":"Terminate","type":"Terminate","id":"8a70e976-f47a-4261-ab84-d01429954cee","hashId":"8a70e976-f47a-4261-ab84-d01429954cee###12","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_pick_up:Succeeded","exception":"Non-Exception","index":12,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_pick_up|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_pickup","branch":"Yes","positionIndex":"|11","positionType":"|OpenApiConnection","nested":"10|7"},{"name":"Get_file_content_using_path_item","step":"GetFileContentByPath","type":"OpenApiConnection","id":"95ea1ced-708e-4af0-824b-5571b3096e40","hashId":"95ea1ced-708e-4af0-824b-5571b3096e40###13","tier":"Standard","connector":"shared_onedrive_1","imgURL":"https://connectoricons-prod.azureedge.net/releases/v1.0.1645/1.0.1645.3345/onedrive/icon.png","runAfter":"","exception":"Non-Exception","index":13,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_onedrive_1\",\"operationId\":\"GetFileContentByPath\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_onedrive\"},\"parameters\":{\"path\":\"/@{outputs('Get_a_row_current_Sq')?['body/Attachment']}\",\"inferContentType\":true},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_pickup|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_pickup","branch":"Yes","positionIndex":"|10","positionType":"|If","nested":"10|7"},{"name":"Condition_use","step":"If","type":"If","id":"eaa63150-7483-4ae3-87c9-db5d690557ce","hashId":"eaa63150-7483-4ae3-87c9-db5d690557ce###14","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_pickup:Succeeded","exception":"Non-Exception","index":14,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_pickup|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|10","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_use","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###15","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"Get_a_row_item:Succeeded","exception":"Non-Exception","index":15,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"@if(not(equals(outputs('Get_a_row_current_Sq')?['body/Use'],'')),\\n\\tif(equals(outputs('Get_a_row_item')?['body/Action'],'travelling'),\\n\\t\\tif(equals(outputs('Extract_Query')[1],outputs('Get_a_row_current_Sq')?['body/Use']),\\n\\t\\t\\tconcat(\\n\\t\\t\\t\\t'canyonEscape?'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'empty'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[2]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n\\t\\t\\t)\\t\\n\\t\\t,\\n\\t\\t\\tconcat(\\n\\t\\t\\t\\t'canyonEscape?'\\t\\t\\t\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[1]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'empty'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n\\t\\t\\t)\\n\\t\\t)\\n\\t,\\n\\t\\tconcat(\\n\\t\\t\\t'canyonEscape?'\\t\\t\\t\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[1]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[2]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\ttriggerOutputs()?['body/Id']\\n\\t\\t)\\n\\t)\\n,\\nreplace(triggerOutputs()?['body/Subject'],'RE:','')\\n)\",\"emailMessage/Body\":\"<p>@{if(not(equals(outputs('Get_a_row_current_Sq')?['body/Use'],'')),\\n\\tif(equals(outputs('Get_a_row_item')?['body/Action'],'travelling'),\\n\\t\\tif(equals(outputs('Extract_Query')[1],outputs('Get_a_row_current_Sq')?['body/Use']),\\n\\t\\t\\tconcat(\\n\\t\\t\\t\\t'canyonEscape?'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'empty'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[2]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n\\t\\t\\t)\\t\\n\\t\\t,\\n\\t\\t\\tconcat(\\n\\t\\t\\t\\t'canyonEscape?'\\t\\t\\t\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Extract_Query')[1]\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'empty'\\n\\t\\t\\t,\\n\\t\\t\\t\\t'&amp;'\\n\\t\\t\\t,\\n\\t\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n\\t\\t\\t)\\n\\t\\t)\\n\\t,\\n\\t\\tconcat(\\n\\t\\t\\t'canyonEscape?'\\t\\t\\t\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[0]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[1]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Extract_Query')[2]\\n\\t\\t,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\toutputs('Get_a_row_item')?['body/Action']\\n,\\n\\t\\t\\t'&amp;'\\n\\t\\t,\\n\\t\\t\\ttriggerOutputs()?['body/Id']\\n\\t\\t)\\n\\t)\\n,\\nreplace(triggerOutputs()?['body/Subject'],'RE:','')\\n)}<br>\\n-----------------------------</p>\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Get_a_row_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_use","branch":"Yes","positionIndex":"|17","positionType":"|OpenApiConnection","nested":"14|7"},{"name":"Terminate_use","step":"Terminate","type":"Terminate","id":"8a70e976-f47a-4261-ab84-d01429954cee","hashId":"8a70e976-f47a-4261-ab84-d01429954cee###16","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_use:Succeeded","exception":"Non-Exception","index":16,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_use|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_use","branch":"Yes","positionIndex":"|15","positionType":"|OpenApiConnection","nested":"14|7"},{"name":"Get_a_row_item","step":"GetItem","type":"OpenApiConnection","id":"76f76299-3f0a-4bbb-8853-3f9253155496","hashId":"76f76299-3f0a-4bbb-8853-3f9253155496###17","tier":"Standard","connector":"shared_excelonline_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/excelonline/icon.png","runAfter":"","exception":"Non-Exception","index":17,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_excelonline_1\",\"operationId\":\"GetItem\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_excelonline\"},\"parameters\":{\"file\":\"622AB777AFFC158A!104\",\"table\":\"{89F5C752-2F57-4ECA-AC50-B7894545DCF8}\",\"idColumn\":\"Item\",\"id\":\"@outputs('Get_a_row_current_Sq')?['body/Use']\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_use|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_use","branch":"Yes","positionIndex":"|14","positionType":"|If","nested":"14|7"},{"name":"Condition_blocked_path","step":"If","type":"If","id":"fd974813-2cb9-4b72-a114-19189cc2ec6e","hashId":"fd974813-2cb9-4b72-a114-19189cc2ec6e###18","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_drop:Succeeded","exception":"Non-Exception","index":18,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_drop|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|44","positionType":"|If","nested":"7"},{"name":"Terminate_not_move","step":"Terminate","type":"Terminate","id":"d329b732-e58c-49aa-b54a-8f8729c64b10","hashId":"d329b732-e58c-49aa-b54a-8f8729c64b10###19","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_not_move_path:Succeeded","exception":"Non-Exception","index":19,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_not_move_path|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_blocked_path","branch":"Yes","positionIndex":"|20","positionType":"|OpenApiConnection","nested":"18|7"},{"name":"Send_an_email_(V2)_not_move_path","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###20","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":20,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"@if(contains(outputs('Get_a_row_current_Sq')?['body']?[variables('sOption')],'Game Over'),\\n'canyonEscape'\\n,\\nconcat(\\n'canyonEscape?'\\n,\\noutputs('Extract_Query')[0]\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[1]\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[2]\\n,\\n'&amp;'\\n,\\noutputs('Extract_Query')[3]\\n,\\n'&amp;'\\n,\\ntriggerOutputs()?['body/Id']\\n)\\n)\",\"emailMessage/Body\":\"<p>@{outputs('Get_a_row_current_Sq')?['body']?[variables('sOption')]}</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_blocked_path|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_blocked_path","branch":"Yes","positionIndex":"|18","positionType":"|If","nested":"18|7"},{"name":"Get_a_row_next_Sq","step":"GetItem","type":"OpenApiConnection","id":"76f76299-3f0a-4bbb-8853-3f9253155496","hashId":"76f76299-3f0a-4bbb-8853-3f9253155496###21","tier":"Standard","connector":"shared_excelonline_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/excelonline/icon.png","runAfter":"Condition_blocked_path:Succeeded","exception":"Non-Exception","index":21,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_excelonline_1\",\"operationId\":\"GetItem\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_excelonline\"},\"parameters\":{\"file\":\"622AB777AFFC158A!104\",\"table\":\"{EA4440A3-B5A6-4099-806A-5F1A60B4319E}\",\"idColumn\":\"ID\",\"id\":\"@int(outputs('Get_a_row_current_Sq')?['body']?[variables('sOption')])\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_blocked_path|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|18","positionType":"|If","nested":"7"},{"name":"Condition_have_needed_item","step":"If","type":"If","id":"039c289a-acf7-44c6-940a-666afa104e75","hashId":"039c289a-acf7-44c6-940a-666afa104e75###22","tier":"Standard","connector":"","imgURL":null,"runAfter":"Get_a_row_next_Sq:Succeeded","exception":"Non-Exception","index":22,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Get_a_row_next_Sq|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|21","positionType":"|OpenApiConnection","nested":"7"},{"name":"Send_an_email_(V2)_move","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###23","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":23,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Get_a_row_next_Sq')?['body/ID']}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Get_a_row_next_Sq')?['body/Need']}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"@outputs('Get_a_row_next_Sq')?['body/Text']\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_have_needed_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_have_needed_item","branch":"Yes","positionIndex":"|22","positionType":"|If","nested":"22|7"},{"name":"Send_an_email_(V2)_not_move","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###24","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":24,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Extract_Query')[3]}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>@{if(equals(outputs('Extract_Query')[3],'survive'),\\r\\n'You are fighting for your life so cant escape that way'\\r\\n,\\r\\n'Looks like you are missing an item or need to drop something to go this way'\\r\\n)}</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_have_needed_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_have_needed_item","branch":"No","positionIndex":"|22","positionType":"|If","nested":"22|7"},{"name":"Condition_missing_item","step":"If","type":"If","id":"2db5ac5d-a4b1-4848-8111-b9676fd6b9ee","hashId":"2db5ac5d-a4b1-4848-8111-b9676fd6b9ee###25","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_use:Succeeded","exception":"Non-Exception","index":25,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_use|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|14","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_not_move_item","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###26","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":26,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Extract_Query')[3]}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>Looks like you dont have that item or it cant be used here</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_missing_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_missing_item","branch":"Yes","positionIndex":"|25","positionType":"|If","nested":"25|7"},{"name":"Terminate_no_move_item","step":"Terminate","type":"Terminate","id":"c425ddd4-69ab-497e-9245-ac3c41eaad27","hashId":"c425ddd4-69ab-497e-9245-ac3c41eaad27###27","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_not_move_item:Succeeded","exception":"Non-Exception","index":27,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_not_move_item|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_missing_item","branch":"Yes","positionIndex":"|26","positionType":"|OpenApiConnection","nested":"25|7"},{"name":"Condition_speak","step":"If","type":"If","id":"fd974813-2cb9-4b72-a114-19189cc2ec6e","hashId":"fd974813-2cb9-4b72-a114-19189cc2ec6e###28","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_missing_item:Succeeded","exception":"Non-Exception","index":28,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_missing_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|25","positionType":"|If","nested":"7"},{"name":"Terminate_speak","step":"Terminate","type":"Terminate","id":"d329b732-e58c-49aa-b54a-8f8729c64b10","hashId":"d329b732-e58c-49aa-b54a-8f8729c64b10###29","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_speak:Succeeded","exception":"Non-Exception","index":29,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_speak|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_speak","branch":"Yes","positionIndex":"|30","positionType":"|OpenApiConnection","nested":"28|7"},{"name":"Send_an_email_(V2)_speak","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###30","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":30,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Extract_Query')[3]}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>@{outputs('Get_a_row_current_Sq')?['body/Person']}</p>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_speak|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_speak","branch":"Yes","positionIndex":"|28","positionType":"|If","nested":"28|7"},{"name":"Condition_no_speak","step":"If","type":"If","id":"fd974813-2cb9-4b72-a114-19189cc2ec6e","hashId":"fd974813-2cb9-4b72-a114-19189cc2ec6e###31","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_speak:Succeeded","exception":"Non-Exception","index":31,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_speak|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|28","positionType":"|If","nested":"7"},{"name":"Terminate_no_speak","step":"Terminate","type":"Terminate","id":"d329b732-e58c-49aa-b54a-8f8729c64b10","hashId":"d329b732-e58c-49aa-b54a-8f8729c64b10###32","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_no_one_to_speak_to:Succeeded","exception":"Non-Exception","index":32,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_no_one_to_speak_to|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_no_speak","branch":"Yes","positionIndex":"|33","positionType":"|OpenApiConnection","nested":"31|7"},{"name":"Send_an_email_(V2)_no_one_to_speak_to","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###33","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":33,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Extract_Query')[3]}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>There is no one to speak to</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_no_speak|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_no_speak","branch":"Yes","positionIndex":"|31","positionType":"|If","nested":"31|7"},{"name":"Condition_Challenge_Correct","step":"If","type":"If","id":"38f55cf8-2ed8-453b-8beb-e534eac53776","hashId":"38f55cf8-2ed8-453b-8beb-e534eac53776###34","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_no_speak:Succeeded","exception":"Non-Exception","index":34,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_no_speak|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|31","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_challenge_correct","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###35","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":35,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;travelling&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>@{outputs('Get_a_row_current_Sq')?['body/Puzzle']}</p>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\",\"retryPolicy\":{\"type\":\"fixed\",\"count\":5,\"interval\":\"PT30S\"}}","filter":"","pagination":"","secure":"","retry":"fixed","timeout":"","position":"|Condition_Challenge_Correct|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_Challenge_Correct","branch":"Yes","positionIndex":"|34","positionType":"|If","nested":"34|7"},{"name":"Terminate_correct","step":"Terminate","type":"Terminate","id":"1ba2b132-63a1-4333-9f85-2939f90daaed","hashId":"1ba2b132-63a1-4333-9f85-2939f90daaed###36","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_challenge_correct:Succeeded","exception":"Non-Exception","index":36,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_challenge_correct|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_Challenge_Correct","branch":"Yes","positionIndex":"|35","positionType":"|OpenApiConnection","nested":"34|7"},{"name":"Condition_Challenge_Incorrect","step":"If","type":"If","id":"b9509cd6-f9eb-416d-9b3b-d4a0f4e27685","hashId":"b9509cd6-f9eb-416d-9b3b-d4a0f4e27685###37","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_Challenge_Correct:Succeeded","exception":"Non-Exception","index":37,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_Challenge_Correct|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|34","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_challenge_incorrect","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###38","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":38,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;travelling&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>@{outputs('Get_a_row_current_Sq')?['body/Incorrect']}</p>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_Challenge_Incorrect|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_Challenge_Incorrect","branch":"Yes","positionIndex":"|37","positionType":"|If","nested":"37|7"},{"name":"Terminate_incorrect","step":"Terminate","type":"Terminate","id":"45d127b1-4ef8-49bf-8b4d-238644563e9d","hashId":"45d127b1-4ef8-49bf-8b4d-238644563e9d###39","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_challenge_incorrect:Succeeded","exception":"Non-Exception","index":39,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_challenge_incorrect|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_Challenge_Incorrect","branch":"Yes","positionIndex":"|38","positionType":"|OpenApiConnection","nested":"37|7"},{"name":"Condition_not_valid","step":"If","type":"If","id":"37b8b659-2bd3-43d5-b2f8-3ccfe2365d53","hashId":"37b8b659-2bd3-43d5-b2f8-3ccfe2365d53###40","tier":"Standard","connector":"","imgURL":null,"runAfter":"Html_to_text:Succeeded","exception":"Non-Exception","index":40,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Html_to_text|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|54","positionType":"|OpenApiConnection","nested":"7"},{"name":"Send_an_email_(V2)_error","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###41","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":41,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;@{outputs('Extract_Query')[3]}&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>Sorry I dont understand your request (my fault) or you are using wrong request at wrong time (your fault).<br>Remember:\\n</p>\\n<br>\\n<h3>Instructions</h3>\\n<b>Commands</b>\\n<p>head north/east/south/west</p>\\n<p>speak to elder/tribesman</p>\\n<p>pick up knife/rope</p>\\n<p>use knife/rope</p>\\n<p>drop knife/rope</p>\\n<p>answer 4/shark</p>\\n<br>\\n<b>Commands</b>\\n<p> You have your right and left hand to hold things, if you pickup and both hands are full you will automatically drop what is in your left hand</p>\\n<br>\\n<b>FYI</b> \\n<p>Don't edit the subject or add additional text that is not needed</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\\n<br>\\n@{body('Html_to_text')}\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_not_valid|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_not_valid","branch":"Yes","positionIndex":"|40","positionType":"|If","nested":"40|7"},{"name":"Terminate_not_valid","step":"Terminate","type":"Terminate","id":"0a2489c0-e920-4c44-839d-0eacfb44d3a1","hashId":"0a2489c0-e920-4c44-839d-0eacfb44d3a1###42","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_error:Succeeded","exception":"Non-Exception","index":42,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_error|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_not_valid","branch":"Yes","positionIndex":"|41","positionType":"|OpenApiConnection","nested":"40|7"},{"name":"Get_a_row_current_Sq","step":"GetItem","type":"OpenApiConnection","id":"76f76299-3f0a-4bbb-8853-3f9253155496","hashId":"76f76299-3f0a-4bbb-8853-3f9253155496###43","tier":"Standard","connector":"shared_excelonline_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/excelonline/icon.png","runAfter":"Do_until:Succeeded","exception":"Non-Exception","index":43,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_excelonline_1\",\"operationId\":\"GetItem\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_excelonline\"},\"parameters\":{\"file\":\"622AB777AFFC158A!104\",\"table\":\"{EA4440A3-B5A6-4099-806A-5F1A60B4319E}\",\"idColumn\":\"ID\",\"id\":\"@outputs('Extract_Query')[0]\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Do_until|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|8","positionType":"|Until","nested":"7"},{"name":"Condition_drop","step":"If","type":"If","id":"eaa63150-7483-4ae3-87c9-db5d690557ce","hashId":"eaa63150-7483-4ae3-87c9-db5d690557ce###44","tier":"Standard","connector":"","imgURL":null,"runAfter":"get_drop_item:Succeeded","exception":"Non-Exception","index":44,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|get_drop_item|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|47","positionType":"|Compose","nested":"7"},{"name":"Send_an_email_(V2)_drop","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###45","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":45,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"@if(equals(outputs('Extract_Query')[1],outputs('get_drop_item')),\\n\\tconcat(\\n\\t\\t'canyonEscape?'\\n\\t,\\n\\t\\toutputs('Extract_Query')[0]\\n\\t,\\n\\t\\t'&amp;'\\n\\t,\\n\\t\\t'empty'\\n\\t,\\n\\t\\t'&amp;'\\n\\t,\\n\\t\\toutputs('Extract_Query')[2]\\n\\t,\\n\\t\\t'&amp;travelling&amp;'\\n\\t,\\ntriggerOutputs()?['body/Id']\\n\\t)\\t\\n,\\n\\tconcat(\\n\\t\\t'canyonEscape?'\\t\\t\\t\\n\\t,\\n\\t\\toutputs('Extract_Query')[0]\\n\\t,\\n\\t\\t'&amp;'\\n\\t,\\n\\t\\toutputs('Extract_Query')[1]\\n\\t,\\n\\t\\t'&amp;'\\n\\t,\\n\\t\\t'empty&amp;travelling&amp;'\\n\\t,\\n\\t\\ttriggerOutputs()?['body/Id']\\n\\t)\\n)\\n\",\"emailMessage/Body\":\"<p>@{if(equals(outputs('Extract_Query')[1],outputs('get_drop_item')),\\n\\tconcat(\\n\\t\\t'You dropped the '\\n\\t,\\n\\t\\toutputs('get_drop_item')\\n\\t,\\n\\t\\t' from your right hand'\\n\\t)\\t\\n,\\n\\tconcat(\\n\\t\\t'You deopped the '\\n\\t,\\n\\t\\toutputs('get_drop_item')\\n\\t,\\n\\t\\t' from your left hand'\\n\\t)\\t\\n)}</p>\\n<br>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_drop|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_drop","branch":"Yes","positionIndex":"|44","positionType":"|If","nested":"44|7"},{"name":"Terminate_drop","step":"Terminate","type":"Terminate","id":"8a70e976-f47a-4261-ab84-d01429954cee","hashId":"8a70e976-f47a-4261-ab84-d01429954cee###46","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_drop:Succeeded","exception":"Non-Exception","index":46,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_drop|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_drop","branch":"Yes","positionIndex":"|45","positionType":"|OpenApiConnection","nested":"44|7"},{"name":"get_drop_item","step":"Compose","type":"Compose","id":"5918566b-33c7-4437-95a1-46f85aa3378e","hashId":"5918566b-33c7-4437-95a1-46f85aa3378e###47","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_die:Succeeded","exception":"Non-Exception","index":47,"complexity":2,"detail":"\"@trim(\\r\\n\\tif(equals(variables('sOption'),'Drop'),\\r\\n\\t\\tsplit(\\r\\n\\t\\t\\tsplit(\\r\\n\\t\\t\\t\\tsplit(\\r\\n\\t\\t\\t\\t\\treplace(toLower(body('Html_to_text')),'-',' ')\\r\\n\\t\\t\\t\\t,\\r\\n\\t\\t\\t\\t\\t'drop '\\r\\n\\t\\t\\t\\t)[1]\\r\\n\\t\\t\\t,\\r\\n\\t\\t\\t\\t' '\\r\\n\\t\\t\\t)[0]\\r\\n\\t\\t,\\r\\n\\t\\t\\toutputs('NewLine')\\r\\n\\t\\t)[0]\\r\\n\\t,\\r\\n\\t\\t''\\r\\n\\t)\\r\\n)\"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_die|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|51","positionType":"|If","nested":"7"},{"name":"Condition_survive","step":"If","type":"If","id":"38f55cf8-2ed8-453b-8beb-e534eac53776","hashId":"38f55cf8-2ed8-453b-8beb-e534eac53776###48","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_Challenge_Incorrect:Succeeded","exception":"Non-Exception","index":48,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_Challenge_Incorrect|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|37","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_survive_correct","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###49","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":49,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape?@{outputs('Extract_Query')[0]}&amp;@{outputs('Extract_Query')[1]}&amp;@{outputs('Extract_Query')[2]}&amp;travelling&amp;@{triggerOutputs()?['body/Id']}\",\"emailMessage/Body\":\"<p>That is the correct answer, well done you live to fight another day</p>\\n-----------------------------\\n<p>@{outputs('Get_a_row_current_Sq')?['body/Text']}\\n</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_survive|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_survive","branch":"Yes","positionIndex":"|48","positionType":"|If","nested":"48|7"},{"name":"Terminate_correct_2","step":"Terminate","type":"Terminate","id":"1ba2b132-63a1-4333-9f85-2939f90daaed","hashId":"1ba2b132-63a1-4333-9f85-2939f90daaed###50","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_survive_correct:Succeeded","exception":"Non-Exception","index":50,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_survive_correct|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_survive","branch":"Yes","positionIndex":"|49","positionType":"|OpenApiConnection","nested":"48|7"},{"name":"Condition_die","step":"If","type":"If","id":"38f55cf8-2ed8-453b-8beb-e534eac53776","hashId":"38f55cf8-2ed8-453b-8beb-e534eac53776###51","tier":"Standard","connector":"","imgURL":null,"runAfter":"Condition_survive:Succeeded","exception":"Non-Exception","index":51,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_survive|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|48","positionType":"|If","nested":"7"},{"name":"Send_an_email_(V2)_die","step":"SendEmailV2","type":"OpenApiConnection","id":"ef146514-cf0e-4346-a540-d2c4f2ce7e97","hashId":"ef146514-cf0e-4346-a540-d2c4f2ce7e97###52","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":52,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape\",\"emailMessage/Body\":\"<p>Unfortunatly this time you were not successful, you gave it your best shot, you should be proud of yourself</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_die|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_die","branch":"Yes","positionIndex":"|51","positionType":"|If","nested":"51|7"},{"name":"Terminate_die","step":"Terminate","type":"Terminate","id":"1ba2b132-63a1-4333-9f85-2939f90daaed","hashId":"1ba2b132-63a1-4333-9f85-2939f90daaed###53","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_die:Succeeded","exception":"Non-Exception","index":53,"complexity":-1,"detail":"{\"runStatus\":\"Succeeded\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_die|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Condition_die","branch":"Yes","positionIndex":"|52","positionType":"|OpenApiConnection","nested":"51|7"},{"name":"Html_to_text","step":"HtmlToText","type":"OpenApiConnection","id":"73d8f42f-5420-4d7e-9a0d-762333fb914d","hashId":"73d8f42f-5420-4d7e-9a0d-762333fb914d###54","tier":"Standard","connector":"shared_conversionservice_1","imgURL":"https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3410/conversionservice/icon.png","runAfter":"Get_a_row_current_Sq:Succeeded","exception":"Non-Exception","index":54,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_conversionservice_1\",\"operationId\":\"HtmlToText\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_conversionservice\"},\"parameters\":{\"Content\":\"<p>@{triggerOutputs()?['body/Body']}</p>\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Get_a_row_current_Sq|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Main","branch":"Yes","positionIndex":"|43","positionType":"|OpenApiConnection","nested":"7"},{"name":"Condition_Cheat","step":"If","type":"If","id":"acf0937c-3086-45dc-9e1f-a823c610f815","hashId":"acf0937c-3086-45dc-9e1f-a823c610f815###55","tier":"Standard","connector":"","imgURL":null,"runAfter":"Extract_Query:Succeeded","exception":"Non-Exception","index":55,"complexity":3,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Extract_Query|","positionInfo":"","environmentVariables":"[]","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|3","positionType":"|Compose","nested":""},{"name":"Delete_email","step":"DeleteEmail","type":"OpenApiConnection","id":"d5e40a1a-28b4-414a-92d4-98caf1e37488","hashId":"d5e40a1a-28b4-414a-92d4-98caf1e37488###56","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":56,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"DeleteEmail\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"messageId\":\"@outputs('Extract_Query')[4]\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Condition_Cheat|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_Cheat","branch":"Yes","positionIndex":"|55","positionType":"|If","nested":"55"},{"name":"Exit_game","step":"Scope","type":"Scope","id":"63bcf45e-fb25-48c3-ada0-18758e2257d6","hashId":"63bcf45e-fb25-48c3-ada0-18758e2257d6###57","tier":"Standard","connector":"","imgURL":null,"runAfter":"Delete_email:Failed","exception":"Exception","index":57,"complexity":-1,"detail":"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Delete_email|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Condition_Cheat","branch":"Yes","positionIndex":"|56","positionType":"|OpenApiConnection","nested":"55"},{"name":"Terminate_Cheat","step":"Terminate","type":"Terminate","id":"b98c2189-851b-477e-989e-a38843e72ed1","hashId":"b98c2189-851b-477e-989e-a38843e72ed1###58","tier":"Standard","connector":"","imgURL":null,"runAfter":"Send_an_email_(V2)_move_already_moved:Succeeded","exception":"Non-Exception","index":58,"complexity":-1,"detail":"{\"runStatus\":\"Cancelled\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Send_an_email_(V2)_move_already_moved|","positionInfo":"Internal","environmentVariables":"null","environmentB":false,"notes":"","parent":"Exit_game","branch":"Yes","positionIndex":"|59","positionType":"|OpenApiConnection","nested":"57|55"},{"name":"Send_an_email_(V2)_move_already_moved","step":"SendEmailV2","type":"OpenApiConnection","id":"e363a826-d82c-4cd1-be66-4dddf49fd6a3","hashId":"e363a826-d82c-4cd1-be66-4dddf49fd6a3###59","tier":"Standard","connector":"shared_outlook_1","imgURL":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/outlook/icon.png","runAfter":"","exception":"Non-Exception","index":59,"complexity":1,"detail":"{\"host\":{\"connectionName\":\"shared_outlook_1\",\"operationId\":\"SendEmailV2\",\"apiId\":\"/providers/Microsoft.PowerApps/apis/shared_outlook\"},\"parameters\":{\"emailMessage/To\":\"@triggerOutputs()?['body/From']\",\"emailMessage/Subject\":\"canyonEscape\",\"emailMessage/Body\":\"<p>Nice try but I thought of that, you cant make a move twice!</p>\",\"emailMessage/Importance\":\"Normal\"},\"authentication\":\"@parameters('$authentication')\"}","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|Exit_game|","positionInfo":"Internal","environmentVariables":"[]","environmentB":false,"notes":"","parent":"Exit_game","branch":"Yes","positionIndex":"|57","positionType":"|Scope","nested":"57|55"},{"name":"NewLine","step":"Compose","type":"Compose","id":"873ce6f5-b219-4ebd-93b0-f7e26924ed67","hashId":"873ce6f5-b219-4ebd-93b0-f7e26924ed67###60","tier":"Standard","connector":"","imgURL":null,"runAfter":"aOptions:Succeeded","exception":"Non-Exception","index":60,"complexity":2,"detail":"\"\\n\"","filter":"","pagination":"","secure":"","retry":"","timeout":"","position":"|aOptions|","positionInfo":"","environmentVariables":"null","environmentB":false,"notes":"","parent":"root","branch":"Yes","positionIndex":"|2","positionType":"|InitializeVariable","nested":""}]</div>
+</div>
+    <script src="https://wyattdave.github.io/Auto-Review/Auto-Review%20Demos/node_modules/graphre/dist/graphre.js"></script>
+    <script src="https://wyattdave.github.io/Auto-Review/Auto-Review%20Demos/node_modules/nomnoml/dist/nomnoml.js"></script>
+    <script src="https://wyattdave.github.io/Auto-Review/assets/js/diagramLoad.js"></script>
+    
+  
+</body></html>
