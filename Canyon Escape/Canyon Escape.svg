@@ -1,0 +1,972 @@
+<svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 2989.25 2150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc>#fillArrows: true
+	#lineWidth: 2
+	#fill:#569AE5
+	#background: white
+	#acyclicer: greedy
+	#ranker: tight-tree
+	#.data: visual=database fill=#EBDAF9
+	#.trigger: visual=roundrect fill=#569AE5
+	#.if: visual=rhomb fill=#2596be
+	#.switch: visual=ellipse fill=#2596be
+	#.scope: visual=frame fill=#808080
+	#.foreach: visual=transceiver fill=#00C1A0
+	#.until: visual=sender fill=#00C1A0
+	#.var: visual=input fill=#9925be
+	#.terminate: visual=receiver fill=#cc4747
+	#.var: visual=input fill=#EBDAF9
+	
+	[&lt;trigger&gt; *When_a_new_email_arrives_(V2)]-&gt;[&lt;var&gt;sOption]
+	[&lt;var&gt;sOption]-&gt;[&lt;var&gt;aOptions]
+	[&lt;var&gt;aOptions]-&gt;[&lt;scope&gt;Main]
+	[&lt;scope&gt;Main]-&gt;[&lt;var&gt;NewLine]
+	[&lt;var&gt;NewLine]-&gt;[&lt;var&gt;Extract_Query]
+	[&lt;var&gt;Extract_Query]-&gt;[&lt;if&gt;Condition_Cheat]
+	[&lt;if&gt;Condition_Cheat]-&gt; Yes[Delete_email]
+	[Delete_email]-&gt;[&lt;scope&gt;Exit_game]
+	[Send_an_email_V2_move_already_moved]-&gt;[&lt;terminate&gt;Terminate_Cheat]
+	[&lt;scope&gt;Exit_game]-&gt;[Send_an_email_V2_move_already_moved]
+	[&lt;var&gt;Extract_Query]-&gt;[&lt;scope&gt;start]
+	[&lt;scope&gt;start]-&gt;[Send_an_email_V2_start]
+	[Send_an_email_V2_start]-&gt;[&lt;terminate&gt;Terminate_Start]
+	[&lt;if&gt;Condition_Cheat]-&gt; Yes[&lt;scope&gt;Logic]
+	[&lt;scope&gt;Logic]-&gt;[&lt;until&gt;Do_until]
+	[&lt;until&gt;Do_until]-&gt;[&lt;var&gt;Set_variable]
+	[&lt;if&gt;Condition_not_valid]-&gt; Yes[&lt;if&gt;Condition_pickup]
+	[Get_file_content_using_path_item]-&gt;[Send_an_email_V2_pick_up]
+	[Send_an_email_V2_pick_up]-&gt;[&lt;terminate&gt;Terminate]
+	[&lt;if&gt;Condition_pickup]-&gt; Yes[Get_file_content_using_path_item]
+	[&lt;if&gt;Condition_pickup]-&gt; Yes[&lt;if&gt;Condition_use]
+	[Get_a_row_item]-&gt;[Send_an_email_V2_use]
+	[Send_an_email_V2_use]-&gt;[&lt;terminate&gt;Terminate_use]
+	[&lt;if&gt;Condition_use]-&gt; Yes[Get_a_row_item]
+	[&lt;if&gt;Condition_drop]-&gt; Yes[&lt;if&gt;Condition_blocked_path]
+	[Send_an_email_V2_not_move_path]-&gt;[&lt;terminate&gt;Terminate_not_move]
+	[&lt;if&gt;Condition_blocked_path]-&gt; Yes[Send_an_email_V2_not_move_path]
+	[&lt;if&gt;Condition_blocked_path]-&gt; Yes[Get_a_row_next_Sq]
+	[Get_a_row_next_Sq]-&gt;[&lt;if&gt;Condition_have_needed_item]
+	[&lt;if&gt;Condition_have_needed_item]-&gt; Yes[Send_an_email_V2_move]
+	[&lt;if&gt;Condition_have_needed_item]-&gt; No[Send_an_email_V2_not_move]
+	[&lt;if&gt;Condition_use]-&gt; Yes[&lt;if&gt;Condition_missing_item]
+	[&lt;if&gt;Condition_missing_item]-&gt; Yes[Send_an_email_V2_not_move_item]
+	[Send_an_email_V2_not_move_item]-&gt;[&lt;terminate&gt;Terminate_no_move_item]
+	[&lt;if&gt;Condition_missing_item]-&gt; Yes[&lt;if&gt;Condition_speak]
+	[Send_an_email_V2_speak]-&gt;[&lt;terminate&gt;Terminate_speak]
+	[&lt;if&gt;Condition_speak]-&gt; Yes[Send_an_email_V2_speak]
+	[&lt;if&gt;Condition_speak]-&gt; Yes[&lt;if&gt;Condition_no_speak]
+	[Send_an_email_V2_no_one_to_speak_to]-&gt;[&lt;terminate&gt;Terminate_no_speak]
+	[&lt;if&gt;Condition_no_speak]-&gt; Yes[Send_an_email_V2_no_one_to_speak_to]
+	[&lt;if&gt;Condition_no_speak]-&gt; Yes[&lt;if&gt;Condition_Challenge_Correct]
+	[&lt;if&gt;Condition_Challenge_Correct]-&gt; Yes[Send_an_email_V2_challenge_correct]
+	[Send_an_email_V2_challenge_correct]-&gt;[&lt;terminate&gt;Terminate_correct]
+	[&lt;if&gt;Condition_Challenge_Correct]-&gt; Yes[&lt;if&gt;Condition_Challenge_Incorrect]
+	[&lt;if&gt;Condition_Challenge_Incorrect]-&gt; Yes[Send_an_email_V2_challenge_incorrect]
+	[Send_an_email_V2_challenge_incorrect]-&gt;[&lt;terminate&gt;Terminate_incorrect]
+	[Html_to_text]-&gt;[&lt;if&gt;Condition_not_valid]
+	[&lt;if&gt;Condition_not_valid]-&gt; Yes[Send_an_email_V2_error]
+	[Send_an_email_V2_error]-&gt;[&lt;terminate&gt;Terminate_not_valid]
+	[&lt;until&gt;Do_until]-&gt;[Get_a_row_current_Sq]
+	[&lt;var&gt;get_drop_item]-&gt;[&lt;if&gt;Condition_drop]
+	[&lt;if&gt;Condition_drop]-&gt; Yes[Send_an_email_V2_drop]
+	[Send_an_email_V2_drop]-&gt;[&lt;terminate&gt;Terminate_drop]
+	[&lt;if&gt;Condition_die]-&gt; Yes[&lt;var&gt;get_drop_item]
+	[&lt;if&gt;Condition_Challenge_Incorrect]-&gt; Yes[&lt;if&gt;Condition_survive]
+	[&lt;if&gt;Condition_survive]-&gt; Yes[Send_an_email_V2_survive_correct]
+	[Send_an_email_V2_survive_correct]-&gt;[&lt;terminate&gt;Terminate_correct_2]
+	[&lt;if&gt;Condition_survive]-&gt; Yes[&lt;if&gt;Condition_die]
+	[&lt;if&gt;Condition_die]-&gt; Yes[Send_an_email_V2_die]
+	[Send_an_email_V2_die]-&gt;[&lt;terminate&gt;Terminate_die]
+	[Get_a_row_current_Sq]-&gt;[Html_to_text]
+	[&lt;scope&gt;Main]--:&gt;[&lt;scope&gt;Exception]
+	[Send_an_email_V2_excpetion]-&gt;[&lt;terminate&gt;Terminate_Exception]
+	[&lt;scope&gt;Exception]-&gt;[Send_an_email_V2_excpetion]</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+		<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="white">
+				<rect x="0.0" y="0.0" height="2150.0" width="2989.3" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<path d="M1420.4 31.0 L1420.375 51 L1420.375 64.33333333333333 L1420.4 64.3 " fill="none"></path>
+					<path d="M1415.0 57.7 L1420.4 57.7 L1425.7 57.7 L1420.4 71.0 Z"></path>
+					<path d="M1420.4 102.0 L1420.375 122 L1420.375 135.33333333333334 L1420.4 135.3 " fill="none"></path>
+					<path d="M1415.0 128.7 L1420.4 128.7 L1425.7 128.7 L1420.4 142.0 Z"></path>
+					<path d="M1420.4 173.0 L1420.375 193 L1420.375 206.33333333333334 L1420.4 206.3 " fill="none"></path>
+					<path d="M1415.0 199.7 L1420.4 199.7 L1425.7 199.7 L1420.4 213.0 Z"></path>
+					<path d="M1385.6 239.1 L1303.875 264 L1303.875 277.3333333333333 L1303.9 277.3 " fill="none"></path>
+					<path d="M1298.5 270.7 L1303.9 270.7 L1309.2 270.7 L1303.9 284.0 Z"></path>
+					<path d="M1303.9 315.0 L1303.875 335 L1303.875 348.3333333333333 L1303.9 348.3 " fill="none"></path>
+					<path d="M1298.5 341.7 L1303.9 341.7 L1309.2 341.7 L1303.9 355.0 Z"></path>
+					<path d="M1263.5 386.0 L1211.5 406 L1211.5 419.3333333333333 L1211.5 419.3 " fill="none"></path>
+					<path d="M1206.2 412.7 L1211.5 412.7 L1216.8 412.7 L1211.5 426.0 Z"></path>
+					<text x="937.5" y="504.5" stroke="none">Yes</text>
+					<path d="M1100.5 469.6 L975.5 492.5 L975.5 505.8333333333333 L975.5 505.8 " fill="none"></path>
+					<path d="M970.2 499.2 L975.5 499.2 L980.8 499.2 L975.5 512.5 Z"></path>
+					<path d="M975.5 543.5 L975.5 563.5 L975.5 576.8333333333334 L975.5 576.8 " fill="none"></path>
+					<path d="M970.2 570.2 L975.5 570.2 L980.8 570.2 L975.5 583.5 Z"></path>
+					<path d="M975.5 685.5 L975.5 705.5 L975.5 718.8333333333334 L975.5 718.8 " fill="none"></path>
+					<path d="M970.2 712.2 L975.5 712.2 L980.8 712.2 L975.5 725.5 Z"></path>
+					<path d="M975.5 614.5 L975.5 634.5 L975.5 647.8333333333334 L975.5 647.8 " fill="none"></path>
+					<path d="M970.2 641.2 L975.5 641.2 L980.8 641.2 L975.5 654.5 Z"></path>
+					<path d="M1368.4 380.5 L1533.75 406 L1533.75 427.0833333333333 L1533.8 427.1 " fill="none"></path>
+					<path d="M1528.4 420.4 L1533.8 420.4 L1539.1 420.4 L1533.8 433.8 Z"></path>
+					<path d="M1533.8 464.8 L1533.75 492.5 L1533.75 505.8333333333333 L1533.8 505.8 " fill="none"></path>
+					<path d="M1528.4 499.2 L1533.8 499.2 L1539.1 499.2 L1533.8 512.5 Z"></path>
+					<path d="M1533.8 543.5 L1533.75 563.5 L1533.75 576.8333333333334 L1533.8 576.8 " fill="none"></path>
+					<path d="M1528.4 570.2 L1533.8 570.2 L1539.1 570.2 L1533.8 583.5 Z"></path>
+					<text x="1357.0" y="504.5" stroke="none">Yes</text>
+					<path d="M1285.4 472.5 L1349 492.5 L1349 505.8333333333333 L1349.0 505.8 " fill="none"></path>
+					<path d="M1343.7 499.2 L1349.0 499.2 L1354.3 499.2 L1349.0 512.5 Z"></path>
+					<path d="M1349.0 543.5 L1349 563.5 L1349 576.8333333333334 L1349.0 576.8 " fill="none"></path>
+					<path d="M1343.7 570.2 L1349.0 570.2 L1354.3 570.2 L1349.0 583.5 Z"></path>
+					<path d="M1308.5 613.6 L1250.5 634.5 L1250.5 647.8333333333334 L1250.5 647.8 " fill="none"></path>
+					<path d="M1245.2 641.2 L1250.5 641.2 L1255.8 641.2 L1250.5 654.5 Z"></path>
+					<text x="1277.6" y="875.0" stroke="none">Yes</text>
+					<path d="M1376.6 843.0 L1315.625 863 L1315.625 876.3333333333334 L1315.6 876.3 " fill="none"></path>
+					<path d="M1310.3 869.7 L1315.6 869.7 L1321.0 869.7 L1315.6 883.0 Z"></path>
+					<path d="M143.5 1008.3 L143.5 1036 L143.5 1057.0833333333333 L143.5 1057.1 " fill="none"></path>
+					<path d="M138.2 1050.4 L143.5 1050.4 L148.8 1050.4 L143.5 1063.8 Z"></path>
+					<path d="M143.5 1094.8 L143.5 1122.5 L143.5 1143.5833333333333 L143.5 1143.6 " fill="none"></path>
+					<path d="M138.2 1136.9 L143.5 1136.9 L148.8 1136.9 L143.5 1150.3 Z"></path>
+					<text x="105.5" y="969.3" stroke="none">Yes</text>
+					<path d="M1200.9 910.5 L143.5 949.5 L143.5 970.5833333333334 L143.5 970.6 " fill="none"></path>
+					<path d="M138.2 963.9 L143.5 963.9 L148.8 963.9 L143.5 977.3 Z"></path>
+					<text x="1464.1" y="961.5" stroke="none">Yes</text>
+					<path d="M1391.2 929.5 L1456.125 949.5 L1456.125 962.8333333333334 L1456.1 962.8 " fill="none"></path>
+					<path d="M1450.8 956.2 L1456.1 956.2 L1461.5 956.2 L1456.1 969.5 Z"></path>
+					<path d="M400.8 1094.8 L400.75 1122.5 L400.75 1143.5833333333333 L400.8 1143.6 " fill="none"></path>
+					<path d="M395.4 1136.9 L400.8 1136.9 L406.1 1136.9 L400.8 1150.3 Z"></path>
+					<path d="M400.8 1181.3 L400.75 1209 L400.75 1230.0833333333333 L400.8 1230.1 " fill="none"></path>
+					<path d="M395.4 1223.4 L400.8 1223.4 L406.1 1223.4 L400.8 1236.8 Z"></path>
+					<text x="362.8" y="1055.8" stroke="none">Yes</text>
+					<path d="M1358.6 996.7 L400.75 1036 L400.75 1057.0833333333333 L400.8 1057.1 " fill="none"></path>
+					<path d="M395.4 1050.4 L400.8 1050.4 L406.1 1050.4 L400.8 1063.8 Z"></path>
+					<text x="2310.8" y="1811.0" stroke="none">Yes</text>
+					<path d="M2419.0 1779.0 L2348.75 1799 L2348.75 1812.3333333333333 L2348.8 1812.3 " fill="none"></path>
+					<path d="M2343.4 1805.7 L2348.8 1805.7 L2354.1 1805.7 L2348.8 1819.0 Z"></path>
+					<path d="M2188.1 1936.5 L2188.125 1956.5 L2188.125 1977.5833333333333 L2188.1 1977.6 " fill="none"></path>
+					<path d="M2182.8 1970.9 L2188.1 1970.9 L2193.5 1970.9 L2188.1 1984.3 Z"></path>
+					<text x="2150.1" y="1897.5" stroke="none">Yes</text>
+					<path d="M2262.4 1865.5 L2188.125 1885.5 L2188.125 1898.8333333333333 L2188.1 1898.8 " fill="none"></path>
+					<path d="M2182.8 1892.2 L2188.1 1892.2 L2193.5 1892.2 L2188.1 1905.5 Z"></path>
+					<text x="2517.4" y="1897.5" stroke="none">Yes</text>
+					<path d="M2435.1 1865.5 L2509.375 1885.5 L2509.375 1898.8333333333333 L2509.4 1898.8 " fill="none"></path>
+					<path d="M2504.0 1892.2 L2509.4 1892.2 L2514.7 1892.2 L2509.4 1905.5 Z"></path>
+					<path d="M2509.4 1936.5 L2509.375 1956.5 L2509.375 1969.8333333333333 L2509.4 1969.8 " fill="none"></path>
+					<path d="M2504.0 1963.2 L2509.4 1963.2 L2514.7 1963.2 L2509.4 1976.5 Z"></path>
+					<text x="2331.1" y="2055.0" stroke="none">Yes</text>
+					<path d="M2434.0 2023.0 L2369.125 2043 L2369.125 2056.3333333333335 L2369.1 2056.3 " fill="none"></path>
+					<path d="M2363.8 2049.7 L2369.1 2049.7 L2374.5 2049.7 L2369.1 2063.0 Z"></path>
+					<text x="2657.6" y="2055.0" stroke="none">No</text>
+					<path d="M2584.8 2023.0 L2649.625 2043 L2649.625 2056.3333333333335 L2649.6 2056.3 " fill="none"></path>
+					<path d="M2644.3 2049.7 L2649.6 2049.7 L2655.0 2049.7 L2649.6 2063.0 Z"></path>
+					<text x="1611.6" y="1048.0" stroke="none">Yes</text>
+					<path d="M1535.4 1016.0 L1603.625 1036 L1603.625 1049.3333333333333 L1603.6 1049.3 " fill="none"></path>
+					<path d="M1598.3 1042.7 L1603.6 1042.7 L1609.0 1042.7 L1603.6 1056.0 Z"></path>
+					<text x="657.8" y="1142.3" stroke="none">Yes</text>
+					<path d="M1450.6 1086.5 L695.75 1122.5 L695.75 1143.5833333333333 L695.8 1143.6 " fill="none"></path>
+					<path d="M690.4 1136.9 L695.8 1136.9 L701.1 1136.9 L695.8 1150.3 Z"></path>
+					<path d="M695.8 1181.3 L695.75 1209 L695.75 1230.0833333333333 L695.8 1230.1 " fill="none"></path>
+					<path d="M690.4 1223.4 L695.8 1223.4 L701.1 1223.4 L695.8 1236.8 Z"></path>
+					<text x="1762.8" y="1134.5" stroke="none">Yes</text>
+					<path d="M1684.9 1102.5 L1754.75 1122.5 L1754.75 1135.8333333333333 L1754.8 1135.8 " fill="none"></path>
+					<path d="M1749.4 1129.2 L1754.8 1129.2 L1760.1 1129.2 L1754.8 1142.5 Z"></path>
+					<path d="M979.1 1267.8 L979.125 1295.5 L979.125 1316.5833333333333 L979.1 1316.6 " fill="none"></path>
+					<path d="M973.8 1309.9 L979.1 1309.9 L984.5 1309.9 L979.1 1323.3 Z"></path>
+					<text x="941.1" y="1228.8" stroke="none">Yes</text>
+					<path d="M1643.0 1172.0 L979.125 1209 L979.125 1230.0833333333333 L979.1 1230.1 " fill="none"></path>
+					<path d="M973.8 1223.4 L979.1 1223.4 L984.5 1223.4 L979.1 1236.8 Z"></path>
+					<text x="1908.0" y="1221.0" stroke="none">Yes</text>
+					<path d="M1832.8 1189.0 L1900 1209 L1900 1222.3333333333333 L1900.0 1222.3 " fill="none"></path>
+					<path d="M1894.7 1215.7 L1900.0 1215.7 L1905.3 1215.7 L1900.0 1229.0 Z"></path>
+					<path d="M1269.6 1354.3 L1269.625 1382 L1269.625 1403.0833333333333 L1269.6 1403.1 " fill="none"></path>
+					<path d="M1264.3 1396.4 L1269.6 1396.4 L1275.0 1396.4 L1269.6 1409.8 Z"></path>
+					<text x="1231.6" y="1315.3" stroke="none">Yes</text>
+					<path d="M1765.8 1261.5 L1269.625 1295.5 L1269.625 1316.5833333333333 L1269.6 1316.6 " fill="none"></path>
+					<path d="M1264.3 1309.9 L1269.6 1309.9 L1275.0 1309.9 L1269.6 1323.3 Z"></path>
+					<text x="2108.4" y="1307.5" stroke="none">Yes</text>
+					<path d="M2007.7 1275.5 L2100.375 1295.5 L2100.375 1308.8333333333333 L2100.4 1308.8 " fill="none"></path>
+					<path d="M2095.0 1302.2 L2100.4 1302.2 L2105.7 1302.2 L2100.4 1315.5 Z"></path>
+					<text x="1578.3" y="1401.8" stroke="none">Yes</text>
+					<path d="M1913.6 1355.4 L1616.25 1382 L1616.25 1403.0833333333333 L1616.3 1403.1 " fill="none"></path>
+					<path d="M1610.9 1396.4 L1616.3 1396.4 L1621.6 1396.4 L1616.3 1409.8 Z"></path>
+					<path d="M1616.3 1440.8 L1616.25 1468.5 L1616.25 1489.5833333333333 L1616.3 1489.6 " fill="none"></path>
+					<path d="M1610.9 1482.9 L1616.3 1482.9 L1621.6 1482.9 L1616.3 1496.3 Z"></path>
+					<text x="2306.8" y="1394.0" stroke="none">Yes</text>
+					<path d="M2207.0 1362.0 L2298.75 1382 L2298.75 1395.3333333333333 L2298.8 1395.3 " fill="none"></path>
+					<path d="M2293.4 1388.7 L2298.8 1388.7 L2304.1 1388.7 L2298.8 1402.0 Z"></path>
+					<text x="1920.6" y="1488.3" stroke="none">Yes</text>
+					<path d="M2115.9 1448.5 L1958.625 1468.5 L1958.625 1489.5833333333333 L1958.6 1489.6 " fill="none"></path>
+					<path d="M1953.3 1482.9 L1958.6 1482.9 L1964.0 1482.9 L1958.6 1496.3 Z"></path>
+					<path d="M1958.6 1527.3 L1958.625 1555 L1958.625 1576.0833333333333 L1958.6 1576.1 " fill="none"></path>
+					<path d="M1953.3 1569.4 L1958.6 1569.4 L1964.0 1569.4 L1958.6 1582.8 Z"></path>
+					<path d="M1447.5 756.5 L1447.5 776.5 L1447.5 789.8333333333334 L1447.5 789.8 " fill="none"></path>
+					<path d="M1442.2 783.2 L1447.5 783.2 L1452.8 783.2 L1447.5 796.5 Z"></path>
+					<text x="1709.0" y="882.8" stroke="none">Yes</text>
+					<path d="M1577.3 841.9 L1701 863 L1701 884.0833333333334 L1701.0 884.1 " fill="none"></path>
+					<path d="M1695.7 877.4 L1701.0 877.4 L1706.3 877.4 L1701.0 890.8 Z"></path>
+					<path d="M1701.0 921.8 L1701 949.5 L1701 970.5833333333334 L1701.0 970.6 " fill="none"></path>
+					<path d="M1695.7 963.9 L1701.0 963.9 L1706.3 963.9 L1701.0 977.3 Z"></path>
+					<path d="M1389.5 613.6 L1447.5 634.5 L1447.5 647.8333333333334 L1447.5 647.8 " fill="none"></path>
+					<path d="M1442.2 641.2 L1447.5 641.2 L1452.8 641.2 L1447.5 654.5 Z"></path>
+					<path d="M2500.8 1692.5 L2500.75 1712.5 L2500.75 1725.8333333333333 L2500.8 1725.8 " fill="none"></path>
+					<path d="M2495.4 1719.2 L2500.8 1719.2 L2506.1 1719.2 L2500.8 1732.5 Z"></path>
+					<text x="2768.9" y="1818.8" stroke="none">Yes</text>
+					<path d="M2603.5 1772.8 L2760.875 1799 L2760.875 1820.0833333333333 L2760.9 1820.1 " fill="none"></path>
+					<path d="M2755.5 1813.4 L2760.9 1813.4 L2766.2 1813.4 L2760.9 1826.8 Z"></path>
+					<path d="M2760.9 1857.8 L2760.875 1885.5 L2760.875 1898.8333333333333 L2760.9 1898.8 " fill="none"></path>
+					<path d="M2755.5 1892.2 L2760.9 1892.2 L2766.2 1892.2 L2760.9 1905.5 Z"></path>
+					<text x="2462.8" y="1653.5" stroke="none">Yes</text>
+					<path d="M2548.7 1621.5 L2500.75 1641.5 L2500.75 1654.8333333333333 L2500.8 1654.8 " fill="none"></path>
+					<path d="M2495.4 1648.2 L2500.8 1648.2 L2506.1 1648.2 L2500.8 1661.5 Z"></path>
+					<text x="2470.0" y="1480.5" stroke="none">Yes</text>
+					<path d="M2386.5 1448.5 L2462 1468.5 L2462 1481.8333333333333 L2462.0 1481.8 " fill="none"></path>
+					<path d="M2456.7 1475.2 L2462.0 1475.2 L2467.3 1475.2 L2462.0 1488.5 Z"></path>
+					<text x="2222.9" y="1574.8" stroke="none">Yes</text>
+					<path d="M2353.9 1535.0 L2260.875 1555 L2260.875 1576.0833333333333 L2260.9 1576.1 " fill="none"></path>
+					<path d="M2255.5 1569.4 L2260.9 1569.4 L2266.2 1569.4 L2260.9 1582.8 Z"></path>
+					<path d="M2260.9 1613.8 L2260.875 1641.5 L2260.875 1654.8333333333333 L2260.9 1654.8 " fill="none"></path>
+					<path d="M2255.5 1648.2 L2260.9 1648.2 L2266.2 1648.2 L2260.9 1661.5 Z"></path>
+					<text x="2612.4" y="1567.0" stroke="none">Yes</text>
+					<path d="M2538.5 1535.0 L2604.375 1555 L2604.375 1568.3333333333333 L2604.4 1568.3 " fill="none"></path>
+					<path d="M2599.0 1561.7 L2604.4 1561.7 L2609.7 1561.7 L2604.4 1575.0 Z"></path>
+					<text x="2716.0" y="1653.5" stroke="none">Yes</text>
+					<path d="M2660.1 1621.5 L2708 1641.5 L2708 1654.8333333333333 L2708.0 1654.8 " fill="none"></path>
+					<path d="M2702.7 1648.2 L2708.0 1648.2 L2713.3 1648.2 L2708.0 1661.5 Z"></path>
+					<path d="M2708.0 1692.5 L2708 1712.5 L2708 1733.5833333333333 L2708.0 1733.6 " fill="none"></path>
+					<path d="M2702.7 1726.9 L2708.0 1726.9 L2713.3 1726.9 L2708.0 1740.3 Z"></path>
+					<path d="M1447.5 685.5 L1447.5 705.5 L1447.5 718.8333333333334 L1447.5 718.8 " fill="none"></path>
+					<path d="M1442.2 712.2 L1447.5 712.2 L1452.8 712.2 L1447.5 725.5 Z"></path>
+					<g stroke-dasharray="4 4">
+						<path d="M1455.1 232.5 L1732.625 264 L1732.625 270.6666666666667 L1732.6 270.7 " fill="none"></path>
+					</g>
+					<path d="M1727.3 270.7 L1732.6 270.7 L1738.0 270.7 L1732.6 284.0 Z"></path>
+					<path d="M1732.6 386.0 L1732.625 406 L1732.625 427.0833333333333 L1732.6 427.1 " fill="none"></path>
+					<path d="M1727.3 420.4 L1732.6 420.4 L1738.0 420.4 L1732.6 433.8 Z"></path>
+					<path d="M1732.6 315.0 L1732.625 335 L1732.625 348.3333333333333 L1732.6 348.3 " fill="none"></path>
+					<path d="M1727.3 341.7 L1732.6 341.7 L1738.0 341.7 L1732.6 355.0 Z"></path>
+					<g data-name="*When_a_new_email_arrives_(V2)">
+						<g fill="#569AE5" stroke="#33322E" data-name="*When_a_new_email_arrives_(V2)">
+							<rect x="1275.0" y="0.0" rx="15.5" ry="15.5" height="31.0" width="290.0" data-name="*When_a_new_email_arrives_(V2)"></rect>
+						</g>
+						<g transform="translate(1275, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="*When_a_new_email_arrives_(V2)">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="*When_a_new_email_arrives_(V2)">
+								<text x="137.0" y="13.5" stroke="none" text-anchor="middle" data-name="*When_a_new_email_arrives_(V2)">*When_a_new_email_arrives_(V2)</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="sOption">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="sOption">
+							<path d="M1390.0 71.0 L1459.0 71.0 L1451.0 102.0 L1382.0 102.0 Z" data-name="sOption"></path>
+						</g>
+						<g transform="translate(1382, 71)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="sOption">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="sOption">
+								<text x="30.5" y="13.5" stroke="none" text-anchor="middle" data-name="sOption">sOption</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="aOptions">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="aOptions">
+							<path d="M1385.0 142.0 L1464.0 142.0 L1456.0 173.0 L1377.0 173.0 Z" data-name="aOptions"></path>
+						</g>
+						<g transform="translate(1377, 142)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="aOptions">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="aOptions">
+								<text x="35.5" y="13.5" stroke="none" text-anchor="middle" data-name="aOptions">aOptions</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Main">
+						<g fill="#808080" stroke="#33322E" data-name="Main">
+							<rect x="1386.0" y="213.0" height="31.0" width="69.5" data-name="Main"></rect>
+							<path d="M1386.0 244.0 L1432.3 244.0 L1447.8 228.5 L1447.8 213.0" fill="none" data-name="Main"></path>
+						</g>
+						<g transform="translate(1386, 213)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Main">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Main">
+								<text x="26.8" y="13.5" stroke="none" text-anchor="middle" data-name="Main">Main</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="NewLine">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="NewLine">
+							<path d="M1270.0 284.0 L1346.0 284.0 L1338.0 315.0 L1262.0 315.0 Z" data-name="NewLine"></path>
+						</g>
+						<g transform="translate(1262, 284)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NewLine">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="NewLine">
+								<text x="34.0" y="13.5" stroke="none" text-anchor="middle" data-name="NewLine">NewLine</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Extract_Query">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="Extract_Query">
+							<path d="M1247.0 355.0 L1368.0 355.0 L1360.0 386.0 L1239.0 386.0 Z" data-name="Extract_Query"></path>
+						</g>
+						<g transform="translate(1239, 355)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Extract_Query">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Extract_Query">
+								<text x="56.5" y="13.5" stroke="none" text-anchor="middle" data-name="Extract_Query">Extract_Query</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Cheat">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Cheat">
+							<path d="M1211.5 426.0 L1323.0 449.3 L1211.5 472.5 L1101.0 449.3 Z" data-name="Condition_Cheat"></path>
+						</g>
+						<g transform="translate(1138, 433.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Cheat">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Cheat">
+								<text x="66.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Cheat">Condition_Cheat</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Delete_email">
+						<g fill="#569AE5" stroke="#33322E" data-name="Delete_email">
+							<rect x="916.0" y="513.0" height="31.0" width="119.0" data-name="Delete_email"></rect>
+						</g>
+						<g transform="translate(916, 513)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Delete_email">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Delete_email">
+								<text x="51.5" y="13.5" stroke="none" text-anchor="middle" data-name="Delete_email">Delete_email</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Exit_game">
+						<g fill="#808080" stroke="#33322E" data-name="Exit_game">
+							<rect x="918.0" y="584.0" height="31.0" width="114.5" data-name="Exit_game"></rect>
+							<path d="M918.0 615.0 L1009.3 615.0 L1024.8 599.5 L1024.8 584.0" fill="none" data-name="Exit_game"></path>
+						</g>
+						<g transform="translate(918, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Exit_game">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Exit_game">
+								<text x="49.3" y="13.5" stroke="none" text-anchor="middle" data-name="Exit_game">Exit_game</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_move_already_moved">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_move_already_moved">
+							<rect x="798.0" y="655.0" height="31.0" width="355.0" data-name="Send_an_email_V2_move_already_moved"></rect>
+						</g>
+						<g transform="translate(798, 655)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_move_already_moved">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_move_already_moved">
+								<text x="169.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_move_already_moved">Send_an_email_V2_move_already_moved</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_Cheat">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_Cheat">
+							<path d="M892.0 726.0 L1052.0 726.0 L1052.0 757.0 L892.0 757.0 L900.0 741.5 Z" data-name="Terminate_Cheat"></path>
+						</g>
+						<g transform="translate(900, 726)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_Cheat">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_Cheat">
+								<text x="68.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_Cheat">Terminate_Cheat</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="start">
+						<g fill="#808080" stroke="#33322E" data-name="start">
+							<rect x="1501.0" y="434.0" height="31.0" width="66.5" data-name="start"></rect>
+							<path d="M1501.0 465.0 L1544.3 465.0 L1559.8 449.5 L1559.8 434.0" fill="none" data-name="start"></path>
+						</g>
+						<g transform="translate(1501, 434)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="start">
+								<text x="25.3" y="13.5" stroke="none" text-anchor="middle" data-name="start">start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_start">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_start">
+							<rect x="1426.0" y="513.0" height="31.0" width="215.0" data-name="Send_an_email_V2_start"></rect>
+						</g>
+						<g transform="translate(1426, 513)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_start">
+								<text x="99.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_start">Send_an_email_V2_start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_Start">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_Start">
+							<path d="M1455.0 584.0 L1605.0 584.0 L1605.0 615.0 L1455.0 615.0 L1463.0 599.5 Z" data-name="Terminate_Start"></path>
+						</g>
+						<g transform="translate(1463, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_Start">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_Start">
+								<text x="63.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_Start">Terminate_Start</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Logic">
+						<g fill="#808080" stroke="#33322E" data-name="Logic">
+							<rect x="1312.0" y="513.0" height="31.0" width="74.5" data-name="Logic"></rect>
+							<path d="M1312.0 544.0 L1363.3 544.0 L1378.8 528.5 L1378.8 513.0" fill="none" data-name="Logic"></path>
+						</g>
+						<g transform="translate(1312, 513)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Logic">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Logic">
+								<text x="29.3" y="13.5" stroke="none" text-anchor="middle" data-name="Logic">Logic</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Do_until">
+						<g fill="#00C1A0" stroke="#33322E" data-name="Do_until">
+							<path d="M1309.0 584.0 L1382.0 584.0 L1390.0 599.5 L1382.0 615.0 L1309.0 615.0 Z" data-name="Do_until"></path>
+						</g>
+						<g transform="translate(1309, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Do_until">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Do_until">
+								<text x="32.5" y="13.5" stroke="none" text-anchor="middle" data-name="Do_until">Do_until</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Set_variable">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="Set_variable">
+							<path d="M1201.0 655.0 L1308.0 655.0 L1300.0 686.0 L1193.0 686.0 Z" data-name="Set_variable"></path>
+						</g>
+						<g transform="translate(1193, 655)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Set_variable">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Set_variable">
+								<text x="49.5" y="13.5" stroke="none" text-anchor="middle" data-name="Set_variable">Set_variable</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_not_valid">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_not_valid">
+							<path d="M1447.5 797.0 L1577.5 819.8 L1447.5 843.5 L1318.0 819.8 Z" data-name="Condition_not_valid"></path>
+						</g>
+						<g transform="translate(1361.25, 804.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_not_valid">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_not_valid">
+								<text x="78.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_not_valid">Condition_not_valid</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_pickup">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_pickup">
+							<path d="M1315.6 883.0 L1430.5 906.3 L1315.6 929.5 L1201.0 906.3 Z" data-name="Condition_pickup"></path>
+						</g>
+						<g transform="translate(1239.25, 890.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_pickup">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_pickup">
+								<text x="68.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_pickup">Condition_pickup</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_file_content_using_path_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_file_content_using_path_item">
+							<rect x="0.0" y="977.0" height="31.0" width="287.0" data-name="Get_file_content_using_path_item"></rect>
+						</g>
+						<g transform="translate(0, 977)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_file_content_using_path_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_file_content_using_path_item">
+								<text x="135.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_file_content_using_path_item">Get_file_content_using_path_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_pick_up">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_pick_up">
+							<rect x="23.0" y="1064.0" height="31.0" width="242.0" data-name="Send_an_email_V2_pick_up"></rect>
+						</g>
+						<g transform="translate(23, 1064)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_pick_up">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_pick_up">
+								<text x="113.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_pick_up">Send_an_email_V2_pick_up</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate">
+							<path d="M88.0 1150.0 L191.0 1150.0 L191.0 1181.0 L88.0 1181.0 L96.0 1165.5 Z" data-name="Terminate"></path>
+						</g>
+						<g transform="translate(96, 1150)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate">
+								<text x="39.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate">Terminate</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_use">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_use">
+							<path d="M1456.1 970.0 L1554.0 992.8 L1456.1 1016.5 L1359.0 992.8 Z" data-name="Condition_use"></path>
+						</g>
+						<g transform="translate(1391.5, 977.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_use">
+								<text x="57.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_use">Condition_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_item">
+							<rect x="328.0" y="1064.0" height="31.0" width="145.0" data-name="Get_a_row_item"></rect>
+						</g>
+						<g transform="translate(328, 1064)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_item">
+								<text x="64.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_item">Get_a_row_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_use">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_use">
+							<rect x="296.0" y="1150.0" height="31.0" width="209.0" data-name="Send_an_email_V2_use"></rect>
+						</g>
+						<g transform="translate(296, 1150)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_use">
+								<text x="96.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_use">Send_an_email_V2_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_use">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_use">
+							<path d="M326.0 1237.0 L468.0 1237.0 L468.0 1268.0 L326.0 1268.0 L334.0 1252.5 Z" data-name="Terminate_use"></path>
+						</g>
+						<g transform="translate(334, 1237)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_use">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_use">
+								<text x="59.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_use">Terminate_use</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_drop">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_drop">
+							<path d="M2500.8 1733.0 L2603.5 1755.8 L2500.8 1779.5 L2398.0 1755.8 Z" data-name="Condition_drop"></path>
+						</g>
+						<g transform="translate(2432.25, 1740.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_drop">
+								<text x="60.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_drop">Condition_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_blocked_path">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_blocked_path">
+							<path d="M2348.8 1819.0 L2505.0 1842.3 L2348.8 1865.5 L2193.0 1842.3 Z" data-name="Condition_blocked_path"></path>
+						</g>
+						<g transform="translate(2245, 1826.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_blocked_path">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_blocked_path">
+								<text x="96.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_blocked_path">Condition_blocked_path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move_path">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move_path">
+							<rect x="2037.0" y="1906.0" height="31.0" width="303.0" data-name="Send_an_email_V2_not_move_path"></rect>
+						</g>
+						<g transform="translate(2037, 1906)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move_path">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move_path">
+								<text x="143.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move_path">Send_an_email_V2_not_move_path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_not_move">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_not_move">
+							<path d="M2089.0 1984.0 L2280.0 1984.0 L2280.0 2015.0 L2089.0 2015.0 L2097.0 1999.5 Z" data-name="Terminate_not_move"></path>
+						</g>
+						<g transform="translate(2097, 1984)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_not_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_not_move">
+								<text x="83.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_not_move">Terminate_not_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_next_Sq">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_next_Sq">
+							<rect x="2421.0" y="1906.0" height="31.0" width="177.0" data-name="Get_a_row_next_Sq"></rect>
+						</g>
+						<g transform="translate(2421, 1906)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_next_Sq">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_next_Sq">
+								<text x="80.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_next_Sq">Get_a_row_next_Sq</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_have_needed_item">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_have_needed_item">
+							<path d="M2509.4 1977.0 L2699.5 1999.8 L2509.4 2023.5 L2320.0 1999.8 Z" data-name="Condition_have_needed_item"></path>
+						</g>
+						<g transform="translate(2383.25, 1984.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_have_needed_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_have_needed_item">
+								<text x="118.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_have_needed_item">Condition_have_needed_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_move">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_move">
+							<rect x="2258.0" y="2063.0" height="31.0" width="223.0" data-name="Send_an_email_V2_move"></rect>
+						</g>
+						<g transform="translate(2258, 2063)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_move">
+								<text x="103.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_move">Send_an_email_V2_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move">
+							<rect x="2521.0" y="2063.0" height="31.0" width="258.0" data-name="Send_an_email_V2_not_move"></rect>
+						</g>
+						<g transform="translate(2521, 2063)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move">
+								<text x="121.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move">Send_an_email_V2_not_move</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_missing_item">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_missing_item">
+							<path d="M1603.6 1056.0 L1757.0 1079.3 L1603.6 1102.5 L1451.0 1079.3 Z" data-name="Condition_missing_item"></path>
+						</g>
+						<g transform="translate(1502, 1063.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_missing_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_missing_item">
+								<text x="94.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_missing_item">Condition_missing_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_not_move_item">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_not_move_item">
+							<rect x="545.0" y="1150.0" height="31.0" width="301.0" data-name="Send_an_email_V2_not_move_item"></rect>
+						</g>
+						<g transform="translate(545, 1150)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_not_move_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_not_move_item">
+								<text x="142.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_not_move_item">Send_an_email_V2_not_move_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_no_move_item">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_no_move_item">
+							<path d="M577.0 1237.0 L806.0 1237.0 L806.0 1268.0 L577.0 1268.0 L585.0 1252.5 Z" data-name="Terminate_no_move_item"></path>
+						</g>
+						<g transform="translate(585, 1237)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_no_move_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_no_move_item">
+								<text x="102.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_no_move_item">Terminate_no_move_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_speak">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_speak">
+							<path d="M1754.8 1143.0 L1866.5 1165.8 L1754.8 1189.5 L1643.0 1165.8 Z" data-name="Condition_speak"></path>
+						</g>
+						<g transform="translate(1680.25, 1150.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_speak">
+								<text x="66.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_speak">Condition_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_speak">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_speak">
+							<rect x="865.0" y="1237.0" height="31.0" width="228.0" data-name="Send_an_email_V2_speak"></rect>
+						</g>
+						<g transform="translate(865, 1237)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_speak">
+								<text x="106.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_speak">Send_an_email_V2_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_speak">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_speak">
+							<path d="M895.0 1323.0 L1056.0 1323.0 L1056.0 1354.0 L895.0 1354.0 L903.0 1338.5 Z" data-name="Terminate_speak"></path>
+						</g>
+						<g transform="translate(903, 1323)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_speak">
+								<text x="68.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_speak">Terminate_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_no_speak">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_no_speak">
+							<path d="M1900.0 1229.0 L2034.5 1252.3 L1900.0 1275.5 L1766.0 1252.3 Z" data-name="Condition_no_speak"></path>
+						</g>
+						<g transform="translate(1810.75, 1236.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_no_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_no_speak">
+								<text x="81.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_no_speak">Condition_no_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_no_one_to_speak_to">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_no_one_to_speak_to">
+							<rect x="1096.0" y="1323.0" height="31.0" width="348.0" data-name="Send_an_email_V2_no_one_to_speak_to"></rect>
+						</g>
+						<g transform="translate(1096, 1323)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_no_one_to_speak_to">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_no_one_to_speak_to">
+								<text x="166.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_no_one_to_speak_to">Send_an_email_V2_no_one_to_speak_to</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_no_speak">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_no_speak">
+							<path d="M1170.0 1410.0 L1361.0 1410.0 L1361.0 1441.0 L1170.0 1441.0 L1178.0 1425.5 Z" data-name="Terminate_no_speak"></path>
+						</g>
+						<g transform="translate(1178, 1410)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_no_speak">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_no_speak">
+								<text x="83.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_no_speak">Terminate_no_speak</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Challenge_Correct">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Challenge_Correct">
+							<path d="M2100.4 1316.0 L2287.5 1338.8 L2100.4 1362.5 L1914.0 1338.8 Z" data-name="Condition_Challenge_Correct"></path>
+						</g>
+						<g transform="translate(1976.25, 1323.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Challenge_Correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Challenge_Correct">
+								<text x="116.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Challenge_Correct">Condition_Challenge_Correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_challenge_correct">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_challenge_correct">
+							<rect x="1455.0" y="1410.0" height="31.0" width="322.0" data-name="Send_an_email_V2_challenge_correct"></rect>
+						</g>
+						<g transform="translate(1455, 1410)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_challenge_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_challenge_correct">
+								<text x="153.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_challenge_correct">Send_an_email_V2_challenge_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_correct">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_correct">
+							<path d="M1528.0 1496.0 L1696.0 1496.0 L1696.0 1527.0 L1528.0 1527.0 L1536.0 1511.5 Z" data-name="Terminate_correct"></path>
+						</g>
+						<g transform="translate(1536, 1496)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_correct">
+								<text x="72.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_correct">Terminate_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_Challenge_Incorrect">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_Challenge_Incorrect">
+							<path d="M2298.8 1402.0 L2494.5 1425.3 L2298.8 1448.5 L2103.0 1425.3 Z" data-name="Condition_Challenge_Incorrect"></path>
+						</g>
+						<g transform="translate(2168.25, 1409.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_Challenge_Incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_Challenge_Incorrect">
+								<text x="122.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_Challenge_Incorrect">Condition_Challenge_Incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_challenge_incorrect">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_challenge_incorrect">
+							<rect x="1791.0" y="1496.0" height="31.0" width="336.0" data-name="Send_an_email_V2_challenge_incorrect"></rect>
+						</g>
+						<g transform="translate(1791, 1496)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_challenge_incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_challenge_incorrect">
+								<text x="160.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_challenge_incorrect">Send_an_email_V2_challenge_incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_incorrect">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_incorrect">
+							<path d="M1864.0 1583.0 L2046.0 1583.0 L2046.0 1614.0 L1864.0 1614.0 L1872.0 1598.5 Z" data-name="Terminate_incorrect"></path>
+						</g>
+						<g transform="translate(1872, 1583)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_incorrect">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_incorrect">
+								<text x="79.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_incorrect">Terminate_incorrect</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Html_to_text">
+						<g fill="#569AE5" stroke="#33322E" data-name="Html_to_text">
+							<rect x="1390.0" y="726.0" height="31.0" width="115.0" data-name="Html_to_text"></rect>
+						</g>
+						<g transform="translate(1390, 726)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Html_to_text">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Html_to_text">
+								<text x="49.5" y="13.5" stroke="none" text-anchor="middle" data-name="Html_to_text">Html_to_text</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_error">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_error">
+							<rect x="1592.0" y="891.0" height="31.0" width="218.0" data-name="Send_an_email_V2_error"></rect>
+						</g>
+						<g transform="translate(1592, 891)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_error">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_error">
+								<text x="101.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_error">Send_an_email_V2_error</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_not_valid">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_not_valid">
+							<path d="M1605.0 977.0 L1790.0 977.0 L1790.0 1008.0 L1605.0 1008.0 L1613.0 992.5 Z" data-name="Terminate_not_valid"></path>
+						</g>
+						<g transform="translate(1613, 977)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_not_valid">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_not_valid">
+								<text x="80.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_not_valid">Terminate_not_valid</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Get_a_row_current_Sq">
+						<g fill="#569AE5" stroke="#33322E" data-name="Get_a_row_current_Sq">
+							<rect x="1348.0" y="655.0" height="31.0" width="199.0" data-name="Get_a_row_current_Sq"></rect>
+						</g>
+						<g transform="translate(1348, 655)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Get_a_row_current_Sq">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Get_a_row_current_Sq">
+								<text x="91.5" y="13.5" stroke="none" text-anchor="middle" data-name="Get_a_row_current_Sq">Get_a_row_current_Sq</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="get_drop_item">
+						<g fill="#EBDAF9" stroke="#33322E" data-name="get_drop_item">
+							<path d="M2444.0 1662.0 L2566.0 1662.0 L2558.0 1693.0 L2436.0 1693.0 Z" data-name="get_drop_item"></path>
+						</g>
+						<g transform="translate(2436, 1662)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="get_drop_item">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="get_drop_item">
+								<text x="57.0" y="13.5" stroke="none" text-anchor="middle" data-name="get_drop_item">get_drop_item</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_drop">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_drop">
+							<rect x="2653.0" y="1827.0" height="31.0" width="216.0" data-name="Send_an_email_V2_drop"></rect>
+						</g>
+						<g transform="translate(2653, 1827)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_drop">
+								<text x="100.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_drop">Send_an_email_V2_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_drop">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_drop">
+							<path d="M2682.0 1906.0 L2831.0 1906.0 L2831.0 1937.0 L2682.0 1937.0 L2690.0 1921.5 Z" data-name="Terminate_drop"></path>
+						</g>
+						<g transform="translate(2690, 1906)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_drop">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_drop">
+								<text x="62.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_drop">Terminate_drop</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_die">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_die">
+							<path d="M2604.4 1575.0 L2698.5 1598.3 L2604.4 1621.5 L2511.0 1598.3 Z" data-name="Condition_die"></path>
+						</g>
+						<g transform="translate(2542.25, 1582.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_die">
+								<text x="54.5" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_die">Condition_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Condition_survive">
+						<g fill="#2596be" stroke="#33322E" data-name="Condition_survive">
+							<path d="M2462.0 1489.0 L2581.0 1511.8 L2462.0 1535.5 L2344.0 1511.8 Z" data-name="Condition_survive"></path>
+						</g>
+						<g transform="translate(2383.5, 1496.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Condition_survive">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Condition_survive">
+								<text x="71.0" y="13.5" stroke="none" text-anchor="middle" data-name="Condition_survive">Condition_survive</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_survive_correct">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_survive_correct">
+							<rect x="2110.0" y="1583.0" height="31.0" width="302.0" data-name="Send_an_email_V2_survive_correct"></rect>
+						</g>
+						<g transform="translate(2110, 1583)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_survive_correct">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_survive_correct">
+								<text x="143.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_survive_correct">Send_an_email_V2_survive_correct</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_correct_2">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_correct_2">
+							<path d="M2163.0 1662.0 L2351.0 1662.0 L2351.0 1693.0 L2163.0 1693.0 L2171.0 1677.5 Z" data-name="Terminate_correct_2"></path>
+						</g>
+						<g transform="translate(2171, 1662)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_correct_2">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_correct_2">
+								<text x="82.0" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_correct_2">Terminate_correct_2</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_die">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_die">
+							<rect x="2606.0" y="1662.0" height="31.0" width="204.0" data-name="Send_an_email_V2_die"></rect>
+						</g>
+						<g transform="translate(2606, 1662)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_die">
+								<text x="94.0" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_die">Send_an_email_V2_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_die">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_die">
+							<path d="M2636.0 1740.0 L2773.0 1740.0 L2773.0 1771.0 L2636.0 1771.0 L2644.0 1755.5 Z" data-name="Terminate_die"></path>
+						</g>
+						<g transform="translate(2644, 1740)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_die">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_die">
+								<text x="56.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_die">Terminate_die</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Exception">
+						<g fill="#808080" stroke="#33322E" data-name="Exception">
+							<rect x="1678.0" y="284.0" height="31.0" width="109.5" data-name="Exception"></rect>
+							<path d="M1678.0 315.0 L1764.3 315.0 L1779.8 299.5 L1779.8 284.0" fill="none" data-name="Exception"></path>
+						</g>
+						<g transform="translate(1678, 284)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Exception">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Exception">
+								<text x="46.8" y="13.5" stroke="none" text-anchor="middle" data-name="Exception">Exception</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Send_an_email_V2_excpetion">
+						<g fill="#569AE5" stroke="#33322E" data-name="Send_an_email_V2_excpetion">
+							<rect x="1604.0" y="355.0" height="31.0" width="257.0" data-name="Send_an_email_V2_excpetion"></rect>
+						</g>
+						<g transform="translate(1604, 355)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Send_an_email_V2_excpetion">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Send_an_email_V2_excpetion">
+								<text x="120.5" y="13.5" stroke="none" text-anchor="middle" data-name="Send_an_email_V2_excpetion">Send_an_email_V2_excpetion</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Terminate_Exception">
+						<g fill="#cc4747" stroke="#33322E" data-name="Terminate_Exception">
+							<path d="M1633.0 434.0 L1824.0 434.0 L1824.0 465.0 L1633.0 465.0 L1641.0 449.5 Z" data-name="Terminate_Exception"></path>
+						</g>
+						<g transform="translate(1641, 434)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Terminate_Exception">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Terminate_Exception">
+								<text x="83.5" y="13.5" stroke="none" text-anchor="middle" data-name="Terminate_Exception">Terminate_Exception</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
