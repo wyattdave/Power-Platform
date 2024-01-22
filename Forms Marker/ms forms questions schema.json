@@ -1,0 +1,107 @@
+
+
+{
+    "type": "object",
+    "properties": {
+        "@@odata.context": {
+            "type": "string",
+            "description":"https://forms.office.com/formapi/api/{tenantID}}/users/{userID}/forms('{formID}')/questions(questionInfo,type,id)"
+        },
+        "value": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum":["Question.TextField","Question.Choice"]
+                    },
+                    "questionInfo": {
+                        "type": "object",
+                        "anyOf": [
+                            {
+                                "description":"TextField",
+                                "type":"object",
+                                "properties":{
+                                    "Multiline":{
+                                        "type":"boolean"
+                                    },
+                                    "ShowRatingLabel":{
+                                        "type":"boolean"
+                                    },
+                                    "Point":{
+                                        "type":"integer"
+                                    },
+                                    "GradingBasis":{
+                                        "type": "array",
+                                        "items": {
+                                            "type":"object",
+                                            "properties":{
+                                                "answer": {
+                                                    "type": "string"
+                                                },
+                                                "questionid": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }            
+                            },
+                            {
+                                "description":"Choices",
+                                "type":"object",
+                                "properties":{
+                                    "ChoiceType":{
+                                        "type":"integer",
+                                        "enum":[1,2]
+                                    },
+                                    "AllowOtherAnswer":{
+                                        "type":"boolean"
+                                    },
+                                    "OptionDisplayStyle":{
+                                        "type":"string"
+                                    },
+                                    "ShuffleOptions":{
+                                        "type":"boolean"
+                                    },
+                                    "ShowRatingLabel":{
+                                        "type":"boolean"
+                                    },
+                                    "Point":{
+                                        "type":"integer"
+                                    },
+                                    "Choices":{
+                                        "type": "array",
+                                        "items": {
+                                            "type":"object",
+                                            "properties":{
+                                                "Description": {
+                                                    "type": "string"
+                                                },
+                                                "FormsProDisplayRTText": {
+                                                    "type": "string"
+                                                },
+                                                "IsAnswerKey": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
