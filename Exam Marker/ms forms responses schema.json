@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "@@odata.context": {
+            "type": "string",
+            "description":"https://forms.office.com/formapi/api/{tenantID}}/users/{userID}/forms('{formID}')/responses?$select=id,responder,submitDate,answers,responderName"
+        },
+        "value": {
+            "type": "array",
+            "items": {
+                "id": {
+                    "type":"integer"
+                },
+                "startDate": {
+                    "type":"string",
+                    "format": "date-time"
+                },
+                "submitDate":{
+                    "type":"string",
+                    "format": "date-time"
+                },
+                "responder": {
+                    "type":"string",
+                    "format": "email"
+                },
+                "responderName": {
+                    "type":"string"
+                },                
+                "answers":{
+                    "type":"array",
+                    "items":{
+                        "answer1":{
+                            "anyOf": [
+                                {
+                                    "type":"string"
+                                },
+                                {
+                                    "array":{
+                                        "type":"string"
+                                    }
+                                }
+                            ]
+                        },
+                        "questionId":{
+                            "type":"string"
+                        }
+                    }
+                },
+                "releaseDate": {
+                    "type":"string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}
