@@ -1,0 +1,1157 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "lastModified": {
+      "type": "string"
+    },
+    "totalItems": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {}
+    },
+    "itemCount": {
+      "type": "integer"
+    },
+    "sections": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "string"
+            },
+            "listId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "listId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "rawUrl": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "docId": {
+                          "type": "string"
+                        },
+                        "docVIId": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "pageKind": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "challengeId": {
+                          "type": "null"
+                        },
+                        "eventUid": {
+                          "type": "string"
+                        },
+                        "durationInMillisecond": {
+                          "type": "null"
+                        },
+                        "showId": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "childUids": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "completedChildUids": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "durationInMinutes": {
+                          "type": "integer"
+                        },
+                        "remainingTime": {
+                          "type": "integer"
+                        },
+                        "progress": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "rawUrl",
+                        "title",
+                        "docId",
+                        "docVIId",
+                        "pageType",
+                        "pageKind",
+                        "uid",
+                        "challengeId",
+                        "eventUid",
+                        "durationInMillisecond",
+                        "showId",
+                        "iconUrl",
+                        "products",
+                        "levels",
+                        "roles",
+                        "display_products",
+                        "display_levels",
+                        "display_roles",
+                        "childUids",
+                        "completedChildUids",
+                        "durationInMinutes",
+                        "remainingTime",
+                        "progress"
+                      ]
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "listId",
+                    "type",
+                    "data",
+                    "lastModified"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "listId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "rawUrl": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "docId": {
+                          "type": "string"
+                        },
+                        "docVIId": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "pageKind": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "challengeId": {
+                          "type": "null"
+                        },
+                        "eventUid": {
+                          "type": "string"
+                        },
+                        "durationInMillisecond": {
+                          "type": "null"
+                        },
+                        "showId": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "childUids": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "completedChildUids": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "durationInMinutes": {
+                          "type": "integer"
+                        },
+                        "remainingTime": {
+                          "type": "integer"
+                        },
+                        "progress": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "rawUrl",
+                        "title",
+                        "docId",
+                        "docVIId",
+                        "pageType",
+                        "pageKind",
+                        "uid",
+                        "challengeId",
+                        "eventUid",
+                        "durationInMillisecond",
+                        "showId",
+                        "iconUrl",
+                        "products",
+                        "levels",
+                        "roles",
+                        "display_products",
+                        "display_levels",
+                        "display_roles",
+                        "childUids",
+                        "completedChildUids",
+                        "durationInMinutes",
+                        "remainingTime",
+                        "progress"
+                      ]
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "listId",
+                    "type",
+                    "data",
+                    "lastModified"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "listId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "rawUrl": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "docId": {
+                          "type": "string"
+                        },
+                        "docVIId": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "pageKind": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "challengeId": {
+                          "type": "null"
+                        },
+                        "eventUid": {
+                          "type": "string"
+                        },
+                        "durationInMillisecond": {
+                          "type": "null"
+                        },
+                        "showId": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "childUids": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "completedChildUids": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "durationInMinutes": {
+                          "type": "integer"
+                        },
+                        "remainingTime": {
+                          "type": "integer"
+                        },
+                        "progress": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "rawUrl",
+                        "title",
+                        "docId",
+                        "docVIId",
+                        "pageType",
+                        "pageKind",
+                        "uid",
+                        "challengeId",
+                        "eventUid",
+                        "durationInMillisecond",
+                        "showId",
+                        "iconUrl",
+                        "products",
+                        "levels",
+                        "roles",
+                        "display_products",
+                        "display_levels",
+                        "display_roles",
+                        "childUids",
+                        "completedChildUids",
+                        "durationInMinutes",
+                        "remainingTime",
+                        "progress"
+                      ]
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "listId",
+                    "type",
+                    "data",
+                    "lastModified"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "listId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "rawUrl": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "docId": {
+                          "type": "string"
+                        },
+                        "docVIId": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "pageKind": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "challengeId": {
+                          "type": "null"
+                        },
+                        "eventUid": {
+                          "type": "string"
+                        },
+                        "durationInMillisecond": {
+                          "type": "null"
+                        },
+                        "showId": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "childUids": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "completedChildUids": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "durationInMinutes": {
+                          "type": "integer"
+                        },
+                        "remainingTime": {
+                          "type": "integer"
+                        },
+                        "progress": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "rawUrl",
+                        "title",
+                        "docId",
+                        "docVIId",
+                        "pageType",
+                        "pageKind",
+                        "uid",
+                        "challengeId",
+                        "eventUid",
+                        "durationInMillisecond",
+                        "showId",
+                        "iconUrl",
+                        "products",
+                        "levels",
+                        "roles",
+                        "display_products",
+                        "display_levels",
+                        "display_roles",
+                        "childUids",
+                        "completedChildUids",
+                        "durationInMinutes",
+                        "remainingTime",
+                        "progress"
+                      ]
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "listId",
+                    "type",
+                    "data",
+                    "lastModified"
+                  ]
+                }
+              ]
+            },
+            "itemCount": {
+              "type": "integer"
+            },
+            "lastModified": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "userId",
+            "listId",
+            "name",
+            "description",
+            "items",
+            "itemCount",
+            "lastModified"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "string"
+            },
+            "listId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "listId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "rawUrl": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "docId": {
+                          "type": "string"
+                        },
+                        "docVIId": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "pageKind": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "challengeId": {
+                          "type": "null"
+                        },
+                        "eventUid": {
+                          "type": "string"
+                        },
+                        "durationInMillisecond": {
+                          "type": "null"
+                        },
+                        "showId": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_products": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_levels": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "display_roles": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "childUids": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "completedChildUids": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "durationInMinutes": {
+                          "type": "integer"
+                        },
+                        "remainingTime": {
+                          "type": "integer"
+                        },
+                        "progress": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "rawUrl",
+                        "title",
+                        "docId",
+                        "docVIId",
+                        "pageType",
+                        "pageKind",
+                        "uid",
+                        "challengeId",
+                        "eventUid",
+                        "durationInMillisecond",
+                        "showId",
+                        "iconUrl",
+                        "products",
+                        "levels",
+                        "roles",
+                        "display_products",
+                        "display_levels",
+                        "display_roles",
+                        "childUids",
+                        "completedChildUids",
+                        "durationInMinutes",
+                        "remainingTime",
+                        "progress"
+                      ]
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "listId",
+                    "type",
+                    "data",
+                    "lastModified"
+                  ]
+                }
+              ]
+            },
+            "itemCount": {
+              "type": "integer"
+            },
+            "lastModified": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "userId",
+            "listId",
+            "name",
+            "description",
+            "items",
+            "itemCount",
+            "lastModified"
+          ]
+        }
+      ]
+    },
+    "sectionCount": {
+      "type": "integer"
+    },
+    "isPrivate": {
+      "type": "boolean"
+    },
+    "isOfficial": {
+      "type": "boolean"
+    },
+    "shouldLocalize": {
+      "type": "boolean"
+    },
+    "isLocalized": {
+      "type": "boolean"
+    },
+    "isFallbackLocale": {
+      "type": "boolean"
+    },
+    "showUserDisplayName": {
+      "type": "boolean"
+    },
+    "moduleCount": {
+      "type": "integer"
+    },
+    "completedModuleCount": {
+      "type": "integer"
+    },
+    "remainingDuration": {
+      "type": "integer"
+    },
+    "totalDuration": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "name",
+    "description",
+    "type",
+    "lastModified",
+    "totalItems",
+    "items",
+    "itemCount",
+    "sections",
+    "sectionCount",
+    "isPrivate",
+    "isOfficial",
+    "shouldLocalize",
+    "isLocalized",
+    "isFallbackLocale",
+    "showUserDisplayName",
+    "moduleCount",
+    "completedModuleCount",
+    "remainingDuration",
+    "totalDuration"
+  ]
+}
