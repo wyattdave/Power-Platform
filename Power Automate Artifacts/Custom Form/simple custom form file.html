@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Order Form</h1>
+    <form action="{YOUR TRIGGER URL}" method="post" target="_blank" enctype="multipart/form-data">
+        <input name="key" value="helloWorld" style="visibility:hidden" /><br>
+        <label for="order">Order Ref:</label>
+        <input type="text" id="order" name="order" value="#429"><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="date">Delivery Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <input name="file" type="file" /><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>Click on the submit button, and the form will be submittied using the POST method.</p>
+</body>
+</html>
+
