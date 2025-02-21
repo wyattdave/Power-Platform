@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Generator</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #3f3f3f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        input, textarea, button {
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            height: 40px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 80px;
+        }
+        button {
+            background-color: white;
+            color: #3f3f3f;
+            border: none;
+            cursor: pointer;
+            width: 620px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agent Generator</h1>
+    <form id="agentForm">
+        <textarea id="conversationStarters" placeholder="Conversation Starters (comma separated)"></textarea>
+        <input type="text" id="welcomeMessage" placeholder="Welcome Message">
+        <textarea id="sites" placeholder="Sites (comma separated)"></textarea>
+        <input type="text" id="description" placeholder="Description">
+        <input type="text" id="instructions" placeholder="Instructions">
+        <input type="text" id="name" placeholder="Name">
+        <input type="file" id="icon" accept="image/*">
+        <button type="button" onclick="generateJSON()">Generate JSON</button>
+    </form>
+    <script>
+        function generateJSON() {
+            const conversationStarters = document.getElementById('conversationStarters').value.split(',').map(text => ({ text: text.trim() }));
+            const welcomeMessage = document.getElementById('welcomeMessage').value;
+            const capabilityName = "WebSearch";
+            const sites = document.getElementById('sites').value.split(',').map(url => ({ url: url.trim() }));
+            const description = document.getElementById('description').value;
+            const instructions = document.getElementById('instructions').value;
+            const name = document.getElementById('name').value;
+            const iconFile = document.getElementById('icon').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const iconBase64 = event.target.result;
+
+                const json = {
+                    customCopilotConfig: {
+                        conversationStarters: {
+                            conversationStarterList: conversationStarters,
+                            welcomeMessage: { text: welcomeMessage }
+                        },
+                        gptDefinition: {
+                            capabilities: [
+                                {
+                                    name: capabilityName,
+                                    sites: sites
+                                }
+                            ],
+                            description: description,
+                            instructions: instructions,
+                            name: name
+                        },
+                        icon: iconBase64
+                    },
+                    schemaVersion: "0.2.0"
+                };
+
+                const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'agent.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            if (iconFile) {
+                reader.readAsDataURL(iconFile);
+            } else {
+                alert('Please upload an icon image.');
+            }
+        }
+    </script>
+</body>
+</html>
