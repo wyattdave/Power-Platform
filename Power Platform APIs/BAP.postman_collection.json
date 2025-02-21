@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "9f218d3d-5c10-4a48-b0bd-647e18bb5881",
+		"name": "BAP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17311769"
+	},
+	"item": [
+		{
+			"name": "Tenant Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/tenant?api-version=2020-08-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"tenant"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2020-08-01"
+						}
+					]
+				},
+				"description": "Returns current Tenant information"
+			},
+			"response": []
+		},
+		{
+			"name": "Tenant Settings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/listTenantSettings?api-version=2021-04-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"listTenantSettings"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tenant Settings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/listTenantSettings?api-version=2021-04-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"listTenantSettings"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Environment List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments?api-version=2021-04-01&$select=location,name,properties.createdBy,properties.createdTime,properties.displayName,properties.environmentSku,properties.provisioningState,properties.retentionPeriod,properties.linkedEnvironmentMetadata,properties.clientUris,properties.states,properties.softDeletedTime,properties.lifecycleOperationsEnforcement,properties.connectedGroups,properties.ongoingOperation,properties.expirationTime,properties.maxAllowedExpirationTime,properties.scheduledLifecycleOperations,properties.governanceConfiguration,properties.protectionStatus,properties/lastActivity/lastActivity/lastActivityTime,properties.parentEnvironmentGroup,properties.runtimeEndpoints,properties.cluster.category,properties.finOpsMetadata&$expand=properties/scheduledLifecycleOperations",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"scopes",
+						"admin",
+						"environments"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						},
+						{
+							"key": "$select",
+							"value": "location,name,properties.createdBy,properties.createdTime,properties.displayName,properties.environmentSku,properties.provisioningState,properties.retentionPeriod,properties.linkedEnvironmentMetadata,properties.clientUris,properties.states,properties.softDeletedTime,properties.lifecycleOperationsEnforcement,properties.connectedGroups,properties.ongoingOperation,properties.expirationTime,properties.maxAllowedExpirationTime,properties.scheduledLifecycleOperations,properties.governanceConfiguration,properties.protectionStatus,properties/lastActivity/lastActivity/lastActivityTime,properties.parentEnvironmentGroup,properties.runtimeEndpoints,properties.cluster.category,properties.finOpsMetadata"
+						},
+						{
+							"key": "$expand",
+							"value": "properties/scheduledLifecycleOperations"
+						}
+					]
+				},
+				"description": "Returns list of all environments you have a security role for"
+			},
+			"response": []
+		},
+		{
+			"name": "Environment Features",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments?api-version=2021-04-01&$expand=properties/copilotPolicies&$filter=properties/linkedEnvironmentMetadata/resourceId eq {{organizationID}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"scopes",
+						"admin",
+						"environments"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						},
+						{
+							"key": "$expand",
+							"value": "properties/copilotPolicies"
+						},
+						{
+							"key": "$filter",
+							"value": "properties/linkedEnvironmentMetadata/resourceId eq {{organizationID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "D365 Templates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/locations/unitedstates/templates?api-version=2020-05-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.BusinessAppPlatform",
+						"locations",
+						"unitedstates",
+						"templates"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2020-05-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Desktop Connectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/PowerPlatform.Governance/v1/connectors?$filter=connectorType+eq+%27DesktopFlow%27",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"PowerPlatform.Governance",
+						"v1",
+						"connectors"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "connectorType+eq+%27DesktopFlow%27"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnBloackable Connectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/PowerPlatform.Governance/v1/connectors/metadata/unblockable",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"PowerPlatform.Governance",
+						"v1",
+						"connectors",
+						"metadata",
+						"unblockable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DLP Policies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bap.microsoft.com/providers/PowerPlatform.Governance/v1/policies?$top=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bap",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"PowerPlatform.Governance",
+						"v1",
+						"policies"
+					],
+					"query": [
+						{
+							"key": "$top",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "organizationID",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

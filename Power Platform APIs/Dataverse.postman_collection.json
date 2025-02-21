@@ -1,0 +1,977 @@
+{
+	"info": {
+		"_postman_id": "1ae60d11-79a3-41ec-821e-9257bb6de6da",
+		"name": "Dataverse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17311769"
+	},
+	"item": [
+		{
+			"name": "Environment",
+			"item": [
+				{
+					"name": "Entities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Who Am I",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/WhoAmI",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"WhoAmI"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orgnaiziations Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.0/organizations",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.0",
+								"organizations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Environment Features",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.0/RetrieveSettingList()",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.0",
+								"RetrieveSettingList()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Environment Features",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"FeatureName\": \"LaunchNativeExperience\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.0/GetFeatureEnabledState",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.0",
+								"GetFeatureEnabledState"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Environment Features Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isexternalsearchindexenabled\":true,\r\n    \"newsearchexperienceenabled\":true,\r\n    \"relevancesearchmodifiedon\":\"2024-12-20T11:58:43.808Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.0/organizations({{organizationID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.0",
+								"organizations({{organizationID}})"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Standard Tables",
+			"item": [
+				{
+					"name": "Get All Flows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/workflows?$filter=category eq 5",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"workflows"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "category eq 5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Records",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/{{table}}?$expand=createdby($select=internalemailaddress)&$filter=createdon ge 2024-11-01T01:00:00Z",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"{{table}}"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "createdby($select=internalemailaddress)"
+								},
+								{
+									"key": "$filter",
+									"value": "createdon ge 2024-11-01T01:00:00Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Flow",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/workflows({{flowID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"workflows({{flowID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Turn Flow On",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"statecode\": 1,\r\n  \"statuscode\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/workflows({{flowID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"workflows({{flowID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Turn Flow Off",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"statecode\": 0,\r\n  \"statuscode\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/workflows({{flowID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"workflows({{flowID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Flow",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/workflows({{flowID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"workflows({{flowID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Canvas Apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/canvasapps",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"canvasapps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Canvas Apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/canvasapps({{appID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"canvasapps({{appID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update App",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"admincontrolbypassconsent\": true,\r\n    \"bypassconsent\":true,\r\n    \"displayname\": \"Test App\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/canvasapps({{appID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"canvasapps({{appID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Agents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/bots",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"bots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Agent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/bots({{botID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"bots({{botID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Agent",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"name\": \"Bot 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/bots({{botID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"bots({{botID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Agent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/bots({{botID}})/Microsoft.Dynamics.CRM.PvaDeleteBot?tag=deprovisionbotondelet",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"bots({{botID}})",
+								"Microsoft.Dynamics.CRM.PvaDeleteBot"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "deprovisionbotondelet"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Solutions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/solutions",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"solutions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Solution Components",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/solutioncomponents",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"solutioncomponents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Custom Connectors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/connectors",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Custom Connectors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/connectors({{connectorID}})",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"connectors({{connectorID}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Custom Connector",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"description\" : \"This is updated description of the custom connector.\",\r\n\t\"ownerid@odata.bind\": \"systemusers({{userID}})\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dataverseURL}}/api/data/v9.2/connectors({{connectorID}})?tag=PowerAppsRP",
+							"host": [
+								"{{dataverseURL}}"
+							],
+							"path": [
+								"api",
+								"data",
+								"v9.2",
+								"connectors({{connectorID}})"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "PowerAppsRP"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get All Entities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/entities",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All From Table",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/{{table}}?$top=10&$filter=createdon ge '{{date}}'",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"{{table}}"
+					],
+					"query": [
+						{
+							"key": "$top",
+							"value": "10"
+						},
+						{
+							"key": "$filter",
+							"value": "createdon ge '{{date}}'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Record From Table",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/{{table}}({{recordID}})?$select=name,createdon",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"{{table}}({{recordID}})"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "name,createdon"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Record From Table",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\":\"hello world\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/{{table}}({{recordID}})",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"{{table}}({{recordID}})"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share Record From Table (user)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Target\": {\r\n        \"{{entityId}}\": {{recordID}},\r\n        \"@odata.type\": \"Microsoft.Dynamics.CRM.{{table}}\"\r\n    },\r\n      \" PrincipalAccess\": {\r\n            \"Principal\": {\r\n                \"@odata.type\": \"Microsoft.Dynamics.CRM.systemuser\",\r\n                \"systemuserid\":{{systemuserid}}\r\n            },\r\n        \"AccessMask\": \"{{shareType}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/GrantAccess",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"GrantAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revoke Share Record From Table (user)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Target\": {\r\n    \"{{entityId}}\": {{recordID}},\r\n    \"@odata.type\": \"Microsoft.Dynamics.CRM.{{table}}\"\r\n    },\r\n    \"Revoke\": {\r\n        \"@odata.type\": \"Microsoft.Dynamics.CRM.systemuser\",\r\n        \"systemuserid\":{{systemuserid}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/RevokeAccess",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"RevokeAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share Record From Table (team)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"Target\": {\r\n        \"{{entityId}}\": {{recordID}},\r\n        \"@odata.type\": \"Microsoft.Dynamics.CRM.{{table}}\"\r\n      },\r\n      \"PrincipalAccess\": {\r\n        \"Principal\": {\r\n          \"@odata.type\": \"Microsoft.Dynamics.CRM.team\",\r\n          \"teamid\":\"{{teamid}}\"\r\n        },\r\n        \"AccessMask\": \"{{shareType}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/GrantAccess",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"GrantAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revoke Share Record From Table (team)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Target\": {\r\n    \"{{entityId}}\": {{recordID}},\r\n    \"@odata.type\": \"Microsoft.Dynamics.CRM.{{table}}\"\r\n    },\r\n    \"Revoke\": {\r\n        \"@odata.type\": \"Microsoft.Dynamics.CRM.team\",\r\n        \"teamid\":{{teamid}}\r\n\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/RevokeAccess",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"RevokeAccess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Record From Table",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{dataverseURL}}/api/data/v9.2/{{table}}({{recordID}})",
+					"host": [
+						"{{dataverseURL}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"{{table}}({{recordID}})"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "scope",
+				"value": "{{dataverseURL}}/.default",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{clientID}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/authorize",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Dataverse User",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tenantID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "clientID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "secret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "organizationID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "dataverseURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "table",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "recordID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "date",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "flowID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "appID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "botID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "connectorID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "shareType",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "entityId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "systemuserid",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "teamid",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

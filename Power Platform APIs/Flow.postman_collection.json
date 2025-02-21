@@ -1,0 +1,1016 @@
+{
+	"info": {
+		"_postman_id": "a9df5b1e-d62b-400a-8e3a-7cf6cd7435d4",
+		"name": "Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17311769"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin Flow Owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.flow.microsoft.com/Providers/Microsoft.ProcessSimple/scopes/admin/environments/{{environmentID}}/flows/{{resourceID}}/owners?api-version=2016-11-01-beta\n",
+							"protocol": "https",
+							"host": [
+								"api",
+								"flow",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"Providers",
+								"Microsoft.ProcessSimple",
+								"scopes",
+								"admin",
+								"environments",
+								"{{environmentID}}",
+								"flows",
+								"{{resourceID}}",
+								"owners"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2016-11-01-beta\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Get Flows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.flow.microsoft.com/Providers/Microsoft.ProcessSimple/scopes/admin/environments/{{environmentID}}/flows?api-version=2016-11-01-beta&$top=25",
+							"protocol": "https",
+							"host": [
+								"api",
+								"flow",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"Providers",
+								"Microsoft.ProcessSimple",
+								"scopes",
+								"admin",
+								"environments",
+								"{{environmentID}}",
+								"flows"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2016-11-01-beta"
+								},
+								{
+									"key": "$top",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Get Flow Definition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.flow.microsoft.com/Providers/Microsoft.ProcessSimple/scopes/admin/environments/{{environmentID}}/flows/{{resourceID}}?api-version=2016-11-01-beta",
+							"protocol": "https",
+							"host": [
+								"api",
+								"flow",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"Providers",
+								"Microsoft.ProcessSimple",
+								"scopes",
+								"admin",
+								"environments",
+								"{{environmentID}}",
+								"flows",
+								"{{resourceID}}"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2016-11-01-beta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Share Flow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"put\":[\r\n        {\r\n            \"properties\":{\r\n            \"roleName\":\"CanEdit\",\r\n                \"principal\":{                 \r\n                    \"id\":\"{{entraObjectID}}\",\r\n                    \"type\":\"User\"\r\n                    \r\n                }\r\n            }\r\n        }\r\n    ]\r\n,\r\n    \"delete\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.flow.microsoft.com/Providers/Microsoft.ProcessSimple/scopes/admin/environments/{{environmentID}}/flows/{{resourceID}}/modifyPermissions?api-version=2016-11-01-beta",
+							"protocol": "https",
+							"host": [
+								"api",
+								"flow",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"Providers",
+								"Microsoft.ProcessSimple",
+								"scopes",
+								"admin",
+								"environments",
+								"{{environmentID}}",
+								"flows",
+								"{{resourceID}}",
+								"modifyPermissions"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2016-11-01-beta"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Environments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments?$expand=properties%2Fpermissions&api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments"
+					],
+					"query": [
+						{
+							"key": "$expand",
+							"value": "properties%2Fpermissions"
+						},
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Flows",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ms-client-scope",
+						"value": "flows.manage",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Run Logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{resourceID}}/runs?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{resourceID}}",
+						"runs"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Run Log",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{resourceID}}/runs/{{flowRunID}}?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{resourceID}}",
+						"runs",
+						"{{flowRunID}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resubmit Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/triggers/{{trigger}}/histories/{{flowRunID}}/resubmit?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"triggers",
+						"{{trigger}}",
+						"histories",
+						"{{flowRunID}}",
+						"resubmit"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Definition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{resourceID}}?api-version=2016-11-01&$expand=properties.connectionreferences.apidefinition,properties.definitionSummary.operations.apiOperation,operationDefinition,plan,properties.throttleData,properties.estimatedsuspensiondata\n",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{resourceID}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						},
+						{
+							"key": "$expand",
+							"value": "properties.connectionreferences.apidefinition,properties.definitionSummary.operations.apiOperation,operationDefinition,plan,properties.throttleData,properties.estimatedsuspensiondata\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Connections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{resourceID}}/connections?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{resourceID}}",
+						"connections"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Run Log Export",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{resourceID}}/exportRuns?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{resourceID}}",
+						"exportRuns"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download Run Logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/operationTypes/ExportFlowRunsHistoryCsv/operationResults/87cdbb6c-dc16-44ce-a7d1-60896ad5b8e8?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"operationTypes",
+						"ExportFlowRunsHistoryCsv",
+						"operationResults",
+						"87cdbb6c-dc16-44ce-a7d1-60896ad5b8e8"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turn On Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{enironmentID}}/flows/{{flowID}}/start?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{enironmentID}}",
+						"flows",
+						"{{flowID}}",
+						"start"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turn Off Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{enironmentID}}/flows/{{flowID}}/stop?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{enironmentID}}",
+						"flows",
+						"{{flowID}}",
+						"stop"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Owners",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/owners?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"owners"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"put\":[\r\n    {\r\n      \"name\": \"{{entraObjectID}}}\",\r\n      \"properties\": {\r\n        \"principal\": {\r\n          \"displayName\": \"{{displayName}}\",\r\n           \"email\": \"{{email}}\", \r\n           \"id\": \"{{entraObjectId}}\",\r\n           \"type\": \"{{shareType}}\"\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/modifyowners?api-version=2016-11-01&cascadeoperation=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"modifyowners"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						},
+						{
+							"key": "cascadeoperation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unshare Flow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"delete\":[\r\n    {\r\n      \"name\": \"{{entraObjectID}}}\",\r\n      \"properties\": {\r\n        \"principal\": {\r\n          \"displayName\": \"{{displayName}}\",\r\n           \"email\": \"{{email}}\", \r\n           \"id\": \"{{entraObjectId}}\",\r\n           \"type\": \"{{shareType}}\"\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/modifyowners?api-version=2016-11-01&cascadeoperation=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"modifyowners"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						},
+						{
+							"key": "cascadeoperation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel All Runs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/runs/abort?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"runs",
+						"abort"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Warnings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"definition\": {}    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/checkFlowWarnings?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"checkFlowWarnings"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flow Errors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"definition\": {}    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}/flows/{{flowID}}/checkFlowErrors?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}",
+						"flows",
+						"{{flowID}}",
+						"checkFlowErrors"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Flow to Dataverse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"flowsToMigrate\":[\"{{resourceID}}\"]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.Flow/environments/{{environmentID}}/solutions/{{commonDataServicesID}}/migrateFlows?api-version=2018-10-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.Flow",
+						"environments",
+						"{{environmentID}}",
+						"solutions",
+						"{{commonDataServicesID}}",
+						"migrateFlows"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2018-10-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Batch",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"httpMethod\": \"GET\",\r\n        \"relativeUrl\": \"/providers/Microsoft.ProcessSimple/environments/default-2242945a-4ab9-4132-840e-cce1c66e31bb/flows/7171337d-9f18-4b40-a3aa-7cfdaea6734c\"\r\n    },\r\n    {\r\n        \"httpMethod\": \"GET\",\r\n        \"relativeUrl\": \"/providers/Microsoft.ProcessSimple/environments/default-2242945a-4ab9-4132-840e-cce1c66e31bb/flows/cb64a365-acb7-44c5-ac96-cb6c5801b686\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.flow.microsoft.com/batch",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Run Only Flows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.flow.microsoft.com/providers/Microsoft.ProcessSimple/environments/{{environmentID}}D}/perFlowPlanAllocations?api-version=2016-11-01",
+					"protocol": "https",
+					"host": [
+						"api",
+						"flow",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"providers",
+						"Microsoft.ProcessSimple",
+						"environments",
+						"{{environmentID}}D}",
+						"perFlowPlanAllocations"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2016-11-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "refreshTokenUrl",
+				"value": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/token",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "https://service.flow.microsoft.com/.default",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{clientID}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/authorize",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Flow",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "clientID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "secret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tenantID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "environmentID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "resourceID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "flowRunID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "trigger",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "flowID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "entraObjectID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "displayName",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "commonDataServicesID",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
