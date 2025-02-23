@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "2d015c95-682e-4d61-9148-907b3ab25565",
+		"name": "Power Platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17311769"
+	},
+	"item": [
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "Tenant Advisor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{tenantID2}}.tenant.api.powerplatform.com/analytics/advisorRecommendations?api-version=1&source=AdvisorPage&includeMetadata=true&experimentRecommendationTitle=true&includeHints=true&includeTrends=true",
+							"protocol": "https",
+							"host": [
+								"{{tenantID2}}",
+								"tenant",
+								"api",
+								"powerplatform",
+								"com"
+							],
+							"path": [
+								"analytics",
+								"advisorRecommendations"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1"
+								},
+								{
+									"key": "source",
+									"value": "AdvisorPage"
+								},
+								{
+									"key": "includeMetadata",
+									"value": "true"
+								},
+								{
+									"key": "experimentRecommendationTitle",
+									"value": "true"
+								},
+								{
+									"key": "includeHints",
+									"value": "true"
+								},
+								{
+									"key": "includeTrends",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gateways",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{tenantID2}}.tenant.api.powerplatform.com/gateway/cluster?api-version=1",
+							"protocol": "https",
+							"host": [
+								"{{tenantID2}}",
+								"tenant",
+								"api",
+								"powerplatform",
+								"com"
+							],
+							"path": [
+								"gateway",
+								"cluster"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Analytics",
+			"item": [
+				{
+					"name": "App Diagnostics",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"metricName\": \"powerapps.app_launch\",\r\n    \"metricType\": \"DailyAvailabilityMetric\",\r\n    \"startTime\": \"2025-01-27T11:52:17.634Z\",\r\n    \"endTime\": \"2025-02-03T11:52:17.634Z\",\r\n    \"resourceId\": \"a4fb0bd2-98e3-4716-bd84-31f00848f686\",\r\n    \"limit\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://na.adminanalytics.powerplatform.microsoft.com/api/v1/metrics/diagnosticlogs",
+							"protocol": "https",
+							"host": [
+								"na",
+								"adminanalytics",
+								"powerplatform",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"metrics",
+								"diagnosticlogs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"item": [
+				{
+					"name": "D365 App List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.admin.powerplatform.microsoft.com/api/AppManagement/TenantProducts?geoType=NA",
+							"protocol": "https",
+							"host": [
+								"api",
+								"admin",
+								"powerplatform",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"api",
+								"AppManagement",
+								"TenantProducts"
+							],
+							"query": [
+								{
+									"key": "geoType",
+									"value": "NA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Licenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://licensing.powerplatform.microsoft.com/v0.1-alpha/tenants/{{environmentID}}/CurrencyReports",
+							"protocol": "https",
+							"host": [
+								"licensing",
+								"powerplatform",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"v0.1-alpha",
+								"tenants",
+								"{{environmentID}}",
+								"CurrencyReports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Licenses by Environment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://licensing.powerplatform.microsoft.com/v0.1/tenants/{{environmentID}}/allocationsV2/getmany",
+							"protocol": "https",
+							"host": [
+								"licensing",
+								"powerplatform",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"v0.1",
+								"tenants",
+								"{{environmentID}}",
+								"allocationsV2",
+								"getmany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{clientID}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{secret}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "{{dataverseURL}}/.default",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{tenantID}}/oauth2/v2.0/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{tenantID}}",
+								"oauth2",
+								"v2.0",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exchangeToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"audience\":\"https://iacs-us-test.crm.dynamics.com/\",\"tenantId\":\"common\",\"isCaeEnabled\":false,\"aadClientId\":\"a8f7a65c-f5ba-4859-b2d6-df772c264e9d\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://make.powerapps.com/api/exchangeToken",
+							"protocol": "https",
+							"host": [
+								"make",
+								"powerapps",
+								"com"
+							],
+							"path": [
+								"api",
+								"exchangeToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Apps I Can Use",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{environmentID2}}.environment.api.powerplatform.com/powerapps/apps?api-version=1",
+					"protocol": "https",
+					"host": [
+						"{{environmentID2}}",
+						"environment",
+						"api",
+						"powerplatform",
+						"com"
+					],
+					"path": [
+						"powerapps",
+						"apps"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Apps Edit Access Shared With Me",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{environmentID2}}.environment.api.powerplatform.com/powerapps/apps?api-version=1&$filter=classification+eq+'SharedWithMeApps'&$expand=permissions($filter=maxAssignedTo('{{entraObjectID}}'))",
+					"protocol": "https",
+					"host": [
+						"{{environmentID2}}",
+						"environment",
+						"api",
+						"powerplatform",
+						"com"
+					],
+					"path": [
+						"powerapps",
+						"apps"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1"
+						},
+						{
+							"key": "$filter",
+							"value": "classification+eq+'SharedWithMeApps'"
+						},
+						{
+							"key": "$expand",
+							"value": "permissions($filter=maxAssignedTo('{{entraObjectID}}'))"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Apps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{environmentID2}}.environment.api.powerplatform.com/powerapps/apps?api-version=1&$filter=classification+eq+'EditableApps'+and+environment+eq+'{{environmentID}}&$expand=permissions($filter=maxAssignedTo('{{entraObjectID}}'))",
+					"protocol": "https",
+					"host": [
+						"{{environmentID2}}",
+						"environment",
+						"api",
+						"powerplatform",
+						"com"
+					],
+					"path": [
+						"powerapps",
+						"apps"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1"
+						},
+						{
+							"key": "$filter",
+							"value": "classification+eq+'EditableApps'+and+environment+eq+'{{environmentID}}"
+						},
+						{
+							"key": "$expand",
+							"value": "permissions($filter=maxAssignedTo('{{entraObjectID}}'))"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Connections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{environmentID2}}.environment.api.powerplatform.com/connectivity/connections?api-version=1",
+					"protocol": "https",
+					"host": [
+						"{{environmentID2}}",
+						"environment",
+						"api",
+						"powerplatform",
+						"com"
+					],
+					"path": [
+						"connectivity",
+						"connections"
+					],
+					"query": [
+						{
+							"key": "$expand",
+							"value": "permissions($filter=maxAssignedTo('{{entraObjectID}}'))",
+							"disabled": true
+						},
+						{
+							"key": "$filter",
+							"value": "environment+eq+'{{environmentID}}'+and+ApiId+not+in+('shared_logicflows','shared_powerflows','shared_pqogenericconnector')",
+							"disabled": true
+						},
+						{
+							"key": "api-version",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share Canvas App",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"put\":[\r\n        {\r\n            \"properties\":{\r\n            \"roleName\":\"CanEdit\",\r\n            \"principal\":{\r\n                \"email\":\"{{email}}\",\r\n                \"id\":\"{{entraObjectID}}\",\r\n                \"type\":\"{{shareType}}\",\r\n                \"tenantId\":null\r\n            },\r\n            \"NotifyShareTargetOption\":\"DoNotNotify\"\r\n            }\r\n        }\r\n    ],\r\n    \"delete\":[],\r\n    \"emailCustomizations\":{}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{environmentID2}}.environment.api.powerplatform.com/powerapps/apps/{{appID}}/modifyPermissions?%24filter=environment+eq+%27{{environmentID}}%27&api-version=1\n",
+					"protocol": "https",
+					"host": [
+						"{{environmentID2}}",
+						"environment",
+						"api",
+						"powerplatform",
+						"com"
+					],
+					"path": [
+						"powerapps",
+						"apps",
+						"{{appID}}",
+						"modifyPermissions"
+					],
+					"query": [
+						{
+							"key": "%24filter",
+							"value": "environment+eq+%27{{environmentID}}%27"
+						},
+						{
+							"key": "api-version",
+							"value": "1\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tenantID2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tenantID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "environmentID2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "environmentID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "appID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "entraObjectID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "shareType",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "clientID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "secret",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
