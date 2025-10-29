@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ReadMe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<github-md>
+# Power Automate Flow Documentation
+
+## Overview
+
+This Power Automate flow performs weekly backups of Power Platform configurations including environments, DLP policies, tenant settings, and license allocations. The flow is triggered on a weekly schedule and stores the output in an Artifactory repository.
+
+---
+
+## Trigger
+
+### Recurrence
+- **Type**: Recurrence
+- **Frequency**: Weekly
+- **Interval**: 1
+- **Start Time**: 2025-09-15T21:00:00Z
+- **Scheduled Days**: Monday, Tuesday, Wednesday, Thursday
+
+---
+
+## Connections
+
+| Connection Name | API Name | Logical Name |
+|-----------------|----------|--------------|
+| shared_powerplatformforadmins | Power Platform for Admins | ia_PPAdminsBackUp |
+| shared_wd-5fartifactory | Artifactory | ia_ArtifatoryBackup |
+| shared_webcontents-2 | Web Contents | ia_HTTPentraIAEnvironmentBackup |
+| shared_webcontents | Web Contents | ia_HTTPentraBapBackup |
+| shared_webcontents-1 | Web Contents | ia_HTTPentraLicenseBackup |
+
+---
+
+## Actions
+
+### Main Scope
+
+1. **Upload_Solution_Version-Licenses**
+   - Retrieves license allocations via HTTP GET
+   - Uploads to Artifactory under PlatformSystemBackup/Licenses
+
+2. **List_Environments_as_Admin**
+   - Lists environments using Power Platform Admin API
+
+3. **Upload_Solution_Version-Environments**
+   - Uploads environment list to Artifactory
+
+4. **Invoke_an_HTTP_request_dev_environment_settings**
+   - Retrieves Dev environment settings via HTTP GET
+
+5. **Upload_Solution_Version-Dev_Environment_Settings**
+   - Uploads Dev environment settings to Artifactory
+
+6. **Invoke_an_HTTP_request_prod_environment_settings**
+   - Retrieves Prod environment settings via HTTP GET
+
+7. **Upload_Solution_Version-Prod_Environment_Settings**
+   - Uploads Prod environment settings to Artifactory
+
+8. **Invoke_an_HTTP_request_tenant_settings**
+   - Retrieves tenant settings via HTTP POST
+
+9. **Upload_Solution_Version-Tenant_Settings**
+   - Uploads tenant settings to Artifactory
+
+10. **List_DLP_Policies_V2**
+    - Lists DLP policies using Power Platform Admin API
+
+11. **Upload_Solution_Version-DLP**
+    - Uploads DLP policies to Artifactory
+
+12. **Invoke_an_HTTP_request_dpl_enpoints**
+    - Retrieves DLP endpoint configurations
+
+13. **Upload_Solution_Version-DLP_Dev_Endpoints**
+    - Uploads DLP Dev endpoint configurations
+
+14. **Invoke_an_HTTP_request_dpl_enpoints_Copilot_Dev**
+    - Retrieves Copilot Dev DLP endpoint configurations
+
+15. **Upload_Solution_Version-DLP_Copiot_Dev_Endpoints**
+    - Uploads Copilot Dev DLP endpoint configurations
+
+### Exception Scope
+
+- **Terminate**
+  - Terminates the flow with status "Failed" if the Main scope fails or times out
+
+---
+
+## Variables
+
+No explicit variables are defined. Dynamic expressions are used for versioning filenames:
+- `@{formatdatetime(utcNow(),'MMM-yy')}`
+
+
+  <div class="mermaid">
+   
+flowchart TD
+    Start[Recurrence Trigger<br>Weekly on Mon–Thu] --> Main[Main Scope]
+
+    subgraph Environment_Backup
+        EB1[List & Upload Environments]
+        EB2[Get & Upload Dev Settings]
+        EB3[Get & Upload Prod Settings]
+    end
+
+    subgraph DLP_Policies
+        DP1[List & Upload DLP Policies]
+        DP2[Get & Upload Dev Endpoints]
+        DP3[Get & Upload Copilot Dev Endpoints]
+    end
+
+    subgraph License_Management
+        LM1[Get & Upload License Allocations]
+    end
+
+    subgraph Tenant_Settings
+        TS1[Get & Upload Tenant Settings]
+    end
+
+    subgraph Error_Handling
+        EH1[Terminate on Failure]
+    end
+
+    Main --> Environment_Backup
+    Environment_Backup --> DLP_Policies
+    DLP_Policies --> License_Management
+    License_Management --> Tenant_Settings
+    Main --> Error_Handling
+
+  </div>
+</github-md>
+<script src="wd_mermaidmin">
+mermaid.initialize({startOnLoad: true});
+</script>
+<script src="wd_markdowntagGitHub"></script> 
+</body>
+</html>
