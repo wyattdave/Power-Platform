@@ -1,0 +1,408 @@
+/* Page 3 - Consultancy: Luxury Refined / Dark Gold */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --clr-bg: #0c0b09;
+  --clr-surface: #161412;
+  --clr-card: #1a1816;
+  --clr-text: #ebe6dd;
+  --clr-muted: #8a8279;
+  --clr-gold: #c9a84c;
+  --clr-gold-dim: rgba(201, 168, 76, 0.1);
+  --clr-gold-glow: rgba(201, 168, 76, 0.06);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Manrope', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Subtle gold gradient glow */
+.gold-glow {
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--clr-gold-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gold-glow-2 {
+  position: fixed;
+  bottom: -300px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--clr-gold-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+.con-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 64px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.con-logo {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--clr-gold);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.con-nav {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.con-nav a {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--clr-muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.con-nav a:hover { color: var(--clr-gold); }
+
+/* Hero */
+.con-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 64px 100px;
+  gap: 64px;
+}
+
+.con-hero-content {
+  max-width: 600px;
+}
+
+.con-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--clr-gold-dim);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: luxFadeIn 0.8s ease 0.2s forwards;
+}
+
+.con-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--clr-gold);
+  border-radius: 50%;
+}
+
+.con-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: luxFadeIn 1s ease 0.4s forwards;
+}
+
+.con-hero h1 strong {
+  font-weight: 700;
+  color: var(--clr-gold);
+}
+
+.con-hero-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--clr-muted);
+  font-weight: 300;
+  margin-top: 28px;
+  max-width: 480px;
+  opacity: 0;
+  animation: luxFadeIn 0.8s ease 0.6s forwards;
+}
+
+.con-cta {
+  margin-top: 40px;
+  opacity: 0;
+  animation: luxFadeIn 0.8s ease 0.8s forwards;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  background: transparent;
+  color: var(--clr-gold);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--clr-gold);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold:hover {
+  background: var(--clr-gold);
+  color: var(--clr-bg);
+  box-shadow: 0 8px 40px rgba(201, 168, 76, 0.2);
+}
+
+/* Hero visual */
+.con-hero-visual {
+  position: relative;
+  flex-shrink: 0;
+  width: 340px;
+  height: 420px;
+  opacity: 0;
+  animation: luxFadeIn 1s ease 0.5s forwards;
+}
+
+.hero-card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-stack-card {
+  position: absolute;
+  width: 280px;
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-radius: 8px;
+  padding: 32px;
+  background: var(--clr-card);
+}
+
+.hero-stack-card:nth-child(1) {
+  top: 0; left: 0;
+  transform: rotate(-3deg);
+  z-index: 3;
+}
+
+.hero-stack-card:nth-child(2) {
+  top: 40px; left: 40px;
+  transform: rotate(1deg);
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.hero-stack-card:nth-child(3) {
+  top: 80px; left: 80px;
+  transform: rotate(4deg);
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.stack-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 12px;
+}
+
+.stack-card-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.stack-card-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--clr-muted);
+}
+
+/* Process section */
+.process-section {
+  position: relative;
+  z-index: 2;
+  padding: 100px 64px;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.process-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 12px;
+}
+
+.process-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  margin-bottom: 64px;
+  max-width: 500px;
+}
+
+.process-heading strong {
+  font-weight: 700;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.process-step {
+  padding: 40px 32px;
+  border-right: 1px solid rgba(201, 168, 76, 0.08);
+  position: relative;
+  transition: background 0.4s ease;
+}
+
+.process-step:last-child {
+  border-right: none;
+}
+
+.process-step:hover {
+  background: var(--clr-card);
+}
+
+.step-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--clr-gold-dim);
+  color: rgba(201, 168, 76, 0.2);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.step-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--clr-muted);
+  font-weight: 300;
+}
+
+/* Expertise areas */
+.expertise-section {
+  position: relative;
+  z-index: 2;
+  padding: 80px 64px 120px;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1100px;
+}
+
+.expertise-item {
+  padding: 36px;
+  background: var(--clr-card);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.expertise-item:hover {
+  background: var(--clr-surface);
+}
+
+.expertise-icon {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.expertise-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.expertise-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--clr-muted);
+  font-weight: 300;
+}
+
+/* Footer */
+.con-footer {
+  position: relative;
+  z-index: 2;
+  padding: 40px 64px;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+  text-align: center;
+  font-size: 13px;
+  color: var(--clr-muted);
+  margin-bottom: 80px;
+}
+
+/* Animations */
+@keyframes luxFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-step:nth-child(2) { border-right: none; }
+  .expertise-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .con-header { padding: 20px 24px; }
+  .con-nav { display: none; }
+  .con-hero { padding: 64px 24px; flex-direction: column; }
+  .con-hero-visual { display: none; }
+  .process-section { padding: 64px 24px; }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step { border-right: none; border-bottom: 1px solid rgba(201, 168, 76, 0.08); }
+  .expertise-section { padding: 48px 24px 80px; }
+  .con-footer { padding: 32px 24px; }
+}

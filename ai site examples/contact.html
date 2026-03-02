@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — FORGE</title>
+  <meta name="description" content="Get in touch. Start a project, book training, or schedule a consultancy call.">
+  <link rel="stylesheet" href="styles-contact.css">
+  <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+
+  <div class="deco-bg" aria-hidden="true">
+    <div class="deco-line deco-line-1"></div>
+    <div class="deco-line deco-line-2"></div>
+    <div class="deco-line deco-line-3"></div>
+    <div class="deco-diamond"></div>
+    <div class="deco-diamond-2"></div>
+    <div class="deco-circle"></div>
+  </div>
+
+  <header class="contact-header">
+    <a href="index.html" class="contact-logo">FORGE</a>
+    <ul class="contact-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="consultancy.html">Consultancy</a></li>
+      <li><a href="builds.html">Custom Builds</a></li>
+    </ul>
+  </header>
+
+  <section class="contact-hero">
+    <p class="contact-eyebrow">— Get in Touch</p>
+    <h1>Let's build something <span class="copper">remarkable</span></h1>
+    <p class="contact-hero-sub">Whether you need training, consultancy, or a custom build — every great project starts with a conversation.</p>
+  </section>
+
+  <div class="deco-divider" aria-hidden="true">
+    <div class="deco-divider-line"></div>
+    <div class="deco-divider-diamond"></div>
+    <div class="deco-divider-line"></div>
+  </div>
+
+  <section class="contact-form-section">
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name</label>
+          <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="company">Company</label>
+        <input class="form-input" type="text" id="company" name="company" placeholder="Your organisation">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="service">Service Interest</label>
+        <select class="form-select" id="service" name="service" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="training">Training</option>
+          <option value="consultancy">Consultancy</option>
+          <option value="custom-build">Custom Build</option>
+          <option value="multiple">Multiple Services</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">Tell Us About Your Project</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="Describe your goals, timeline, and any key requirements..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-copper">Send Message <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+
+  <section class="contact-info-section">
+    <div class="contact-info-grid">
+      <div class="contact-info-card">
+        <span class="info-icon">📧</span>
+        <h3 class="info-title">Email</h3>
+        <p class="info-text"><a href="mailto:hello@forge.dev">hello@forge.dev</a></p>
+      </div>
+      <div class="contact-info-card">
+        <span class="info-icon">📞</span>
+        <h3 class="info-title">Phone</h3>
+        <p class="info-text"><a href="tel:+441234567890">+44 123 456 7890</a></p>
+      </div>
+      <div class="contact-info-card">
+        <span class="info-icon">📍</span>
+        <h3 class="info-title">Location</h3>
+        <p class="info-text">London, United Kingdom<br>Remote Worldwide</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="contact-footer">
+    <div class="footer-deco" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p>&copy; 2026 FORGE_ All rights reserved.</p>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="script-contact.js"></script>
+</body>
+</html>
