@@ -18,12 +18,12 @@ javascript: (() => {
             alert('This does not look like a Power Apps cloud flow URL inside a solution.');
             return;
         }
-        let env = parts[iEnv + 1] || '';
-        env = env.replace(/^default/i, 'Default');
-        const sol = parts[iSol + 1];
-        const flow = parts[iCloud + 1];
-        const newPath = `/environments/${env}/solutions/${sol}/flows/${flow}/`;
-        const target = `https://make.powerautomate.com${newPath}${u.search || ''}${u.hash || ''}`;
+        let sEnv = parts[iEnv + 1] || '';
+        sEnv = sEnv.replace(/^default/i, 'Default');
+        const sSol = aParts[iSol + 1];
+        const sFlow = aParts[iCloud + 1];
+        const sNewPath = `/environments/${sEnv}/solutions/${sSol}/flows/${sFlow}/`;
+        const sTarget = `https://make.powerautomate.com${sNewPath}${u.search || ''}${u.hash || ''}`;
         location.href = target;
     } catch (e) {
         alert('Could not transform URL: ' + e);
