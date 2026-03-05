@@ -1,0 +1,27 @@
+javascript:(() => {
+  try {
+    const sUrl = new URL(window.location.href);
+    const sMatch = sUrl.pathname.match(/\/securityroles\/([0-9a-fA-F-]{36})/);
+    if (!sMatch) {
+      alert("Role GUID not found in the current URL.");
+      return;
+    }
+    const sRoleId = sMatch[1].toUpperCase();
+    let sEnvirn=localStorage.getItem("environmentUrl");
+    if(!sEnvirn){ sEnvirn="https://org.crm.dynamics.com"}
+    const sDynamicsBaseUrl = prompt(
+      "Dynamics CRM URL",
+      sEnvirn
+    );
+    if (!sDynamicsBaseUrl) {
+      alert("No environment entered");
+      return;
+    }
+    localStorage.setItem("environmentUrl",sDynamicsBaseUrl);
+    const sTargetUrl =
+      `${sDynamicsBaseUrl.replace(/\/+$/, "")}/biz/roles/edit.aspx?id=%7b${sRoleId}%7d`;
+    window.open(sTargetUrl, "_blank", "noopener,noreferrer");
+  } catch (err) {
+    alert("Bookmarklet error: " + err.message);
+  }
+})();
