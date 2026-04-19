@@ -1,0 +1,37 @@
+//// To help track environment security groups. Example use Filter1 for area, Filter2 for Dev/Test/Prod. Simply add rows to data array. if prompt left blank will return all from that filter
+javascript:(function () {
+  let data = [
+    ["Filter1", "Filter2", "Security Group Name"],
+  ];
+  function distinct(arr) {
+    return Array.from(new Set(arr)).sort();
+  }
+  let gOp = distinct(data.map(function (x) { return x[0]; }));
+  let tOp = distinct(data.map(function (x) { return x[1]; }));
+  let g = (prompt("Geo/Lic (" + gOp.join("/") + ") or blank") || "").trim().toUpperCase();
+  let t = (prompt("Type (" + tOp.join("/") + ") or blank") || "").trim().toLowerCase();
+  if (t) {
+    t = t[0];
+    if (tOp.indexOf(t) === -1) t = "";
+  }
+  let r = data.filter(function (x) {
+    return (!g || x[0] === g) && (!t || x[1] === t);
+    }).map(function (x) {
+      return x[2];
+    });
+  let html ="<h2>" +r.length +" Result(s)</h2><pre>" +(r.length ? r.join("\n") : "No matches.") +"</pre>";
+  let w = window.open("", "_blank", "width=700,height=500");
+  if (!w) {
+    alert("Popup blocked.");
+    return;
+  }
+  w.document.open();
+  w.document.write(
+    "<!DOCTYPE html><html><head><meta charset='utf-8'>" +
+      "<title>Results</title></head>" +
+      "<body style='font-family:monospace'>" +
+      html +
+      "</body></html>"
+  );
+  w.document.close();
+})();
