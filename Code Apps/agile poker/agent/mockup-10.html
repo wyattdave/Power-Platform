@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 / THE TICKER</title>
+<style>
+  :root { --bg: #1a1a1a; --board: #2b2b2b; --flap: #0f0f0f; --text: #e0e0e0; --accent: #f0a500; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding-top: 5vh; }
+  .screen { width: 90%; max-width: 1000px; display: none; }
+  .active { display: block; }
+  
+  /* FLAP STYLE */
+  .flap { background: var(--flap); color: var(--accent); padding: 0.5rem 1rem; font-family: monospace; font-size: 2rem; border-radius: 4px; border: 1px solid #444; position: relative; display: inline-block; min-width: 40px; text-align: center; }
+  .flap::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 2px; background: #000; }
+
+  /* LANDING */
+  #landing { text-align: center; }
+  .departures-board { background: var(--board); padding: 2rem; border-radius: 8px; border: 4px solid #444; margin-top: 2rem; }
+  input { background: #000; color: var(--accent); border: 2px solid #555; padding: 1rem; font-size: 2rem; font-family: monospace; width: 60%; text-transform: uppercase; text-align: center; letter-spacing: 5px; outline: none; }
+  .enter-btn { background: #333; color: #fff; border: 2px solid #555; padding: 1rem 3rem; font-size: 1.5rem; text-transform: uppercase; cursor: pointer; margin-top: 2rem; transition: background 0.3s; }
+  .enter-btn:hover { background: var(--accent); color: #000; }
+
+  /* ROUND */
+  .header-board { display: flex; justify-content: space-between; background: var(--board); padding: 1rem 2rem; border-radius: 8px; border: 4px solid #444; margin-bottom: 2rem; align-items: center; }
+  
+  table { width: 100%; border-collapse: separate; border-spacing: 0 4px; }
+  tr { background: var(--board); }
+  td { padding: 1rem; border-top: 2px solid #444; border-bottom: 2px solid #444; font-size: 1.5rem; text-transform: uppercase; }
+  td:first-child { border-left: 4px solid #444; border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+  td:last-child { border-right: 4px solid #444; border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: right; }
+  
+  .vote-strip { display: flex; justify-content: space-between; margin-top: 3rem; background: var(--board); padding: 1rem; border-radius: 8px; border: 4px solid #444;}
+  .vote-strip button { background: var(--flap); color: var(--text); border: 2px solid #555; padding: 1rem 1.5rem; font-size: 1.5rem; cursor: pointer; font-family: monospace; }
+  .vote-strip button:hover { border-color: var(--accent); color: var(--accent); }
+  
+  .admin-bar { margin-top: 2rem; text-align: right; }
+  .nav-links { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 10; }
+  .nav-links a { text-decoration: none; color: var(--text); border: 1px solid #555; background: rgba(15,15,15,0.92); padding: 0.8rem 1.1rem; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.08em; }
+  .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="nav-links">
+  <a href="./mockup-9.html">Previous</a>
+  <a href="./mockup-1.html">Next mockup</a>
+</div>
+
+<div id="landing" class="screen active">
+  <h1>DEPARTURES / ARRIVALS</h1>
+  <div class="departures-board">
+    <div style="font-size:1.5rem; margin-bottom: 1rem; color: #888;">DESTINATION (SESSION)</div>
+    <input type="text" value="ORBIT-PHASE-1">
+    <br>
+    <button class="enter-btn" onclick="document.getElementById('landing').classList.remove('active'); document.getElementById('round').classList.add('active');">DEPART</button>
+  </div>
+</div>
+
+<div id="round" class="screen">
+  <div class="header-board">
+    <div>
+      <span style="color:#888; font-size: 1.2rem; margin-right:1rem;">FLIGHT</span>
+      <span class="flap">O</span><span class="flap">R</span><span class="flap">B</span><span class="flap">-</span><span class="flap">0</span><span class="flap">4</span>
+    </div>
+    <div>
+      <span style="color:#888; font-size: 1.2rem; margin-right:1rem;">STATUS</span>
+      <span class="flap" style="color:#fff">B</span><span class="flap" style="color:#fff">O</span><span class="flap" style="color:#fff">A</span><span class="flap" style="color:#fff">R</span><span class="flap" style="color:#fff">D</span><span class="flap" style="color:#fff">I</span><span class="flap" style="color:#fff">N</span><span class="flap" style="color:#fff">G</span>
+    </div>
+  </div>
+  
+  <table>
+    <tr>
+      <td>JOHN DOE</td>
+      <td><span class="flap">-</span><span class="flap">-</span></td>
+    </tr>
+    <tr>
+      <td>SARAH SMITH</td>
+      <td><span class="flap" style="color:var(--text)">O</span><span class="flap" style="color:var(--text)">K</span></td>
+    </tr>
+    <tr>
+      <td>MIKE JONES</td>
+      <td><span class="flap" style="color:var(--text)">O</span><span class="flap" style="color:var(--text)">K</span></td>
+    </tr>
+  </table>
+  
+  <div class="vote-strip">
+    <button>1</button><button>2</button><button>3</button><button>5</button><button>8</button><button>13</button><button>21</button><button>?</button>
+  </div>
+  
+  <div class="admin-bar">
+    <button class="enter-btn" style="padding: 0.5rem 2rem; font-size:1.2rem; margin-top:0;">FORCE DEPARTURE (REVEAL)</button>
+  </div>
+</div>
+
+</body>
+</html>

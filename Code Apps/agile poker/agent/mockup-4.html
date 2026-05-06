@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 4 - Command Center Strip</title>
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --panel: #131821;
+        --panel-2: #1a222c;
+        --text: #f3f5f7;
+        --muted: #99a3b0;
+        --amber: #ffbc42;
+        --red: #ff6b57;
+        --mint: #6ee7b7;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #07090c, var(--bg));
+        color: var(--text);
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      }
+
+      .page {
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 18px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .header h1,
+      .metric strong,
+      .vote-btn {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 5vw, 4.3rem);
+      }
+
+      .header nav a {
+        color: var(--text);
+        text-decoration: none;
+        margin-left: 10px;
+        padding: 10px 15px;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 290px 1fr;
+        gap: 16px;
+      }
+
+      .rail,
+      .main {
+        background: var(--panel);
+        border-radius: 26px;
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .rail {
+        padding: 18px;
+      }
+
+      .main {
+        padding: 18px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .join-box,
+      .metric-row,
+      .players,
+      .votes,
+      .actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 14px 16px;
+        background: var(--panel-2);
+        color: var(--text);
+      }
+
+      button {
+        border: 0;
+        border-radius: 16px;
+        cursor: pointer;
+      }
+
+      .cta {
+        padding: 14px 16px;
+        background: linear-gradient(90deg, var(--amber), #ffd977);
+        color: #1d1f21;
+        font-weight: 700;
+      }
+
+      .subtle {
+        padding: 12px 16px;
+        background: rgba(255,255,255,0.06);
+        color: var(--text);
+      }
+
+      .tip {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.04);
+        color: var(--muted);
+      }
+
+      .metric-row {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .metric {
+        padding: 16px;
+        border-radius: 20px;
+        background: var(--panel-2);
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .metric strong { font-size: 1.8rem; }
+
+      .players {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .player {
+        padding: 16px;
+        border-radius: 20px;
+        background: var(--panel-2);
+      }
+
+      .player h3,
+      .player p { margin: 0; }
+      .player p { color: var(--muted); margin-top: 4px; }
+
+      .state {
+        margin-top: 14px;
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+      }
+
+      .state.ready { background: rgba(110, 231, 183, 0.16); color: #cbffea; }
+      .state.wait { background: rgba(255, 107, 87, 0.16); color: #ffd7d2; }
+
+      .secret {
+        margin-top: 16px;
+        min-height: 72px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+      }
+
+      .hidden .player.wait .secret { color: transparent; }
+
+      .votes {
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+      }
+
+      .vote-btn {
+        min-height: 60px;
+        background: rgba(255,255,255,0.08);
+        color: white;
+      }
+
+      .vote-btn.active { background: var(--amber); color: #1c1c1c; }
+
+      .actions {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+      }
+
+      .owner {
+        padding: 12px 16px;
+        background: rgba(255, 107, 87, 0.16);
+        color: white;
+      }
+
+      .next-round {
+        padding: 12px 16px;
+        background: rgba(110, 231, 183, 0.16);
+        color: white;
+      }
+
+      @media (max-width: 1200px) {
+        .shell,
+        .metric-row,
+        .players,
+        .votes,
+        .actions { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <div>
+          <h1>Command Center Strip</h1>
+          <div>Dense, practical, and built for fast stand-up scanning.</div>
+        </div>
+        <nav>
+          <a href="./mockup-3.html">Previous</a>
+          <a href="./mockup-5.html">Next mockup</a>
+        </nav>
+      </div>
+
+      <div class="shell">
+        <aside class="rail">
+          <div class="join-box">
+            <h2>Session Access</h2>
+            <label for="sessionCode4">Session code</label>
+            <input id="sessionCode4" value="BILLING-MIGRATION" placeholder="Enter session code" />
+            <button class="cta">Join or create</button>
+            <button class="subtle" id="prefill">Run from URL session</button>
+            <div class="tip">New users register in the current round immediately so everyone sees them on the board.</div>
+            <div class="tip">Owner can force reveal, which turns pending votes into ? and excludes them from rollups.</div>
+          </div>
+        </aside>
+
+        <section class="main hidden" id="mainBoard">
+          <div class="metric-row">
+            <div class="metric"><span>Session</span><strong>BILLING</strong></div>
+            <div class="metric"><span>Round</span><strong>9</strong></div>
+            <div class="metric"><span>Visible</span><strong id="visibleState">No</strong></div>
+            <div class="metric"><span>Average</span><strong>13</strong></div>
+            <div class="metric"><span>Mode</span><strong>8</strong></div>
+          </div>
+
+          <div class="players" id="players"></div>
+
+          <div class="votes" id="votes"></div>
+
+          <div class="actions">
+            <div>Polling keeps the roster and reveal state in sync for every participant.</div>
+            <button class="owner" id="reveal">End round early</button>
+            <button class="next-round">New round</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const people = [
+        { name: 'Owen Hart', role: 'Owner', vote: '8', ready: true },
+        { name: 'Marta Cole', role: 'Data', vote: '13', ready: true },
+        { name: 'Ivy Tran', role: 'UI', vote: '?', ready: false },
+        { name: 'Reed Silva', role: 'API', vote: '8', ready: true },
+        { name: 'Kira Moss', role: 'QA', vote: '?', ready: false },
+        { name: 'Tom Bell', role: 'Infra', vote: '21', ready: true }
+      ];
+
+      const values = ['?', '0', '1', '2', '3', '5', '8', '13', '21', '100'];
+
+      function drawPeople() {
+        document.getElementById('players').innerHTML = people.map((person) => `
+          <article class="player ${person.ready ? 'ready' : 'wait'}">
+            <h3>${person.name}</h3>
+            <p>${person.role}</p>
+            <span class="state ${person.ready ? 'ready' : 'wait'}">${person.ready ? 'Score saved' : 'Not scored yet'}</span>
+            <div class="secret">${person.vote}</div>
+          </article>
+        `).join('');
+      }
+
+      function drawVotes() {
+        document.getElementById('votes').innerHTML = values.map((value) => `<button class="vote-btn">${value}</button>`).join('');
+        document.querySelectorAll('.vote-btn').forEach((button) => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.vote-btn').forEach((node) => node.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      document.getElementById('reveal').addEventListener('click', () => {
+        const board = document.getElementById('mainBoard');
+        board.classList.toggle('hidden');
+        document.getElementById('visibleState').textContent = board.classList.contains('hidden') ? 'No' : 'Yes';
+      });
+
+      document.getElementById('prefill').addEventListener('click', () => {
+        document.querySelector('input').value = 'session=BILLING-MIGRATION';
+      });
+
+      drawPeople();
+      drawVotes();
+    </script>
+  </body>
+</html>

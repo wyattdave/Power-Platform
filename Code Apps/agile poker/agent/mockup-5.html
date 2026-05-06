@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 5 - Glass Ledger</title>
+    <style>
+      :root {
+        --sky: #f4efe4;
+        --mist: rgba(255,255,255,0.64);
+        --ink: #23303b;
+        --muted: #5b6a76;
+        --navy: #274c77;
+        --rose: #ca6d4f;
+        --olive: #7b8c57;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(202, 109, 79, 0.28), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(39, 76, 119, 0.18), transparent 26%),
+          linear-gradient(180deg, #f8f2e7, #efe7d8 65%, #ebe3d5);
+      }
+
+      .sheet {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 20px;
+      }
+
+      .top h1,
+      .metric strong,
+      .vote {
+        font-family: "Century Gothic", Futura, sans-serif;
+        letter-spacing: 0.04em;
+      }
+
+      .top h1 {
+        margin: 0;
+        font-size: clamp(2.3rem, 5vw, 4.5rem);
+      }
+
+      .top p {
+        margin: 6px 0 0;
+        color: var(--muted);
+      }
+
+      .top a {
+        text-decoration: none;
+        color: var(--ink);
+        border: 1px solid rgba(35,48,59,0.16);
+        padding: 10px 16px;
+        border-radius: 999px;
+        margin-left: 10px;
+        background: rgba(255,255,255,0.48);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 18px;
+      }
+
+      .glass {
+        background: var(--mist);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255,255,255,0.7);
+        border-radius: 30px;
+        box-shadow: 0 24px 60px rgba(118, 108, 86, 0.18);
+      }
+
+      .join,
+      .board {
+        padding: 22px;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(35,48,59,0.14);
+        background: rgba(255,255,255,0.7);
+        color: var(--ink);
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+        border-radius: 16px;
+      }
+
+      .primary,
+      .secondary {
+        width: 100%;
+        margin-top: 12px;
+        padding: 14px 16px;
+      }
+
+      .primary {
+        background: var(--navy);
+        color: white;
+      }
+
+      .secondary {
+        background: rgba(39, 76, 119, 0.08);
+        color: var(--ink);
+      }
+
+      .join ul {
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .metric {
+        padding: 16px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.55);
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+      }
+
+      .metric strong {
+        font-size: 2rem;
+      }
+
+      .roster {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .person {
+        padding: 16px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.5);
+        min-height: 170px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .person h3,
+      .person p { margin: 0; }
+      .person p { color: var(--muted); }
+
+      .status {
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+      }
+
+      .status.done { background: rgba(123, 140, 87, 0.14); color: #475232; }
+      .status.wait { background: rgba(202, 109, 79, 0.16); color: #7a4232; }
+
+      .score-face {
+        align-self: end;
+        width: 68px;
+        height: 92px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, white, rgba(255,255,255,0.68));
+        display: grid;
+        place-items: center;
+        font-size: 1.8rem;
+      }
+
+      .board.hidden .person.wait .score-face { color: transparent; }
+
+      .vote-grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .vote {
+        min-height: 60px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.65);
+        color: var(--ink);
+      }
+
+      .vote.active {
+        background: var(--rose);
+        color: white;
+      }
+
+      .actions {
+        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .owner,
+      .round {
+        padding: 12px 16px;
+      }
+
+      .owner { background: rgba(202, 109, 79, 0.18); }
+      .round { background: rgba(123, 140, 87, 0.18); }
+
+      @media (max-width: 1180px) {
+        .layout,
+        .metrics,
+        .roster,
+        .vote-grid { grid-template-columns: 1fr; }
+
+        .actions { flex-direction: column; align-items: stretch; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <div class="top">
+        <div>
+          <h1>Glass Ledger</h1>
+          <p>Bright editorial panels with softer energy and clean meeting visibility.</p>
+        </div>
+        <div>
+          <a href="./mockup-4.html">Previous</a>
+          <a href="./mockup-6.html">Next mockup</a>
+        </div>
+      </div>
+
+      <div class="layout">
+        <aside class="glass join">
+          <h2>Start Or Join</h2>
+          <label for="sessionCode5">Session code</label>
+          <input id="sessionCode5" value="CHECKOUT-REBUILD" placeholder="Enter session code" />
+          <button class="primary">Join or create session</button>
+          <button class="secondary" id="urlSession">Open from session parameter</button>
+          <ul>
+            <li>The creator owns the session record.</li>
+            <li>Joining immediately writes a round participant row.</li>
+            <li>After reveal, mode and rounded-up average become visible.</li>
+          </ul>
+        </aside>
+
+        <section class="glass board hidden" id="board">
+          <div class="metrics">
+            <div class="metric"><span>Session</span><strong>CHECKOUT</strong></div>
+            <div class="metric"><span>Round</span><strong>2</strong></div>
+            <div class="metric"><span>Average</span><strong>3</strong></div>
+            <div class="metric"><span>Mode</span><strong>2</strong></div>
+          </div>
+
+          <div class="roster" id="roster"></div>
+
+          <div class="vote-grid" id="voteGrid"></div>
+
+          <div class="actions">
+            <div>Polling keeps this board fresh as new players arrive or vote.</div>
+            <div>
+              <button class="owner" id="endEarly">End round early</button>
+              <button class="round">New round</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const roster = [
+        { name: 'Harper Cole', role: 'Owner', vote: '2', done: true },
+        { name: 'Leo Dunn', role: 'Frontend', vote: '3', done: true },
+        { name: 'Rina Shah', role: 'API', vote: '?', done: false },
+        { name: 'Mason Bell', role: 'QA', vote: '2', done: true },
+        { name: 'Eva Nori', role: 'Data', vote: '?', done: false },
+        { name: 'Kai Brooks', role: 'Infra', vote: '5', done: true }
+      ];
+      const values = ['?', '0', '1', '2', '3', '5', '8', '13', '21', '100'];
+
+      function paintRoster() {
+        document.getElementById('roster').innerHTML = roster.map((person) => `
+          <article class="person ${person.done ? '' : 'waiting'}">
+            <div>
+              <h3>${person.name}</h3>
+              <p>${person.role}</p>
+            </div>
+            <span class="status ${person.done ? 'done' : 'wait'}">${person.done ? 'Scored' : 'Pending'}</span>
+            <div class="score-face">${person.vote}</div>
+          </article>
+        `).join('');
+      }
+
+      function paintVotes() {
+        document.getElementById('voteGrid').innerHTML = values.map((value) => `<button class="vote">${value}</button>`).join('');
+        document.querySelectorAll('.vote').forEach((button) => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.vote').forEach((node) => node.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      document.getElementById('endEarly').addEventListener('click', () => {
+        document.getElementById('board').classList.toggle('hidden');
+      });
+
+      document.getElementById('urlSession').addEventListener('click', () => {
+        document.querySelector('input').value = 'session=CHECKOUT-REBUILD';
+      });
+
+      paintRoster();
+      paintVotes();
+    </script>
+  </body>
+</html>

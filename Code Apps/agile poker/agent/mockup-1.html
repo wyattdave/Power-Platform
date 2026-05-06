@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 1 - Scorewall Workshop</title>
+    <style>
+      :root {
+        --ink: #151515;
+        --panel: #232323;
+        --panel-soft: #2d2b28;
+        --paper: #ede2c7;
+        --signal: #d94c31;
+        --signal-soft: #f08a5d;
+        --steel: #808588;
+        --ok: #8db58a;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--paper);
+        background:
+          radial-gradient(circle at top left, rgba(217, 76, 49, 0.28), transparent 26%),
+          linear-gradient(135deg, #121212, #1a1d1f 45%, #0d0d0d 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 24px 24px;
+        pointer-events: none;
+      }
+
+      .shell {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+      }
+
+      .brand h1,
+      .panel h2,
+      .stat strong,
+      .score button {
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 4.5rem);
+      }
+
+      .brand p {
+        margin: 0;
+        color: #c5b99c;
+      }
+
+      .next {
+        border: 1px solid rgba(237, 226, 199, 0.35);
+        color: var(--paper);
+        text-decoration: none;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 24px;
+      }
+
+      .panel {
+        background: rgba(24, 24, 24, 0.9);
+        border: 1px solid rgba(237, 226, 199, 0.12);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 1.8rem;
+      }
+
+      .session-box {
+        background: linear-gradient(180deg, rgba(217, 76, 49, 0.18), rgba(255,255,255,0.02));
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #c5b99c;
+      }
+
+      input {
+        width: 100%;
+        border: 0;
+        border-radius: 18px;
+        padding: 16px 18px;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 1rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .primary,
+      .ghost,
+      .score button {
+        border: 0;
+        cursor: pointer;
+      }
+
+      .primary {
+        flex: 1;
+        padding: 15px 18px;
+        border-radius: 18px;
+        background: var(--signal);
+        color: white;
+        font-weight: 700;
+      }
+
+      .ghost {
+        padding: 15px 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        color: var(--paper);
+      }
+
+      .notes {
+        margin-top: 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .notes div {
+        border-left: 3px solid var(--signal-soft);
+        padding-left: 12px;
+        color: #d7cfbc;
+      }
+
+      .board {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .board::after {
+        content: "ROUND LIVE";
+        position: absolute;
+        right: -22px;
+        top: 26px;
+        transform: rotate(18deg);
+        background: var(--signal);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 999px;
+      }
+
+      .board-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+      }
+
+      .board-head p,
+      .board-head h2 {
+        margin: 0;
+      }
+
+      .stats {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .stat {
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .stat span {
+        color: #bfb49c;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .stat strong {
+        font-size: 2rem;
+      }
+
+      .players {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .player {
+        padding: 18px;
+        border-radius: 24px;
+        background: var(--panel-soft);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .player strong,
+      .player small {
+        display: block;
+      }
+
+      .badge {
+        display: inline-flex;
+        margin-top: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        background: rgba(255,255,255,0.08);
+      }
+
+      .badge.scored { background: rgba(141, 181, 138, 0.2); color: #dcecd7; }
+      .badge.pending { background: rgba(217, 76, 49, 0.2); color: #ffd0c5; }
+
+      .score {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .score button {
+        min-height: 64px;
+        border-radius: 18px;
+        font-size: 1.5rem;
+        background: #f1e8d2;
+        color: var(--ink);
+        transition: transform 160ms ease, background 160ms ease;
+      }
+
+      .score button.active,
+      .score button:hover {
+        transform: translateY(-3px);
+        background: var(--signal-soft);
+        color: white;
+      }
+
+      .owner-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-top: 22px;
+      }
+
+      .tiny {
+        color: #bfb49c;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 1100px) {
+        .layout,
+        .players,
+        .stats,
+        .score {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <h1>Agile Poker</h1>
+          <p>Scorewall Workshop concept</p>
+        </div>
+        <a class="next" href="./mockup-2.html">Next mockup</a>
+      </div>
+
+      <div class="layout">
+        <section class="panel session-box">
+          <h2>Enter Session</h2>
+          <label for="session">Session code</label>
+          <input id="session" value="MOBILE-PLATFORM" />
+          <div class="row">
+            <button class="primary">Join or create</button>
+            <button class="ghost" id="urlMode">Use URL session</button>
+          </div>
+          <div class="notes">
+            <div>Unknown session code creates the session and makes the creator owner.</div>
+            <div>Joining auto-registers the user in the current round roster.</div>
+            <div>Reveal waits for all votes or an owner-triggered early end.</div>
+          </div>
+        </section>
+
+        <section class="panel board">
+          <div class="board-head">
+            <div>
+              <p class="tiny">Session MOBILE-PLATFORM</p>
+              <h2>Round 4</h2>
+            </div>
+            <div class="tiny">Owner: Morgan Lee</div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <span>Round state</span>
+              <strong id="stateText">Hidden</strong>
+            </div>
+            <div class="stat">
+              <span>Average</span>
+              <strong id="avgText">8</strong>
+            </div>
+            <div class="stat">
+              <span>Mode</span>
+              <strong id="modeText">5</strong>
+            </div>
+          </div>
+
+          <div class="players" id="players"></div>
+
+          <div class="score" id="scoreGrid"></div>
+
+          <div class="owner-row">
+            <div class="tiny">Once everyone is scored, all cards flip at the same time.</div>
+            <button class="ghost" id="toggleReveal">Owner end round early</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const votes = ['?', '0', '1', '2', '3', '5', '8', '13', '21', '100'];
+      const players = [
+        { name: 'Morgan Lee', role: 'Owner', scored: true, revealed: '5' },
+        { name: 'Asha Khan', role: 'Backend', scored: true, revealed: '8' },
+        { name: 'Ben Carter', role: 'Mobile', scored: false, revealed: '?' },
+        { name: 'Sofia Kim', role: 'QA', scored: true, revealed: '5' },
+        { name: 'Luis Gomez', role: 'Design', scored: false, revealed: '?' },
+        { name: 'Nina Patel', role: 'Data', scored: true, revealed: '13' }
+      ];
+
+      const playersEl = document.getElementById('players');
+      const scoreGrid = document.getElementById('scoreGrid');
+      const stateText = document.getElementById('stateText');
+      let revealed = false;
+
+      function renderPlayers() {
+        playersEl.innerHTML = players.map((player) => `
+          <article class="player">
+            <strong>${player.name}</strong>
+            <small>${player.role}</small>
+            <span class="badge ${player.scored ? 'scored' : 'pending'}">
+              ${revealed ? `Vote ${player.revealed}` : player.scored ? 'Scored' : 'Waiting'}
+            </span>
+          </article>
+        `).join('');
+      }
+
+      function renderVotes() {
+        scoreGrid.innerHTML = votes.map((vote) => `<button type="button">${vote}</button>`).join('');
+        Array.from(scoreGrid.children).forEach((button) => {
+          button.addEventListener('click', () => {
+            Array.from(scoreGrid.children).forEach((child) => child.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      document.getElementById('toggleReveal').addEventListener('click', () => {
+        revealed = !revealed;
+        stateText.textContent = revealed ? 'Revealed' : 'Hidden';
+        players.forEach((player) => {
+          if (!player.scored && revealed) {
+            player.revealed = '?';
+          }
+        });
+        renderPlayers();
+      });
+
+      document.getElementById('urlMode').addEventListener('click', () => {
+        document.getElementById('session').value = 'URL?session=MOBILE-PLATFORM';
+      });
+
+      renderPlayers();
+      renderVotes();
+    </script>
+  </body>
+</html>

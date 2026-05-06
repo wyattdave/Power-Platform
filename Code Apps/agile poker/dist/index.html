@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agile Poker</title>
+<style>
+  :root { --bg: #e5e5e5; --line: #222; }
+  body { margin: 0; background: var(--bg); color: var(--line); font-family: monospace; overflow: hidden; }
+  .screen { width: 100vw; height: 100vh; display: none; position: absolute; top:0; left:0; }
+  .active { display: block; }
+  
+  /* GRID / BLUEPRINT VIBE */
+  body::after { content: ""; position: fixed; top:0; left:0; right:0; bottom:0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 50px 50px; opacity: 0.1; z-index: -1; pointer-events: none; }
+
+  /* LANDING */
+  #landing { place-items: center; }
+  #landing.active { display: grid; }
+  .box { background: var(--bg); border: 2px solid var(--line); padding: 40px; box-shadow: 10px 10px 0 var(--line); text-align: center; }
+  .landing-title { margin-top: 0; }
+  input { display: block; width: 300px; border: 2px solid var(--line); padding: 10px; font-family: inherit; font-size: 20px; outline: none; margin: 20px auto; background: transparent; }
+  button { border: 2px solid var(--line); background: var(--line); color: var(--bg); padding: 10px 20px; font-family: inherit; font-size: 16px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
+  button:hover { box-shadow: 4px 4px 0 rgba(0,0,0,0.5); transform: translate(-2px, -2px); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ROUND */
+  #round { position: relative; }
+  .hud { position: absolute; top: 20px; left: 20px; border: 2px solid var(--line); background: var(--bg); color: var(--line); padding: 10px; display: inline-block; font-weight: bold; font-size: 1.2rem; cursor: pointer; }
+  .hud-panel { position: absolute; top: 78px; left: 20px; width: 430px; background: var(--bg); border: 2px solid var(--line); box-shadow: 8px 8px 0 var(--line); padding: 12px; }
+  .hud-panel-title { font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; }
+  .hud-rounds { display: flex; flex-direction: column; gap: 8px; }
+  .hud-round-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; gap: 8px; text-align: left; width: 100%; background: var(--bg); color: var(--line); border: 2px solid var(--line); padding: 10px; font: inherit; }
+  .hud-empty { border: 2px dashed var(--line); padding: 14px; }
+  .hud-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+  
+  .circle-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; border: 1px dashed var(--line); border-radius: 50%; }
+  
+  .node { position: absolute; width: 120px; height: 60px; background: var(--bg); border: 2px solid var(--line); transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 4px 4px 0 var(--line); transition: all 0.3s; }
+  .node-name { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+  .node-status { font-size: 12px; }
+  .node.revealed { background: var(--line); color: var(--bg); }
+  
+  .center-controls { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg); border: 2px solid var(--line); padding: 20px; text-align: center; width: 200px; }
+  .pad-tight { margin-bottom: 0; }
+  .full-width { width: 100%; }
+  .stack-gap { margin-top: 10px; }
+  .vote-divider { border: 1px solid var(--line); margin: 20px 0; }
+  
+  .pad { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+  .pad button { width: 40px; height: 40px; font-size: 18px; padding: 0; }
+  .pad button.selected { background: var(--bg); color: var(--line); border: 2px solid var(--line); font-weight: 900; }
+  .hidden { display: none; }
+  
+  #stats-panel { margin-top: 15px; font-size: 14px; text-align: left; display: none; }
+  #stats-panel div { margin-bottom: 5px; }
+
+  .toast { position: fixed; bottom: 20px; right: 20px; background: var(--line); color: var(--bg); padding: 10px 20px; font-weight: bold; opacity: 0; transition: opacity 0.3s; z-index: 100; border: 2px solid var(--bg); box-shadow: 4px 4px 0 rgba(0,0,0,0.5); }
+</style>
+<script type="module" src="index.js?v=20260504-session-param-1" defer></script>
+</head>
+<body>
+
+<div id="landing" class="screen active">
+  <div class="box" id="landing-box">
+    <h1 class="landing-title">ESTIMATION<br>NODE</h1>
+    <input type="text" id="session-input" placeholder="Session Name" aria-label="Session" value="">
+    <button id="connect-btn">CONNECT</button>
+  </div>
+</div>
+
+<div id="round" class="screen">
+  <button class="hud" id="hud-display" type="button" aria-expanded="false">
+    SESSION // ROUND 1 // SYNCING...
+  </button>
+  <div class="hud-panel hidden" id="hud-panel">
+    <div class="hud-panel-title">ROUND HISTORY</div>
+    <div class="hud-rounds" id="hud-rounds"></div>
+  </div>
+  <div class="hud-actions">
+    <button id="share-btn" type="button">SHARE</button>
+  </div>
+  
+  <div class="circle-container" id="nodes-container">
+    <!-- Nodes will be injected here dynamically -->
+    <div class="center-controls" id="center-controls">
+      <div id="voting-panel">
+        <div>YOUR INPUT</div>
+        <div class="pad">
+          <button class="vote-btn" data-val="1">1</button>
+          <button class="vote-btn" data-val="2">2</button>
+          <button class="vote-btn" data-val="3">3</button>
+          <button class="vote-btn" data-val="5">5</button>
+        </div>
+        <div class="pad pad-tight">
+          <button class="vote-btn" data-val="8">8</button>
+          <button class="vote-btn" data-val="13">13</button>
+          <button class="vote-btn" data-val="21">21</button>
+          <button class="vote-btn" data-val="-9">?</button>
+        </div>
+        <hr class="vote-divider">
+      </div>
+      <button id="reveal-btn" class="full-width hidden">END ROUND</button>
+      <button id="next-round-btn" class="full-width stack-gap hidden">NEXT ROUND</button>
+      
+      <div id="stats-panel">
+        <div>AVG: <span id="stat-avg">...</span></div>
+        <div>MODE: <span id="stat-mode">...</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast">Connected.</div>
+
+</body>
+</html>

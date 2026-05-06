@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 3 - Retro Planning Deck</title>
+    <style>
+      :root {
+        --felt: #20483f;
+        --felt-dark: #17362f;
+        --paper: #fbf4df;
+        --sand: #d8b984;
+        --brick: #9f4d32;
+        --ink: #2c251b;
+        --gold: #d5a12d;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--paper);
+        background:
+          radial-gradient(circle at top, rgba(213, 161, 45, 0.18), transparent 28%),
+          linear-gradient(180deg, var(--felt), var(--felt-dark));
+      }
+
+      .page {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 28px;
+      }
+
+      .frame {
+        border: 2px solid rgba(251, 244, 223, 0.18);
+        border-radius: 30px;
+        padding: 18px;
+        background: rgba(0,0,0,0.08);
+      }
+
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      .head h1,
+      .tab,
+      .chip,
+      .card strong {
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+      }
+
+      .head h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+        font-weight: 700;
+      }
+
+      .head a {
+        color: var(--paper);
+        text-decoration: none;
+        border: 1px solid rgba(251, 244, 223, 0.3);
+        border-radius: 999px;
+        padding: 10px 16px;
+        margin-left: 10px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 18px;
+      }
+
+      .stack,
+      .table {
+        border-radius: 26px;
+        padding: 22px;
+      }
+
+      .stack {
+        background: linear-gradient(180deg, rgba(159, 77, 50, 0.28), rgba(0,0,0,0.08));
+      }
+
+      .table {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      }
+
+      .stack h2,
+      .table h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+      }
+
+      input {
+        width: 100%;
+        border: 0;
+        border-radius: 14px;
+        padding: 15px 16px;
+        font: inherit;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
+      .button,
+      .quiet,
+      .vote {
+        border: 0;
+        cursor: pointer;
+      }
+
+      .button,
+      .quiet {
+        width: 100%;
+        margin-top: 12px;
+        padding: 14px 16px;
+        border-radius: 14px;
+      }
+
+      .button {
+        background: var(--gold);
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .quiet {
+        background: rgba(255,255,255,0.08);
+        color: var(--paper);
+      }
+
+      .mini-list {
+        margin-top: 18px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .mini-list div {
+        background: rgba(255,255,255,0.06);
+        border-radius: 14px;
+        padding: 12px 14px;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .tab {
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.07);
+      }
+
+      .tab.active {
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .chip {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.05);
+      }
+
+      .chip span {
+        display: block;
+        opacity: 0.72;
+      }
+
+      .chip strong {
+        font-size: 2rem;
+      }
+
+      .cards {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        padding: 14px;
+        min-height: 190px;
+        border-radius: 22px;
+        background: var(--paper);
+        color: var(--ink);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 16px 26px rgba(0,0,0,0.2);
+      }
+
+      .card.pending strong { visibility: hidden; }
+
+      .revealed .card.pending strong {
+        visibility: visible;
+        color: var(--brick);
+      }
+
+      .card em {
+        color: #6c614f;
+      }
+
+      .card strong {
+        align-self: center;
+        font-size: 3rem;
+      }
+
+      .vote-row {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .vote {
+        min-height: 64px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        color: var(--paper);
+        font: inherit;
+        font-size: 1.25rem;
+      }
+
+      .vote.active {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .tail {
+        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: center;
+      }
+
+      @media (max-width: 1180px) {
+        .layout,
+        .summary,
+        .cards,
+        .vote-row { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="frame">
+        <div class="head">
+          <div>
+            <h1>Retro Planning Deck</h1>
+            <div>Warm felt table, physical cards, and calmer meeting-room energy.</div>
+          </div>
+          <div>
+            <a href="./mockup-2.html">Previous</a>
+            <a href="./mockup-4.html">Next mockup</a>
+          </div>
+        </div>
+
+        <div class="layout">
+          <section class="stack">
+            <h2>Deal Into Session</h2>
+            <label for="sessionCode3">Session code</label>
+            <input id="sessionCode3" value="SEARCH-REVAMP" placeholder="Enter session code" />
+            <button class="button">Join or create table</button>
+            <button class="quiet" id="fillUrl">Load from URL parameter</button>
+
+            <div class="mini-list">
+              <div>Creator becomes owner and controls early reveal.</div>
+              <div>Joining creates a fresh row in the current round.</div>
+              <div>Mode and rounded-up average appear after the reveal.</div>
+            </div>
+          </section>
+
+          <section class="table" id="table">
+            <div class="tabs">
+              <div class="tab active">Round Table</div>
+              <div class="tab">Reveal Summary</div>
+            </div>
+
+            <div class="summary">
+              <div class="chip"><span>Session</span><strong>SEARCH-REVAMP</strong></div>
+              <div class="chip"><span>Round</span><strong>3</strong></div>
+              <div class="chip"><span>Average</span><strong>5</strong></div>
+              <div class="chip"><span>Mode</span><strong>3</strong></div>
+            </div>
+
+            <div class="cards" id="cards"></div>
+
+            <div class="vote-row" id="voteRow"></div>
+
+            <div class="tail">
+              <span>Owner action ends the round early and pending users become ?.</span>
+              <button class="quiet" id="ownerAction">Reveal now</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const deck = [
+        { name: 'Priya Holt', title: 'Owner', vote: '3', scored: true },
+        { name: 'Dylan Rees', title: 'API', vote: '5', scored: true },
+        { name: 'Jules West', title: 'UX', vote: '?', scored: false },
+        { name: 'Pia Moreau', title: 'QA', vote: '3', scored: true },
+        { name: 'Sam Owens', title: 'Platform', vote: '?', scored: false }
+      ];
+      const values = ['?', '0', '1', '2', '3', '5', '8', '13', '21', '100'];
+
+      function drawCards() {
+        document.getElementById('cards').innerHTML = deck.map((item) => `
+          <article class="card ${item.scored ? '' : 'pending'}">
+            <div>
+              <h3>${item.name}</h3>
+              <em>${item.title}</em>
+            </div>
+            <strong>${item.vote}</strong>
+            <small>${item.scored ? 'Vote registered' : 'No score yet'}</small>
+          </article>
+        `).join('');
+      }
+
+      function drawVotes() {
+        document.getElementById('voteRow').innerHTML = values.map((value) => `<button class="vote">${value}</button>`).join('');
+        document.querySelectorAll('.vote').forEach((button) => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.vote').forEach((item) => item.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      document.getElementById('ownerAction').addEventListener('click', () => {
+        document.getElementById('table').classList.toggle('revealed');
+      });
+
+      document.getElementById('fillUrl').addEventListener('click', () => {
+        document.querySelector('input').value = 'session=SEARCH-REVAMP';
+      });
+
+      drawCards();
+      drawVotes();
+    </script>
+  </body>
+</html>

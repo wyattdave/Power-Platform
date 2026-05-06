@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 2 - Sprint Broadcast</title>
+    <style>
+      :root {
+        --night: #07111f;
+        --ink: #0d1b2a;
+        --screen: #d9f7ff;
+        --cyan: #3bd9ff;
+        --lime: #d9ff6b;
+        --magenta: #ff5f87;
+        --panel: #102642;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Verdana, Geneva, sans-serif;
+        color: white;
+        background:
+          radial-gradient(circle at top right, rgba(59, 217, 255, 0.26), transparent 24%),
+          radial-gradient(circle at bottom left, rgba(255, 95, 135, 0.18), transparent 22%),
+          linear-gradient(180deg, #07111f 0%, #0a1830 55%, #08111d 100%);
+      }
+
+      .wrap {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 26px;
+      }
+
+      .mast {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .mast h1,
+      .banner strong,
+      .score-btn,
+      .player .card {
+        font-family: "Arial Black", Gadget, sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .mast h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 4.75rem);
+      }
+
+      .mast p {
+        margin: 4px 0 0;
+        color: #8fbad7;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 999px;
+        padding: 11px 16px;
+        margin-left: 10px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 20px;
+      }
+
+      .module {
+        background: linear-gradient(180deg, rgba(16, 38, 66, 0.94), rgba(8, 19, 32, 0.98));
+        border: 1px solid rgba(59, 217, 255, 0.18);
+        border-radius: 28px;
+        padding: 22px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 18px 40px rgba(0,0,0,0.3);
+      }
+
+      .session-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .session-card::before {
+        content: "LIVE ROOM";
+        position: absolute;
+        top: 18px;
+        right: -28px;
+        background: var(--magenta);
+        color: white;
+        padding: 8px 28px;
+        transform: rotate(30deg);
+      }
+
+      input {
+        width: 100%;
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.08);
+        color: white;
+        font-size: 1rem;
+      }
+
+      .cta,
+      .minor,
+      .owner {
+        border: 0;
+        cursor: pointer;
+        border-radius: 16px;
+      }
+
+      .cta {
+        width: 100%;
+        margin-top: 14px;
+        padding: 14px;
+        background: linear-gradient(90deg, var(--cyan), #79f3ff);
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .minor {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        background: rgba(255,255,255,0.08);
+        color: white;
+      }
+
+      .facts {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .facts div {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.06);
+        color: #c4dff0;
+      }
+
+      .scoreboard {
+        display: grid;
+        gap: 18px;
+      }
+
+      .banner {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .banner article {
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.05);
+      }
+
+      .banner span {
+        display: block;
+        color: #93b0c7;
+      }
+
+      .banner strong {
+        font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .player {
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .player h3,
+      .player p {
+        margin: 0;
+      }
+
+      .player p { color: #8db0ca; margin-top: 4px; }
+
+      .player .status {
+        margin-top: 14px;
+        display: inline-flex;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: rgba(217, 255, 107, 0.16);
+        color: #efffc0;
+        font-size: 0.84rem;
+      }
+
+      .player.pending .status {
+        background: rgba(255, 95, 135, 0.16);
+        color: #ffd2de;
+      }
+
+      .player .card {
+        margin-top: 18px;
+        height: 92px;
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        background: linear-gradient(135deg, rgba(59, 217, 255, 0.2), rgba(255,255,255,0.05));
+      }
+
+      .player.pending .card { color: transparent; }
+      .revealed .player.pending .card { color: white; }
+
+      .vote-strip {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .score-btn {
+        min-height: 68px;
+        border: 0;
+        border-radius: 18px;
+        background: white;
+        color: var(--ink);
+        font-size: 1.35rem;
+        cursor: pointer;
+      }
+
+      .score-btn.active {
+        background: var(--lime);
+      }
+
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .owner {
+        padding: 14px 16px;
+        background: rgba(255,95,135,0.2);
+        color: white;
+      }
+
+      @media (max-width: 1100px) {
+        .hero,
+        .banner,
+        .grid,
+        .vote-strip { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="mast">
+        <div>
+          <h1>Sprint Broadcast</h1>
+          <p>A high-contrast planning room monitor with scoreboard drama.</p>
+        </div>
+        <div class="nav-links">
+          <a href="./mockup-1.html">Previous</a>
+          <a href="./mockup-3.html">Next mockup</a>
+        </div>
+      </div>
+
+      <div class="hero">
+        <aside class="module session-card">
+          <h2>Join Session</h2>
+          <p>Paste a code or load from URL parameter.</p>
+          <label for="sessionCode2">Session code</label>
+          <input id="sessionCode2" value="CORE-API" placeholder="Enter session code" />
+          <button class="cta">Join or create room</button>
+          <button class="minor" id="autofill">Use session from URL</button>
+
+          <div class="facts">
+            <div>Creator becomes the room owner and can reveal early.</div>
+            <div>Everyone joining writes a round participation row immediately.</div>
+            <div>Hidden cards become visible only when polling confirms reveal.</div>
+          </div>
+        </aside>
+
+        <section class="module scoreboard" id="board">
+          <div class="banner">
+            <article><span>Session</span><strong>CORE-API</strong></article>
+            <article><span>Round</span><strong>06</strong></article>
+            <article><span>Average</span><strong>8</strong></article>
+            <article><span>Mode</span><strong>13</strong></article>
+          </div>
+
+          <div class="grid" id="grid"></div>
+
+          <div class="vote-strip" id="votes"></div>
+
+          <div class="foot">
+            <span>Broadcast message: hidden until all scores are in, then full reveal.</span>
+            <button class="owner" id="reveal">Owner end round early</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const roster = [
+        ['Elena Park', 'Owner', '8', true],
+        ['Chris Lane', 'Platform', '13', true],
+        ['Tariq Shah', 'UI', '?', false],
+        ['Mila Stone', 'QA', '8', true],
+        ['Noah Price', 'DevOps', '?', false],
+        ['Aimee Fox', 'BA', '13', true],
+        ['Jun Ito', 'Analytics', '5', true],
+        ['Nora White', 'Ops', '?', false]
+      ];
+      const values = ['?', '0', '1', '2', '3', '5', '8', '13', '21', '100'];
+      const board = document.getElementById('board');
+
+      function renderGrid() {
+        document.getElementById('grid').innerHTML = roster.map(([name, role, vote, scored]) => `
+          <article class="player ${scored ? '' : 'pending'}">
+            <h3>${name}</h3>
+            <p>${role}</p>
+            <span class="status">${scored ? 'Score registered' : 'Waiting for score'}</span>
+            <div class="card">${vote}</div>
+          </article>
+        `).join('');
+      }
+
+      function renderVotes() {
+        document.getElementById('votes').innerHTML = values.map((value) => `<button class="score-btn">${value}</button>`).join('');
+        document.querySelectorAll('.score-btn').forEach((button) => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.score-btn').forEach((node) => node.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      document.getElementById('reveal').addEventListener('click', () => {
+        board.classList.toggle('revealed');
+      });
+
+      document.getElementById('autofill').addEventListener('click', () => {
+        document.querySelector('input').value = 'session=CORE-API';
+      });
+
+      renderGrid();
+      renderVotes();
+    </script>
+  </body>
+</html>

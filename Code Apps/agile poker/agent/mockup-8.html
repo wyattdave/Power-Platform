@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>08 / THE EDITORIAL</title>
+<style>
+  :root { --bg: #f9f7f1; --fg: #111; --hl: #d4af37; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Didot", "Playfair Display", serif; }
+  .screen { min-height: 100vh; display: none; }
+  .active { display: flex; }
+
+  /* LANDING */
+  #landing { flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  h1 { font-size: 6rem; font-weight: normal; margin: 0; font-style: italic; }
+  .line { width: 100px; height: 1px; background: var(--fg); margin: 2rem auto; }
+  input { font-family: inherit; font-size: 2rem; border: none; border-bottom: 1px solid var(--fg); background: transparent; text-align: center; outline: none; padding-bottom: 0.5rem; letter-spacing: 0.1em; }
+  button { margin-top: 3rem; background: transparent; border: 1px solid var(--fg); font-family: "Helvetica Neue", sans-serif; text-transform: uppercase; letter-spacing: 0.2em; padding: 1rem 3rem; cursor: pointer; transition: all 0.3s; }
+  button:hover { background: var(--fg); color: var(--bg); }
+
+  /* ROUND */
+  #round { padding: 4vw; flex-direction: column; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--fg); padding-bottom: 2rem; margin-bottom: 4rem; }
+  header h2 { font-size: 3rem; margin: 0; font-weight: normal; font-style: italic; }
+  header .meta { font-family: "Helvetica Neue", sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; text-align: right; }
+
+  .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; }
+  
+  .voter-list { display: flex; flex-direction: column; gap: 1rem; }
+  .voter-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(17,17,17,0.1); padding-bottom: 1rem; }
+  .voter-name { font-size: 1.5rem; }
+  .voter-score { font-size: 2rem; font-style: italic; color: var(--hl); }
+  
+  .controls { display: flex; flex-direction: column; gap: 2rem; }
+  .vote-pad { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--fg); }
+  .vote-pad button { margin: 0; border-right: 1px solid var(--fg); border-bottom: 1px solid var(--fg); padding: 1.5rem; font-size: 1.5rem; background: transparent; color: var(--fg); }
+  .vote-pad button:hover { background: var(--fg); color: var(--bg); }
+  
+  .admin-panel { padding: 2rem; background: #fff; border: 1px solid #ddd; }
+  .admin-panel h3 { font-family: "Helvetica Neue", sans-serif; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; margin-top: 0; }
+  .nav-links { position: fixed; top: 2rem; right: 2rem; display: flex; gap: 0.75rem; z-index: 10; }
+  .nav-links a { color: var(--fg); text-decoration: none; border: 1px solid rgba(17,17,17,0.25); padding: 0.85rem 1.1rem; font-family: "Helvetica Neue", sans-serif; text-transform: uppercase; letter-spacing: 0.1em; background: rgba(249,247,241,0.88); }
+  .nav-links a:hover { background: var(--fg); color: var(--bg); }
+
+</style>
+</head>
+<body>
+
+<div class="nav-links">
+  <a href="./mockup-7.html">Previous</a>
+  <a href="./mockup-9.html">Next mockup</a>
+</div>
+
+<div id="landing" class="screen active">
+  <h1>Scoring.</h1>
+  <div class="line"></div>
+  <input type="text" placeholder="Session Title" aria-label="Title" value="Q3-Planning">
+  <button onclick="document.getElementById('landing').classList.remove('active'); document.getElementById('round').classList.add('active');">Commence</button>
+</div>
+
+<div id="round" class="screen">
+  <header>
+    <h2>Round 01</h2>
+    <div class="meta">
+      <div>Session: Q3-Planning</div>
+      <div>Status: Polling</div>
+    </div>
+  </header>
+  <div class="content-grid">
+    <div class="voter-list">
+      <div class="voter-row"><span class="voter-name">Alice M.</span><span class="voter-score">Hidden</span></div>
+      <div class="voter-row"><span class="voter-name">Bob J.</span><span class="voter-score">Pending...</span></div>
+      <div class="voter-row"><span class="voter-name">Carol T.</span><span class="voter-score">Hidden</span></div>
+    </div>
+    <div class="controls">
+      <div class="vote-pad">
+        <button>?</button><button>1</button>
+        <button>2</button><button>3</button>
+        <button>5</button><button>8</button>
+        <button>13</button><button>21</button>
+      </div>
+      <div class="admin-panel">
+        <h3>Director</h3>
+        <button style="width: 100%; padding: 1rem; margin-top: 1rem;">Conclude Round</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

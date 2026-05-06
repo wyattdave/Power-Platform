@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 / THE BRUTALIST</title>
+<style>
+  :root { --bg: #fff; --fg: #000; --accent: #ff3300; }
+  body { margin: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); text-transform: uppercase; }
+  .screen { min-height: 100vh; padding: 2vw; display: none; }
+  .screen.active { display: block; }
+  
+  /* LANDING */
+  #landing { display: grid; place-items: center; text-align: center; }
+  h1 { font-size: 8vw; line-height: 1; margin: 0 0 2rem 0; letter-spacing: -0.05em; border-bottom: 2px solid var(--fg); }
+  input { font-size: 4vw; border: none; border-bottom: 4px solid var(--fg); border-radius: 0; padding: 1rem; width: 80%; text-align: center; font-family: inherit; font-weight: bold; background: transparent; outline: none; text-transform: uppercase; }
+  input:focus { border-color: var(--accent); }
+  button { font-size: 2vw; background: var(--fg); color: var(--bg); border: none; padding: 1rem 3rem; margin-top: 2rem; cursor: pointer; font-weight: bold; font-family: inherit; transition: background 0.2s; }
+  button:hover { background: var(--accent); }
+
+  /* ROUND */
+  #round { border: 4px solid var(--fg); height: calc(100vh - 4vw); display: grid; grid-template-columns: 300px 1fr; }
+  aside { border-right: 4px solid var(--fg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .meta h2 { font-size: 4rem; margin: 0; }
+  .stat { font-size: 8rem; line-height: 1; margin-top: 2rem; color: var(--accent); }
+  main { display: grid; grid-template-rows: 1fr auto; }
+  .players { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .player { border-right: 2px solid var(--fg); border-bottom: 2px solid var(--fg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .player-name { font-weight: bold; font-size: 1.5rem; }
+  .player-vote { font-size: 4rem; font-weight: bold; text-align: right; }
+  .vote-bar { display: flex; border-top: 4px solid var(--fg); }
+  .vote-bar button { margin: 0; border: none; border-right: 2px solid var(--bg); flex: 1; font-size: 2rem; padding: 2rem 0; background: var(--fg); color: var(--bg); }
+  .vote-bar button:hover { background: var(--accent); }
+  .nav { position: fixed; bottom: 1rem; right: 1rem; display: flex; gap: 0.75rem; }
+  .nav a { color: var(--bg); background: var(--fg); text-decoration: none; padding: 0.85rem 1.2rem; font-weight: bold; }
+  .nav a:hover { background: var(--accent); }
+</style>
+
+</head>
+
+<body>
+<div id="landing" class="screen active">
+  <div>
+    <h1>Agile<br>Estimator</h1>
+    <input type="text" placeholder="Session Code" aria-label="Session Code" value="MARS-99">
+    <br><button onclick="document.getElementById('landing').classList.remove('active'); document.getElementById('round').classList.add('active');">Initialize</button>
+  </div>
+</div>
+
+<div id="round" class="screen">
+  <aside>
+    <div class="meta">
+      <div>SESSION.MARS-99</div>
+      <h2>ROUND.04</h2>
+      <div>MODE.WAITING</div>
+    </div>
+    <div>
+      <div>AVERAGE</div>
+      <div class="stat">?</div>
+    </div>
+    <button>FORCE REVEAL</button>
+  </aside>
+  <main>
+    <ul class="players">
+      <li class="player"><span class="player-name">USER.01</span><span class="player-vote">VOTED</span></li>
+      <li class="player" style="background:#000; color:#fff"><span class="player-name">USER.02</span><span class="player-vote accent">8</span></li>
+      <li class="player"><span class="player-name">USER.03</span><span class="player-vote">PENDING</span></li>
+    </ul>
+    <div class="vote-bar">
+      <button>?</button><button>1</button><button>2</button><button>3</button><button>5</button><button>8</button><button>13</button><button>21</button>
+    </div>
+  </main>
+</div>
+
+<div class="nav">
+  <a href="./mockup-5.html">Previous</a>
+  <a href="./mockup-7.html">Next mockup</a>
+</div>
+
+</body>
+</html>

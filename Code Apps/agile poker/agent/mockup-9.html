@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 / THE SPATIAL</title>
+<style>
+  :root { --bg: #e5e5e5; --line: #222; }
+  body { margin: 0; background: var(--bg); color: var(--line); font-family: monospace; overflow: hidden; }
+  .screen { width: 100vw; height: 100vh; display: none; position: absolute; top:0; left:0; }
+  .active { display: block; }
+  
+  /* GRID / BLUEPRINT VIBE */
+  body::after { content: ""; position: fixed; top:0; left:0; right:0; bottom:0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 50px 50px; opacity: 0.1; z-index: -1; pointer-events: none; }
+
+  /* LANDING */
+  #landing { display: grid; place-items: center; }
+  .box { background: var(--bg); border: 2px solid var(--line); padding: 40px; box-shadow: 10px 10px 0 var(--line); text-align: center; }
+  input { display: block; width: 300px; border: 2px solid var(--line); padding: 10px; font-family: inherit; font-size: 20px; outline: none; margin: 20px auto; background: transparent; }
+  button { border: 2px solid var(--line); background: var(--line); color: var(--bg); padding: 10px 20px; font-family: inherit; font-size: 16px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
+  button:hover { box-shadow: 4px 4px 0 rgba(0,0,0,0.5); transform: translate(-2px, -2px); }
+
+  /* ROUND */
+  #round { position: relative; }
+  .hud { position: absolute; top: 20px; left: 20px; border: 2px solid var(--line); background: var(--bg); padding: 10px; display: inline-block; font-weight: bold; font-size: 1.2rem; }
+  
+  .circle-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; border: 1px dashed var(--line); border-radius: 50%; }
+  
+  .node { position: absolute; width: 120px; height: 60px; background: var(--bg); border: 2px solid var(--line); transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 4px 4px 0 var(--line); }
+  .node-name { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+  .node-status { font-size: 12px; }
+  
+  /* Positions simply hardcoded for the mockup */
+  .n1 { top: 0; left: 50%; }
+  .n2 { top: 50%; left: 100%; }
+  .n3 { top: 100%; left: 50%; }
+  .n4 { top: 50%; left: 0%; }
+
+  .center-controls { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg); border: 2px solid var(--line); padding: 20px; text-align: center; }
+  
+  .pad { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+  .pad button { width: 40px; height: 40px; font-size: 18px; padding: 0; }
+  .nav-links { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 10; }
+  .nav-links a { border: 2px solid var(--line); background: var(--bg); color: var(--line); text-decoration: none; padding: 10px 14px; box-shadow: 4px 4px 0 var(--line); text-transform: uppercase; font-weight: bold; }
+  .nav-links a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(0,0,0,0.5); }
+  
+</style>
+</head>
+<body>
+
+<div class="nav-links">
+  <a href="./mockup-8.html">Previous</a>
+  <a href="./mockup-10.html">Next mockup</a>
+</div>
+
+<div id="landing" class="screen active">
+  <div class="box">
+    <h1 style="margin-top:0">ESTIMATION<br>NODE</h1>
+    <input type="text" placeholder="Session" aria-label="Session" value="ALPHA-TEST">
+    <button onclick="document.getElementById('landing').classList.remove('active'); document.getElementById('round').classList.add('active');">CONNECT</button>
+  </div>
+</div>
+
+<div id="round" class="screen">
+  <div class="hud">
+    SESSION.ALPHA-TEST // ROUND 08 // SYNCING...
+  </div>
+  
+  <div class="circle-container">
+    <div class="node n1"><div class="node-name">Dev_01</div><div class="node-status">LOCKED</div></div>
+    <div class="node n2"><div class="node-name">QA_Lead</div><div class="node-status">PENDING</div></div>
+    <div class="node n3"><div class="node-name">Product</div><div class="node-status">LOCKED</div></div>
+    <div class="node n4"><div class="node-name">Dev_02</div><div class="node-status">PENDING</div></div>
+    
+    <div class="center-controls">
+      <div>YOUR INPUT</div>
+      <div class="pad">
+        <button>1</button><button>2</button><button>3</button><button>5</button>
+      </div>
+      <div class="pad" style="margin-bottom:0">
+        <button>8</button><button>13</button><button>21</button><button>?</button>
+      </div>
+      <hr style="border:1px solid var(--line); margin: 20px 0;">
+      <button style="width:100%">FORCE REVEAL</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 / THE TERMINAL</title>
+<style>
+  :root { --bg: #000; --fg: #0f0; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Courier New", Courier, monospace; padding: 2rem; line-height: 1.4; }
+  .screen { display: none; }
+  .active { display: block; }
+  
+  input { background: #000; color: #0f0; border: none; font-family: inherit; font-size: 1.2rem; outline: none; width: 50%; }
+  button { background: #0f0; color: #000; border: none; font-family: inherit; font-size: 1rem; padding: 0.2rem 1rem; cursor: pointer; text-transform: uppercase; font-weight: bold; }
+  button:hover { background: #fff; }
+  
+  #landing h1 { white-space: pre; font-size: 1.2rem; }
+  
+  table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+  th, td { border: 1px solid #0f0; padding: 0.5rem; text-align: left; }
+  th { background: #0f0; color: #000; }
+  
+  .vote-options { display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0; }
+  .vote-options button { padding: 1rem 2rem; font-size: 1.5rem; border: 1px solid #0f0; background: #000; color: #0f0; }
+  .vote-options button:hover { background: #0f0; color: #000; }
+</style>
+</head>
+<style>
+    
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 999px;
+        padding: 11px 16px;
+        margin-left: 10px;
+      }
+</style>
+<body>
+ <div class="nav-links">
+  <a href="./mockup-6.html">Previous</a>
+  <a href="./mockup-8.html">Next mockup</a>
+</div>
+
+<div id="landing" class="screen active">
+  <h1>
+   ___        _ _          ___      _               
+  / _ \  __ _(_) | ___    / _ \___ | | _____ _ __   
+ / /_\ \/ _` | | |/ _ \  / /_)/ _ \| |/ / _ \ '__|  
+/ /_\\ \ (_| | | |  __/ / ___/ (_) |   <  __/ |     
+\____/\_\__, |_|_|\___| \/    \___/|_|\_\___|_|     
+        |___/                                       
+  </h1>
+  <p>System initialized. Awaiting session parameters.</p>
+  <br>
+  <span>> ENT_SESSION_ID: </span>
+  <input type="text" aria-label="Session" placeholder="Session" value="AGILE-DB-SYNC" autofocus>
+  <br><br>
+  <button onclick="document.getElementById('landing').classList.remove('active'); document.getElementById('round').classList.add('active');">[ EXECUTE ]</button>
+</div>
+
+<div id="round" class="screen">
+  <div>> SESSION_ACTIVE: AGILE-DB-SYNC</div>
+  <div>> ROUND_SEQ: 002</div>
+  <div>> STATUS: GATHERING_TELEMETRY</div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>NODE_ID (PLAYER)</th>
+        <th>STATE</th>
+        <th>VALUE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>admin_root</td><td>[OK]</td><td>***</td></tr>
+      <tr><td>guest_092</td><td>[OK]</td><td>***</td></tr>
+      <tr><td>guest_114</td><td>[WAIT]</td><td>???</td></tr>
+    </tbody>
+  </table>
+
+  <div>> INPUT_REQUIRED: SELECT_ESTIMATE</div>
+  <div class="vote-options">
+    <button>1</button><button>2</button><button>3</button><button>5</button><button>8</button><button>13</button><button>21</button><button>?</button>
+  </div>
+  
+  <div>> ADMIN_OPTIONS: <button>FORCE_HALT</button></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "appId": "14370ab2-36d5-4b56-bfd3-4903f6f3cc2b",
+  "appDisplayName": "Agile Poker",
+  "description": "",
+  "environmentId": "Default-6b6c3ede-aa0d-4268-a46f-96b7621b13a8",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "logoPath": "./dist/icon-512.png",
+  "localAppUrl": "http://localhost:3000",
+  "region": "prod",
+  "connectionReferences": {},
+  "databaseReferences": {
+    "default.cds": {
+      "databaseDetails": null,
+      "dataSources": {
+        "wd_agilepokersessionses": {
+          "entitySetName": "wd_agilepokersessionses",
+          "logicalName": "wd_agilepokersessions",
+          "isHidden": false
+        },
+        "wd_agilepokerroundses": {
+          "entitySetName": "wd_agilepokerroundses",
+          "logicalName": "wd_agilepokerrounds",
+          "isHidden": false
+        },
+        "users": {
+          "entitySetName": "systemusers",
+          "logicalName": "systemuser"
+        }
+      },
+      "actions": null
+    }
+  },
+  "version": "1.0"
+}
