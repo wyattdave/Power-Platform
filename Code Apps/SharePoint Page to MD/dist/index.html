@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./icon-512.png" />
+    <title>SharePoint Page to MD</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@microsoft/power-apps/data": "./power-apps-data.js"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f3f6fb;
+        --panel: #ffffff;
+        --panel-alt: #f8faff;
+        --border: #d6e1f0;
+        --text: #17324d;
+        --muted: #58708b;
+        --primary: #0f6cbd;
+        --primary-strong: #0b5cab;
+        --success: #107c41;
+        --danger: #c42b1c;
+        --shadow: 0 18px 42px rgba(15, 39, 67, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(15, 108, 189, 0.12), transparent 28%),
+          linear-gradient(180deg, #f7faff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      .app-shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 40px 24px 56px;
+      }
+
+      .hero-card,
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 420px);
+        gap: 28px;
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(15, 108, 189, 0.1);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 16px 0 14px;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        line-height: 1.02;
+      }
+
+      .hero-copy p,
+      .site-note,
+      .panel-subtitle,
+      .site-current,
+      .empty-state p,
+      .loading-state p,
+      .log-entry,
+      .field-help,
+      .progress-meta {
+        color: var(--muted);
+      }
+
+      .hero-copy p {
+        margin: 0;
+        max-width: 620px;
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .hero-point {
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: var(--panel-alt);
+        border: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      .site-card {
+        padding: 24px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        border-radius: 20px;
+        border: 1px solid var(--border);
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .panel-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+        gap: 24px;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .section-header h2,
+      .section-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .field-label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .field-help {
+        margin: 8px 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .input-row,
+      .action-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      input {
+        width: 100%;
+        min-width: 0;
+        padding: 13px 15px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text);
+        font: inherit;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: rgba(15, 108, 189, 0.55);
+        box-shadow: 0 0 0 4px rgba(15, 108, 189, 0.12);
+      }
+
+      .input-row input {
+        flex: 1 1 260px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 14px;
+        padding: 13px 18px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-1px);
+      }
+
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        background: var(--primary-strong);
+      }
+
+      .btn-secondary {
+        background: #e7f1fb;
+        color: var(--primary);
+      }
+
+      .btn-danger {
+        background: #fde8e6;
+        color: var(--danger);
+      }
+
+      .site-status {
+        margin: 14px 0 10px;
+        min-height: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .site-status.success {
+        color: var(--success);
+      }
+
+      .site-status.error {
+        color: var(--danger);
+      }
+
+      .site-status.loading {
+        color: var(--primary);
+      }
+
+      .site-current {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .site-current span {
+        color: var(--text);
+        font-weight: 600;
+        word-break: break-all;
+      }
+
+      .progress-section {
+        display: none;
+        margin-bottom: 20px;
+        padding: 18px;
+        border-radius: 18px;
+        background: var(--panel-alt);
+        border: 1px solid var(--border);
+      }
+
+      .progress-section.active {
+        display: block;
+      }
+
+      .progress-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: baseline;
+        margin-bottom: 12px;
+      }
+
+      .progress-top h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .progress-bar {
+        height: 10px;
+        border-radius: 999px;
+        background: #dfe9f5;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #0f6cbd 0%, #4fa4f5 100%);
+        transition: width 0.25s ease;
+      }
+
+      .progress-fill.complete {
+        background: linear-gradient(90deg, #107c41 0%, #37b26c 100%);
+      }
+
+      .progress-log {
+        margin-top: 14px;
+        display: grid;
+        gap: 8px;
+        max-height: 260px;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .log-entry {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid var(--border);
+        font-size: 13px;
+      }
+
+      .log-entry.error {
+        border-color: rgba(196, 43, 28, 0.24);
+        background: #fff5f4;
+        color: var(--danger);
+      }
+
+      .file-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        height: 38px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: #e7f1fb;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .file-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .file-table th,
+      .file-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid #e6eef8;
+        text-align: left;
+        font-size: 14px;
+      }
+
+      .file-table th {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .file-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+
+      .file-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--primary);
+        flex: 0 0 auto;
+      }
+
+      .file-date,
+      .file-size {
+        color: var(--muted);
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .status-badge.new {
+        background: rgba(16, 124, 65, 0.12);
+        color: var(--success);
+      }
+
+      .empty-state,
+      .loading-state {
+        min-height: 220px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 28px;
+        border: 1px dashed var(--border);
+        border-radius: 18px;
+        background: var(--panel-alt);
+      }
+
+      .empty-state svg {
+        width: 46px;
+        height: 46px;
+        color: var(--primary);
+        margin-bottom: 14px;
+      }
+
+      .empty-state p,
+      .loading-state p {
+        margin: 0;
+        max-width: 420px;
+        line-height: 1.6;
+      }
+
+      .spinner {
+        width: 30px;
+        height: 30px;
+        border: 3px solid rgba(15, 108, 189, 0.16);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 14px;
+      }
+
+      .toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        max-width: 360px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: #18324b;
+        color: #fff;
+        box-shadow: 0 18px 40px rgba(24, 50, 75, 0.28);
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .toast.success {
+        background: var(--success);
+      }
+
+      .toast.error {
+        background: var(--danger);
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 920px) {
+        .hero-card,
+        .panel-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .app-shell {
+          padding: 28px 16px 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <div class="hero-copy">
+          <span class="hero-kicker">Landing page</span>
+          <h1>Convert SharePoint pages into Markdown files.</h1>
+          <p>
+            Point the app at a SharePoint site, review the pages it finds, and
+            push fresh Markdown files into the same document library.
+          </p>
+          <div class="hero-points">
+            <span class="hero-point">Editable SharePoint site URL</span>
+            <span class="hero-point">Real-time conversion progress</span>
+            <span class="hero-point">Markdown files saved to <strong>Shared Documents/md</strong></span>
+          </div>
+        </div>
+        <div class="site-card">
+          <label class="field-label" for="siteUrlInput">SharePoint site URL</label>
+          <div class="input-row">
+            <input
+              id="siteUrlInput"
+              type="url"
+              placeholder="https://tenant.sharepoint.com/sites/example"
+              autocomplete="url"
+              spellcheck="false"
+            />
+            <button id="btnConnect" type="button" class="btn-primary">Connect</button>
+          </div>
+          <p class="field-help">Use the site that contains both the <strong>Site Pages</strong> library and the <strong>Shared Documents/md</strong> folder.</p>
+          <p id="siteStatus" class="site-status">Enter a SharePoint site URL to get started.</p>
+          <p class="site-current">Active site: <span id="currentSite">Not connected</span></p>
+        </div>
+      </section>
+
+      <div class="panel-grid">
+        <section class="panel">
+          <div class="section-header">
+            <div>
+              <h2>Conversion controls</h2>
+              <p class="panel-subtitle">Filter page titles, start the conversion run, or refresh the generated file list.</p>
+            </div>
+          </div>
+
+          <label class="field-label" for="excludeFilter">Exclude page titles containing</label>
+          <input id="excludeFilter" type="text" placeholder="Example: archive" />
+
+          <div class="action-row" style="margin-top: 18px;">
+            <button id="btnStart" type="button" class="btn-primary">Start conversion</button>
+            <button id="btnStop" type="button" class="btn-danger" disabled>Stop</button>
+            <button id="btnRefresh" type="button" class="btn-secondary">Refresh files</button>
+          </div>
+        </section>
+
+        <section id="progressSection" class="panel progress-section">
+          <div class="progress-top">
+            <h3 id="progressTitle">Preparing conversion</h3>
+            <span id="progressStats" class="progress-meta">0 / 0</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div id="progressLog" class="progress-log"></div>
+        </section>
+      </div>
+
+      <section class="panel" style="margin-top: 24px;">
+        <div class="section-header">
+          <div>
+            <h2>Markdown files</h2>
+            <p class="panel-subtitle">Files found in the target <strong>Shared Documents/md</strong> folder.</p>
+          </div>
+          <span id="fileCount" class="file-count">0</span>
+        </div>
+        <div id="fileListContainer" class="file-list-container">
+          <div class="empty-state">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              <p>Connect to a SharePoint site to load the current Markdown files.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

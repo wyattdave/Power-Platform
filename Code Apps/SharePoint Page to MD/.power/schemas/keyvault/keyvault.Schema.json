@@ -1,0 +1,1600 @@
+{
+  "name": "shared_keyvault",
+  "id": "/providers/Microsoft.PowerApps/apis/shared_keyvault",
+  "type": "Microsoft.PowerApps/apis",
+  "properties": {
+    "displayName": "Azure Key Vault",
+    "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1800/1.0.1800.4648/keyvault/icon.png",
+    "iconBrandColor": "",
+    "apiEnvironment": "Shared",
+    "isCustomApi": false,
+    "blobUrisAreProxied": false,
+    "connectionParameterSets": {
+      "uiDefinition": {
+        "displayName": "Authentication type",
+        "description": "The authentication type to use."
+      },
+      "values": [
+        {
+          "name": "CertOauth",
+          "uiDefinition": {
+            "displayName": "Client Certificate Auth",
+            "description": "Provide Microsoft Entra ID credentials using PFX certificate and password"
+          },
+          "parameters": {
+            "vaultName": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "Vault name",
+                "description": "The name for the key vault.",
+                "tooltip": "Provide the name for your key vault.",
+                "constraints": {
+                  "required": "true"
+                }
+              }
+            },
+            "token": {
+              "type": "oauthSetting",
+              "oAuthSettings": {
+                "identityProvider": "aadcertificate",
+                "clientId": "9eaef548-1198-4c98-814a-8b88eb392f3f",
+                "scopes": [],
+                "redirectMode": "GlobalPerConnector",
+                "redirectUrl": "https://global.consent.azure-apim.net/redirect/keyvault",
+                "properties": {
+                  "IsFirstParty": "True",
+                  "AzureActiveDirectoryResourceId": "https://vault.azure.net",
+                  "IsOnbehalfofLoginSupported": true
+                },
+                "customParameters": {
+                  "grantType": {
+                    "value": "client_credentials"
+                  },
+                  "ResourceUri": {
+                    "value": "https://vault.azure.net"
+                  },
+                  "loginUri": {
+                    "value": "https://login.windows.net"
+                  },
+                  "LoginUriAAD": {
+                    "value": "https://login.windows.net"
+                  }
+                }
+              },
+              "uiDefinition": {
+                "displayName": "Login your Credentials",
+                "description": "Login your Credentials",
+                "tooltip": "Provide your Credentials",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:clientId": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "Client ID",
+                "description": "The client ID of for the Microsoft Entra ID application",
+                "constraints": {
+                  "required": "false",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:TenantId": {
+              "type": "string",
+              "uiDefinition": {
+                "schema": {
+                  "description": "The tenant ID of the Microsoft Entra ID application",
+                  "type": "string"
+                },
+                "displayName": "Tenant",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:clientCertificateSecret": {
+              "type": "clientCertificate",
+              "uiDefinition": {
+                "displayName": "Client certificate secret",
+                "description": "The client certificate secret allowed by this application",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "allowSharing": true
+          }
+        },
+        {
+          "name": "oauthDefault",
+          "uiDefinition": {
+            "displayName": "Default Microsoft Entra ID application for OAuth",
+            "description": "Sign in with the default Microsoft Entra ID application."
+          },
+          "parameters": {
+            "token": {
+              "type": "oauthSetting",
+              "oAuthSettings": {
+                "identityProvider": "aadcertificate",
+                "clientId": "9eaef548-1198-4c98-814a-8b88eb392f3f",
+                "scopes": [],
+                "redirectMode": "GlobalPerConnector",
+                "redirectUrl": "https://global.consent.azure-apim.net/redirect/keyvault",
+                "properties": {
+                  "IsFirstParty": "True",
+                  "AzureActiveDirectoryResourceId": "https://vault.azure.net",
+                  "IsOnbehalfofLoginSupported": true
+                },
+                "customParameters": {
+                  "ResourceUri": {
+                    "value": "https://vault.azure.net"
+                  },
+                  "loginUri": {
+                    "value": "https://login.windows.net"
+                  },
+                  "LoginUriAAD": {
+                    "value": "https://login.windows.net"
+                  }
+                }
+              },
+              "uiDefinition": {
+                "displayName": "Provide your credentials",
+                "description": "Enter your credentials to sign in.",
+                "tooltip": "Sign in with your credentials.",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "vaultName": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "Key vault name",
+                "description": "Name for the key vault.",
+                "tooltip": "Provide the name for your key vault.",
+                "constraints": {
+                  "required": "true"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "allowSharing": false
+          }
+        },
+        {
+          "name": "oauthServicePrincipal",
+          "uiDefinition": {
+            "displayName": "Service principal authentication",
+            "description": "Use your Microsoft Entra ID application for service principal authentication."
+          },
+          "parameters": {
+            "token": {
+              "type": "oauthSetting",
+              "oAuthSettings": {
+                "identityProvider": "aad",
+                "scopes": [],
+                "redirectMode": "GlobalPerConnector",
+                "redirectUrl": "https://global.consent.azure-apim.net/redirect/keyvault",
+                "properties": {
+                  "IsFirstParty": "False",
+                  "AzureActiveDirectoryResourceId": "https://vault.azure.net",
+                  "IsOnbehalfofLoginSupported": true
+                },
+                "customParameters": {
+                  "grantType": {
+                    "value": "client_credentials"
+                  },
+                  "ResourceUri": {
+                    "value": "https://vault.azure.net"
+                  },
+                  "loginUri": {
+                    "value": "https://login.windows.net"
+                  },
+                  "LoginUriAAD": {
+                    "value": "https://login.windows.net"
+                  }
+                }
+              },
+              "uiDefinition": {
+                "displayName": "Provide your credentials",
+                "description": "Enter your credentials to sign in.",
+                "tooltip": "Sign in with your credentials.",
+                "constraints": {
+                  "required": "false",
+                  "hidden": "true"
+                }
+              }
+            },
+            "token:clientId": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "Client ID",
+                "schema": {
+                  "type": "string",
+                  "description": "The client or application ID for your Microsoft Entra ID application."
+                },
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:clientSecret": {
+              "type": "securestring",
+              "uiDefinition": {
+                "displayName": "Client secret",
+                "schema": {
+                  "type": "securestring",
+                  "description": "The client secret for your Microsoft Entra ID application."
+                },
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:TenantId": {
+              "type": "string",
+              "uiDefinition": {
+                "schema": {
+                  "description": "The tenant ID for the Microsoft Entra ID application.",
+                  "type": "string"
+                },
+                "displayName": "Tenant ID",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            },
+            "token:VaultName": {
+              "type": "string",
+              "uiDefinition": {
+                "schema": {
+                  "description": "The name of your key vault to use for the connection.",
+                  "type": "string"
+                },
+                "displayName": "Key vault name",
+                "constraints": {
+                  "required": "true",
+                  "hidden": "false"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "allowSharing": false
+          }
+        }
+      ]
+    },
+    "connectionParameters": {
+      "vaultName": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "Key Vault name",
+          "description": "The name for the key vault.",
+          "tooltip": "Provide name of the vault",
+          "constraints": {
+            "required": "true"
+          }
+        }
+      },
+      "token": {
+        "type": "oauthSetting",
+        "oAuthSettings": {
+          "identityProvider": "aadcertificate",
+          "clientId": "9eaef548-1198-4c98-814a-8b88eb392f3f",
+          "scopes": [],
+          "redirectMode": "GlobalPerConnector",
+          "redirectUrl": "https://global.consent.azure-apim.net/redirect/keyvault",
+          "properties": {
+            "IsFirstParty": "True",
+            "AzureActiveDirectoryResourceId": "https://vault.azure.net",
+            "IsOnbehalfofLoginSupported": true
+          },
+          "customParameters": {
+            "tenantId": {},
+            "resourceUri": {
+              "value": "https://vault.azure.net"
+            },
+            "loginUri": {
+              "value": "https://login.windows.net"
+            },
+            "loginUriAAD": {
+              "value": "https://login.windows.net"
+            }
+          }
+        }
+      },
+      "token:clientId": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "Client ID",
+          "description": "The client or application ID for the Microsoft Entra ID application.",
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      },
+      "token:clientSecret": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "Client secret",
+          "description": "The client secret for the Microsoft Entra ID application.",
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      },
+      "token:TenantId": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "Tenant",
+          "description": "The tenant ID for the Microsoft Entra ID application.",
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      },
+      "token:resourceUri": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "ResourceUri",
+          "description": "The resource where you're requesting authorization to access, for example, https://vault.azure.net",
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      },
+      "token:grantType": {
+        "type": "string",
+        "allowedValues": [
+          {
+            "value": "code"
+          },
+          {
+            "value": "client_credentials"
+          }
+        ],
+        "uiDefinition": {
+          "displayName": "Grant type",
+          "description": "Allowed OAuth methods which grant access tokens to an application.",
+          "constraints": {
+            "required": "false",
+            "hidden": "true",
+            "allowedValues": [
+              {
+                "text": "Authorization code",
+                "value": "code"
+              },
+              {
+                "text": "Client credentials",
+                "value": "client_credentials"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "swagger": {
+      "swagger": "2.0",
+      "info": {
+        "version": "1.0",
+        "title": "Azure Key Vault",
+        "description": "Azure Key Vault is a service to securely store and access secrets.",
+        "x-ms-api-annotation": {
+          "status": "Production"
+        }
+      },
+      "host": "unitedstates-002.azure-apim.net",
+      "basePath": "/apim/keyvault",
+      "schemes": [
+        "https"
+      ],
+      "paths": {
+        "/{connectionId}/keys": {
+          "get": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "List keys",
+            "description": "List keys.",
+            "operationId": "ListKeys",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyMetadataCollection"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#list-keys"
+            },
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "/{connectionId}/keys/{keyName}/versions": {
+          "get": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "List key versions",
+            "description": "List versions of a key.",
+            "operationId": "ListKeyVersions",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyMetadataCollection"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#list-key-versions"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/metadata": {
+          "get": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Get key metadata",
+            "description": "Gets metadata of a key.",
+            "operationId": "GetKeyMetadata",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyMetadata"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-key-metadata"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/versions/{keyVersion}/metadata": {
+          "get": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Get key version metadata",
+            "description": "Gets metadata of a version of a key.",
+            "operationId": "GetKeyVersionMetadata",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "keyVersion",
+                "in": "path",
+                "description": "Version of the key.",
+                "required": true,
+                "x-ms-summary": "Version of the key",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyMetadata"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-key-version-metadata"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/encrypt": {
+          "post": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Encrypt data with key",
+            "description": "Encrypt data using the latest version of a key.",
+            "operationId": "EncryptData",
+            "consumes": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml",
+              "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "operationInput",
+                "in": "body",
+                "description": "Input for the encryption operation.",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/KeyEncryptInput"
+                },
+                "x-ms-summary": "Input for the encryption operation"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyEncryptOutput"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "important",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#encrypt-data-with-key"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/versions/{keyVersion}/encrypt": {
+          "post": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Encrypt data with key version",
+            "description": "Encrypt data using a specific version of a key.",
+            "operationId": "EncryptDataWithVersion",
+            "consumes": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml",
+              "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "keyVersion",
+                "in": "path",
+                "description": "Version of the key.",
+                "required": true,
+                "x-ms-summary": "Version of the key",
+                "type": "string"
+              },
+              {
+                "name": "operationInput",
+                "in": "body",
+                "description": "Input for the encryption operation.",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/KeyEncryptInput"
+                },
+                "x-ms-summary": "Input for the encryption operation"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyEncryptOutput"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#encrypt-data-with-key-version"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/decrypt": {
+          "post": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Decrypt data with key",
+            "description": "Decrypt data using the latest version of a key. Output of this operation is typically classified as secret and can be visible in the run history.",
+            "operationId": "DecryptData",
+            "consumes": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml",
+              "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "operationInput",
+                "in": "body",
+                "description": "Input for the decryption operation.",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/KeyDecryptInput"
+                },
+                "x-ms-summary": "Input for the decryption operation"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyDecryptOutput"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "important",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#decrypt-data-with-key"
+            }
+          }
+        },
+        "/{connectionId}/keys/{keyName}/versions/{keyVersion}/decrypt": {
+          "post": {
+            "tags": [
+              "Key"
+            ],
+            "summary": "Decrypt data with key version",
+            "description": "Decrypt data using a specific version of a key. Output of this operation is typically classified as secret and can be visible in the run history.",
+            "operationId": "DecryptDataWithVersion",
+            "consumes": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml",
+              "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "keyName",
+                "in": "path",
+                "description": "Name of the key.",
+                "required": true,
+                "x-ms-summary": "Name of the key",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListKeys",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "keyVersion",
+                "in": "path",
+                "description": "Version of the key.",
+                "required": true,
+                "x-ms-summary": "Version of the key",
+                "type": "string"
+              },
+              {
+                "name": "operationInput",
+                "in": "body",
+                "description": "Input for the decryption operation.",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/KeyDecryptInput"
+                },
+                "x-ms-summary": "Input for the decryption operation"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/KeyDecryptOutput"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#decrypt-data-with-key-version"
+            }
+          }
+        },
+        "/{connectionId}/secrets": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "List secrets",
+            "description": "List secrets.",
+            "operationId": "ListSecrets",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/SecretMetadataCollection"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#list-secrets"
+            },
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "/{connectionId}/secrets/{secretName}/versions": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "List secret versions",
+            "description": "List versions of a secret.",
+            "operationId": "ListSecretVersions",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "secretName",
+                "in": "path",
+                "description": "Name of the secret.",
+                "required": true,
+                "x-ms-summary": "Name of the secret",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListSecrets",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/SecretMetadataCollection"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#list-secret-versions"
+            }
+          }
+        },
+        "/{connectionId}/secrets/{secretName}/metadata": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "Get secret metadata",
+            "description": "Gets metadata of a secret.",
+            "operationId": "GetSecretMetadata",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "secretName",
+                "in": "path",
+                "description": "Name of the secret.",
+                "required": true,
+                "x-ms-summary": "Name of the secret",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListSecrets",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/SecretMetadata"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-secret-metadata"
+            }
+          }
+        },
+        "/{connectionId}/secrets/{secretName}/versions/{secretVersion}/metadata": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "Get secret version metadata",
+            "description": "Gets metadata of a version of a secret.",
+            "operationId": "GetSecretVersionMetadata",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "secretName",
+                "in": "path",
+                "description": "Name of the secret.",
+                "required": true,
+                "x-ms-summary": "Name of the secret",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListSecrets",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "secretVersion",
+                "in": "path",
+                "description": "Version of the secret.",
+                "required": true,
+                "x-ms-summary": "Version of the secret",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/SecretMetadata"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-secret-version-metadata"
+            }
+          }
+        },
+        "/{connectionId}/secrets/{secretName}/value": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "Get secret",
+            "description": "Gets a secret. Output of this operation is typically classified as secret and can be visible in the run history.",
+            "operationId": "GetSecret",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "secretName",
+                "in": "path",
+                "description": "Name of the secret.",
+                "required": true,
+                "x-ms-summary": "Name of the secret",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListSecrets",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Secret"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "important",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-secret"
+            }
+          }
+        },
+        "/{connectionId}/secrets/{secretName}/versions/{secretVersion}/value": {
+          "get": {
+            "tags": [
+              "Secret"
+            ],
+            "summary": "Get secret version",
+            "description": "Gets a version of a secret. Output of this operation is typically classified as secret and can be visible in the run history.",
+            "operationId": "GetSecretVersion",
+            "consumes": [],
+            "produces": [
+              "application/json",
+              "text/json",
+              "application/xml",
+              "text/xml"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "secretName",
+                "in": "path",
+                "description": "Name of the secret.",
+                "required": true,
+                "x-ms-summary": "Name of the secret",
+                "x-ms-dynamic-values": {
+                  "operationId": "ListSecrets",
+                  "parameters": {},
+                  "value-collection": "Value",
+                  "value-path": "Name",
+                  "value-title": "Name"
+                },
+                "type": "string"
+              },
+              {
+                "name": "secretVersion",
+                "in": "path",
+                "description": "Version of the secret.",
+                "required": true,
+                "x-ms-summary": "Version of the secret",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Secret"
+                }
+              },
+              "default": {
+                "description": "Operation Failed."
+              }
+            },
+            "deprecated": false,
+            "x-ms-visibility": "advanced",
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/keyvault/#get-secret-version"
+            }
+          }
+        }
+      },
+      "definitions": {
+        "KeyMetadataCollection": {
+          "description": "Collection of keys",
+          "type": "object",
+          "properties": {
+            "value": {
+              "description": "The keys",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KeyMetadata"
+              },
+              "x-ms-visibility": "important"
+            },
+            "continuationToken": {
+              "description": "Continuation token",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            }
+          }
+        },
+        "KeyMetadata": {
+          "description": "Metadata of a key",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Name of the key",
+              "type": "string",
+              "x-ms-visibility": "important"
+            },
+            "version": {
+              "description": "Version of the key",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "isEnabled": {
+              "description": "A flag indicating whether the key is enabled",
+              "type": "boolean",
+              "x-ms-visibility": "advanced"
+            },
+            "createdTime": {
+              "format": "date-time",
+              "description": "Time when the key was created",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "lastUpdatedTime": {
+              "format": "date-time",
+              "description": "Time when the key was last updated",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityStartTime": {
+              "format": "date-time",
+              "description": "Time when the key validity starts.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityEndTime": {
+              "format": "date-time",
+              "description": "Time when the key validity ends.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "allowedOperations": {
+              "description": "Operations allowed using the key",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "x-ms-visibility": "advanced"
+            },
+            "keyType": {
+              "description": "Type of the key",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            }
+          }
+        },
+        "KeyEncryptInput": {
+          "description": "Input for encryption operation",
+          "required": [
+            "algorithm",
+            "rawData"
+          ],
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "description": "Algorithm to use for encrypting the data",
+              "default": "RSA-OAEP-256",
+              "enum": [
+                "RSA-OAEP-256",
+                "RSA-OAEP",
+                "RSA1_5"
+              ],
+              "type": "string",
+              "x-ms-summary": "Algorithm"
+            },
+            "rawData": {
+              "description": "Data to encrypt",
+              "type": "string",
+              "x-ms-summary": "Raw data"
+            }
+          }
+        },
+        "KeyEncryptOutput": {
+          "description": "Result of encryption operation",
+          "type": "object",
+          "properties": {
+            "encryptedData": {
+              "description": "Encrypted data",
+              "type": "string",
+              "x-ms-visibility": "important"
+            }
+          }
+        },
+        "KeyDecryptInput": {
+          "description": "Input for decryption operation",
+          "required": [
+            "algorithm",
+            "encryptedData"
+          ],
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "description": "Algorithm to use for decrypting the data",
+              "default": "RSA-OAEP-256",
+              "enum": [
+                "RSA-OAEP-256",
+                "RSA-OAEP",
+                "RSA1_5"
+              ],
+              "type": "string",
+              "x-ms-summary": "Algorithm"
+            },
+            "encryptedData": {
+              "description": "Data to decrypt",
+              "type": "string",
+              "x-ms-summary": "Encrypted data"
+            }
+          }
+        },
+        "KeyDecryptOutput": {
+          "description": "Result of decryption operation",
+          "type": "object",
+          "properties": {
+            "rawData": {
+              "description": "Raw data",
+              "type": "string",
+              "x-ms-visibility": "important"
+            }
+          }
+        },
+        "SecretMetadataCollection": {
+          "description": "Collection of secrets",
+          "type": "object",
+          "properties": {
+            "value": {
+              "description": "The secrets",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SecretMetadata"
+              },
+              "x-ms-visibility": "important"
+            },
+            "continuationToken": {
+              "description": "Continuation token",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            }
+          }
+        },
+        "SecretMetadata": {
+          "description": "Metadata of a secret",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Name of the secret",
+              "type": "string",
+              "x-ms-visibility": "important"
+            },
+            "version": {
+              "description": "Version of the secret",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "contentType": {
+              "description": "Content type of the secret",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "isEnabled": {
+              "description": "A flag indicating whether the secret is enabled",
+              "type": "boolean",
+              "x-ms-visibility": "advanced"
+            },
+            "createdTime": {
+              "format": "date-time",
+              "description": "Time when the secret was created",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "lastUpdatedTime": {
+              "format": "date-time",
+              "description": "Time when the secret was last updated",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityStartTime": {
+              "format": "date-time",
+              "description": "Time when the secret validity starts.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityEndTime": {
+              "format": "date-time",
+              "description": "Time when the secret validity ends.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            }
+          }
+        },
+        "Secret": {
+          "description": "The secret",
+          "type": "object",
+          "properties": {
+            "value": {
+              "description": "Value of the secret",
+              "type": "string",
+              "x-ms-visibility": "important"
+            },
+            "name": {
+              "description": "Name of the secret",
+              "type": "string",
+              "x-ms-visibility": "important"
+            },
+            "version": {
+              "description": "Version of the secret",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "contentType": {
+              "description": "Content type of the secret",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "isEnabled": {
+              "description": "A flag indicating whether the secret is enabled",
+              "type": "boolean",
+              "x-ms-visibility": "advanced"
+            },
+            "createdTime": {
+              "format": "date-time",
+              "description": "Time when the secret was created",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "lastUpdatedTime": {
+              "format": "date-time",
+              "description": "Time when the secret was last updated",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityStartTime": {
+              "format": "date-time",
+              "description": "Time when the secret validity starts.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            },
+            "validityEndTime": {
+              "format": "date-time",
+              "description": "Time when the secret validity ends.",
+              "type": "string",
+              "x-ms-visibility": "advanced"
+            }
+          }
+        }
+      },
+      "x-ms-connector-metadata": [
+        {
+          "propertyName": "Website",
+          "propertyValue": "https://azure.microsoft.com/services/key-vault/"
+        }
+      ],
+      "externalDocs": {
+        "url": "https://docs.microsoft.com/connectors/keyvault"
+      }
+    },
+    "runtimeUrls": [
+      "https://unitedstates-002.azure-apim.net/apim/keyvault"
+    ],
+    "primaryRuntimeUrl": "https://unitedstates-002.azure-apim.net/apim/keyvault",
+    "doNotUseApiHubNetRuntimeUrl": "https://unitedstates-002.azure-apim.net/apim/keyvault",
+    "metadata": {
+      "source": "marketplace",
+      "brandColor": "",
+      "useNewApimVersion": "true",
+      "version": {
+        "previous": "releases/v1.0.1797\\1.0.1797.4609",
+        "current": "releases/v1.0.1800\\1.0.1800.4648"
+      }
+    },
+    "capabilities": [
+      "actions"
+    ],
+    "interfaces": {},
+    "description": "Azure Key Vault is a service to securely store and access secrets.",
+    "createdTime": "2019-03-29T17:59:10.9127024Z",
+    "changedTime": "2026-03-25T20:08:00.0215749Z",
+    "releaseTag": "Production",
+    "tier": "Premium",
+    "publisher": "Microsoft",
+    "scopes": {
+      "will": [],
+      "wont": []
+    },
+    "rateLimit": 0,
+    "apiVersion": "None"
+  }
+}
