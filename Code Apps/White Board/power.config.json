@@ -1,0 +1,25 @@
+{
+  "appId": "54c0a9e6-ba57-448c-ba2d-d2fe0fb155b8",
+  "appDisplayName": "White Board",
+  "description": "",
+  "environmentId": "Default-6b6c3ede-aa0d-4268-a46f-96b7621b13a8",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "logoPath": "./dist/icon-512.png",
+  "localAppUrl": "http://localhost:3000",
+  "region": "prod",
+  "connectionReferences": {},
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "tasks": {
+          "entitySetName": "tasks",
+          "logicalName": "task",
+          "isHidden": false
+        }
+      },
+      "environmentVariableName": ""
+    }
+  },
+  "version": "1.0"
+}

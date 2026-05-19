@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./icon-512.png" />
+    <title>White Board</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@microsoft/power-apps/data": "./power-apps-data.js"
+        }
+      }
+    </script>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --sidebar-bg: #fdfaf6;
+            --draw-color: #1a1a1a;
+            --marker-red: #e53935;
+            --marker-blue: #1e88e5;
+            --border-color: #2c2c2c;
+            --font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: var(--bg-color);
+            font-family: var(--font-family);
+            color: var(--draw-color);
+            display: flex;
+            overflow: hidden;
+        }
+
+        #root {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .sketch-box {
+            border: 2px solid var(--border-color);
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            background: white;
+            box-shadow: 4px 6px 1px -1px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            width: 320px;
+            background: var(--sidebar-bg);
+            border-right: 3px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 20;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--draw-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+        }
+
+        .task-item {
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .task-item:hover {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        .task-item.active {
+            background: rgba(0,0,0,0.08);
+            transform: rotate(-1deg);
+        }
+
+        .task-title {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .task-meta {
+            opacity: 0.7;
+        }
+
+        .empty-state {
+            padding: 18px 14px;
+            font-size: 15px;
+            opacity: 0.75;
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--marker-red);
+            display: none;
+        }
+        
+        .task-item:hover .delete-btn {
+            display: block;
+        }
+
+        .new-board-btn {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            position: relative;
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.05) 25%, rgba(0, 0, 0, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 76%, transparent 77%, transparent), 
+                linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.05) 25%, rgba(0, 0, 0, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        #board-container {
+            width: 100%;
+            height: 100%;
+            transform-origin: center center;
+            transition: transform 0.1s;
+        }
+        
+        #drawing-canvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .header-item {
+            padding: 10px 20px;
+            pointer-events: auto;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .save-btn {
+            background: var(--draw-color);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        .save-btn:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .zoom-btn {
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+            font-family: var(--font-family);
+        }
+
+        .floating-toolbar {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 10px 25px;
+            align-items: center;
+            z-index: 10;
+            max-width: calc(100% - 48px);
+        }
+
+        .tool {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+        }
+
+        .tool:hover {
+            background: rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+        }
+
+        .tool.active {
+            box-shadow: inset 0 0 0 2px var(--border-color);
+            background: rgba(0,0,0,0.05);
+        }
+
+        .divider {
+            width: 2px;
+            height: 30px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            transform: rotate(5deg);
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-dot.active {
+            border-color: #000;
+            transform: scale(1.2);
+        }
+
+        .color-dot-black {
+            background: #1a1a1a;
+        }
+
+        .color-dot-red {
+            background: #e53935;
+        }
+
+        .color-dot-blue {
+            background: #1e88e5;
+        }
+
+        .color-dot-green {
+            background: #4CAF50;
+        }
+
+        .color-dot-yellow {
+            background: #FFC107;
+        }
+        
+        .thickness-btn {
+            font-family: inherit;
+            font-weight: bold;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 78px;
+            right: 20px;
+            z-index: 10;
+            padding: 8px 14px;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .status-pill.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .composer-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(253, 250, 246, 0.72);
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            z-index: 30;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s ease;
+        }
+
+        .composer-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .composer-panel {
+            width: min(540px, calc(100% - 24px));
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--sidebar-bg);
+        }
+
+        .composer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .composer-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .composer-subtitle {
+            margin: 0;
+            opacity: 0.75;
+            font-size: 14px;
+        }
+
+        .composer-close {
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .composer-field {
+            width: 100%;
+            min-height: 54px;
+            padding: 12px 14px;
+            box-sizing: border-box;
+            border: 2px solid var(--border-color);
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            background: white;
+            color: var(--draw-color);
+            font-family: var(--font-family);
+            font-size: 22px;
+            resize: vertical;
+            outline: none;
+        }
+
+        .composer-field:focus {
+            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.18);
+        }
+
+        .composer-panel[data-mode="text"] .composer-field {
+            min-height: 110px;
+        }
+
+        .composer-panel[data-mode="title"] .composer-field {
+            min-height: 58px;
+            font-size: 18px;
+        }
+
+        .composer-hint {
+            font-size: 13px;
+            opacity: 0.72;
+        }
+
+        .emoji-palette {
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .composer-panel[data-mode="emoji"] .emoji-palette {
+            display: flex;
+        }
+
+        .emoji-chip {
+            border: none;
+            min-width: 42px;
+            min-height: 42px;
+            padding: 6px 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .composer-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .composer-btn {
+            border: none;
+            padding: 10px 16px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .composer-btn-primary {
+            background: var(--draw-color);
+            color: white;
+        }
+
+        @media (max-width: 960px) {
+            .sidebar {
+                width: 240px;
+                padding: 16px;
+            }
+
+            .header {
+                left: 12px;
+                right: 12px;
+                top: 12px;
+            }
+
+            .header-item {
+                padding: 8px 14px;
+                font-size: 15px;
+            }
+
+            .floating-toolbar {
+                bottom: 18px;
+                gap: 10px;
+                padding: 10px 14px;
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+        <!-- Left Sidebar from Mockup 6 -->
+        <div class="sidebar">
+            <h2>Saved Boards</h2>
+            <button id="new-board-btn" class="sketch-box new-board-btn">+ New Board</button>
+            <ul class="task-list" id="saved-boards-list">
+                <!-- Dataverse records injected here -->
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content-area">
+            <div class="header">
+                <div class="header-item sketch-box">
+                    <button class="zoom-btn" id="zoom-out">➖</button>
+                    <span id="zoom-level">100%</span>
+                    <button class="zoom-btn" id="zoom-in">➕</button>
+                </div>
+                <div class="header-item sketch-box save-btn" id="save-btn">Save to Tasks</div>
+            </div>
+            <div class="status-pill sketch-box" id="status-pill">Saved</div>
+            
+            <div id="board-container">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+
+            <div class="floating-toolbar sketch-box">
+                <button class="tool active" data-tool="pen" title="Pen">✏️</button>
+                <button class="tool" data-tool="rect" title="Rectangle">🔲</button>
+                <button class="tool" data-tool="circle" title="Circle">⭕</button>
+                <button class="tool" data-tool="text" title="Type">A</button>
+                <button class="tool" data-tool="emoji" title="Emoji">😊</button>
+                <button class="tool" data-tool="eraser" title="Eraser">🧹</button>
+                
+                <div class="divider"></div>
+                
+                <div class="color-dot color-dot-black active" data-color="#1a1a1a"></div>
+                <div class="color-dot color-dot-red" data-color="#e53935"></div>
+                <div class="color-dot color-dot-blue" data-color="#1e88e5"></div>
+                <div class="color-dot color-dot-green" data-color="#4CAF50"></div>
+                <div class="color-dot color-dot-yellow" data-color="#FFC107"></div>
+                
+                <div class="divider"></div>
+                
+                <button class="thickness-btn" id="thickness-btn" title="Stroke Width">Size: M</button>
+                <button class="thickness-btn" id="font-size-btn" title="Font Size">Font: M</button>
+                <button class="tool" id="clear-btn" title="Clear All">🗑️</button>
+            </div>
+
+            <div class="composer-overlay" id="composer-overlay" aria-hidden="true">
+                <div class="composer-panel sketch-box" id="composer-panel" data-mode="text" role="dialog" aria-modal="true" aria-labelledby="composer-title">
+                    <div class="composer-header">
+                        <div>
+                            <h3 class="composer-title" id="composer-title">Add a note</h3>
+                            <p class="composer-subtitle" id="composer-subtitle">Write directly into the board without leaving the whiteboard look.</p>
+                        </div>
+                        <button class="composer-close" id="composer-close" type="button" aria-label="Close composer">✕</button>
+                    </div>
+                    <textarea class="composer-field" id="composer-input" rows="3" maxlength="200"></textarea>
+                    <div class="emoji-palette" id="emoji-palette">
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="😀">😀</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="🚀">🚀</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="💡">💡</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="🔥">🔥</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="✅">✅</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="🎯">🎯</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="🧠">🧠</button>
+                        <button class="emoji-chip sketch-box" type="button" data-emoji="📌">📌</button>
+                    </div>
+                    <div class="composer-hint" id="composer-hint">Press Enter to place it, or Escape to cancel.</div>
+                    <div class="composer-actions">
+                        <button class="composer-btn sketch-box" id="composer-cancel" type="button">Cancel</button>
+                        <button class="composer-btn composer-btn-primary sketch-box" id="composer-submit" type="button">Add to board</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
