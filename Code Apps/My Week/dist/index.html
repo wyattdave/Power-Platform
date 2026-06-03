@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./icon-512.png" />
+    <title>My Week</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@microsoft/power-apps/data": "./power-apps-data.js"
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400&display=swap');
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg: #ffffff;
+        --surface: #f8f9fa;
+        --text: #111827;
+        --text-muted: #9ca3af;
+        --accent: #2563eb;
+        --accent-bg: #eff6ff;
+        --border: #f0f0f0;
+        --green: #10b981;
+        --green-bg: #ecfdf5;
+        --orange: #f59e0b;
+        --orange-bg: #fffbeb;
+        --purple: #8b5cf6;
+        --purple-bg: #f5f3ff;
+        --rose: #e11d48;
+        --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+      }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 36px 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+
+      header h1 {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .week-range {
+        font-size: 13px;
+        color: var(--text-muted);
+        font-weight: 400;
+        margin-left: 12px;
+      }
+
+      .update-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        background: var(--surface);
+        border-radius: 20px;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .update-pill-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      .metrics-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .metric-card {
+        background: var(--bg);
+        border-radius: 12px;
+        padding: 22px 20px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+      }
+
+      .metric-card:hover {
+        border-color: var(--accent);
+        box-shadow: 0 4px 12px rgba(37,99,235,0.08);
+      }
+
+      .metric-card.no-click { cursor: default; }
+      .metric-card.no-click:hover { border-color: var(--border); box-shadow: none; }
+
+      .metric-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .metric-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .metric-dot.blue { background: var(--accent); }
+      .metric-dot.green { background: var(--green); }
+      .metric-dot.orange { background: var(--orange); }
+      .metric-dot.purple { background: var(--purple); }
+      .metric-dot.rose { background: var(--rose); }
+
+      .metric-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text-muted);
+      }
+
+      .metric-value {
+        font-family: 'DM Mono', monospace;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .metric-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      .secondary-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .wide-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .wide-card h3 {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+      }
+
+      .progress-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+
+      .progress-track {
+        flex: 1;
+        height: 10px;
+        background: var(--green-bg);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--green);
+        border-radius: 5px;
+        transition: width 0.5s ease;
+      }
+
+      .progress-percent {
+        font-family: 'DM Mono', monospace;
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--green);
+        min-width: 52px;
+      }
+
+      .progress-detail {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .time-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .time-stat-label {
+        font-size: 11px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .time-stat-value {
+        font-family: 'DM Mono', monospace;
+        font-size: 22px;
+        margin-top: 4px;
+      }
+
+      .teams-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .teams-value {
+        font-family: 'DM Mono', monospace;
+        font-size: 44px;
+        color: var(--accent);
+      }
+
+      .teams-label {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      /* Slide panel */
+      .slide-panel {
+        position: fixed;
+        top: 0;
+        right: -500px;
+        width: 480px;
+        height: 100vh;
+        background: var(--bg);
+        border-left: 1px solid var(--border);
+        z-index: 200;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+      }
+
+      .slide-panel.open { right: 0; }
+
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.08);
+        z-index: 199;
+        display: none;
+      }
+
+      .backdrop.open { display: block; }
+
+      .slide-header {
+        padding: 28px 32px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 1;
+      }
+
+      .slide-header h2 {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .slide-close {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .slide-close:hover { background: var(--surface); }
+
+      .slide-body { padding: 20px 32px; }
+
+      .day-header {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .day-header:first-child { margin-top: 0; }
+
+      .today-badge {
+        background: var(--accent);
+        color: white;
+        font-size: 9px;
+        padding: 2px 7px;
+        border-radius: 3px;
+        font-weight: 700;
+      }
+
+      .meeting-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 11px 14px;
+        border-radius: 10px;
+        margin-bottom: 4px;
+        border: 1px solid transparent;
+      }
+
+      .meeting-item.past { opacity: 0.4; }
+
+      .meeting-item.current {
+        background: var(--accent-bg);
+        border-color: var(--accent);
+      }
+
+      .meeting-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--border);
+        flex-shrink: 0;
+      }
+
+      .meeting-item.current .meeting-dot { background: var(--accent); }
+
+      .meeting-time {
+        font-family: 'DM Mono', monospace;
+        font-size: 12px;
+        color: var(--accent);
+        min-width: 100px;
+      }
+
+      .meeting-title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .email-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .email-row:last-child { border-bottom: none; }
+
+      .email-name { font-size: 14px; font-weight: 500; }
+
+      .email-count {
+        font-family: 'DM Mono', monospace;
+        font-size: 13px;
+        color: var(--accent);
+        background: var(--accent-bg);
+        padding: 4px 10px;
+        border-radius: 6px;
+      }
+
+      .loading-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 10px;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      @media (max-width: 900px) {
+        body { padding: 24px 20px; }
+        .metrics-row { grid-template-columns: repeat(2, 1fr); }
+        .secondary-row { grid-template-columns: 1fr; }
+        .slide-panel { width: 100%; right: -100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div>
+          <h1>My Week<span class="week-range" id="weekRange"></span></h1>
+        </div>
+        <div class="update-pill">
+          <span class="update-pill-dot"></span>
+          <span id="refreshTimer">Updating...</span>
+        </div>
+      </header>
+
+      <div class="metrics-row">
+        <div class="metric-card" id="cardMeetings" onclick="window.app.openPanel('meetings')">
+          <div class="metric-header">
+            <div class="metric-dot blue"></div>
+            <div class="metric-label">Meetings</div>
+          </div>
+          <div class="metric-value" id="valMeetings">–</div>
+          <div class="metric-sub" id="subMeetings">this week</div>
+        </div>
+
+        <div class="metric-card" id="cardEmailsIn" onclick="window.app.openPanel('emails')">
+          <div class="metric-header">
+            <div class="metric-dot purple"></div>
+            <div class="metric-label">Emails Received</div>
+          </div>
+          <div class="metric-value" id="valEmailsIn">–</div>
+          <div class="metric-sub">inbox + deleted</div>
+        </div>
+
+        <div class="metric-card" id="cardEmailsOut" onclick="window.app.openPanel('emails')">
+          <div class="metric-header">
+            <div class="metric-dot orange"></div>
+            <div class="metric-label">Emails Sent</div>
+          </div>
+          <div class="metric-value" id="valEmailsOut">–</div>
+          <div class="metric-sub">this week</div>
+        </div>
+
+        <div class="metric-card" onclick="window.app.openPanel('teamsWeek')">
+          <div class="metric-header">
+            <div class="metric-dot rose"></div>
+            <div class="metric-label">Teams Chats</div>
+          </div>
+          <div class="metric-value" id="valTeams">–</div>
+          <div class="metric-sub">active this week</div>
+        </div>
+      </div>
+
+      <div class="secondary-row">
+        <div class="wide-card">
+          <h3>Meeting Progress</h3>
+          <div class="progress-row">
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+            <div class="progress-percent" id="progressPercent">0%</div>
+          </div>
+          <div class="progress-detail" id="progressDetail">Loading...</div>
+          <div class="time-stats">
+            <div>
+              <div class="time-stat-label">Total Time</div>
+              <div class="time-stat-value" id="valTotalTime">–</div>
+            </div>
+            <div>
+              <div class="time-stat-label">Time So Far</div>
+              <div class="time-stat-value" id="valTimeSoFar">–</div>
+            </div>
+            <div>
+              <div class="time-stat-label">Remaining</div>
+              <div class="time-stat-value" id="valTimeRemaining">–</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wide-card teams-card" onclick="window.app.openPanel('teamsToday')" style="cursor:pointer">
+          <div class="teams-value" id="valTeamsBig">–</div>
+          <div class="teams-label" id="teamsLabel">Chats today</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="backdrop" id="backdrop" onclick="window.app.closePanel()"></div>
+
+    <div class="slide-panel" id="meetingsPanel">
+      <div class="slide-header">
+        <h2>Meetings This Week</h2>
+        <button class="slide-close" onclick="window.app.closePanel()">✕</button>
+      </div>
+      <div class="slide-body" id="meetingsList">
+        <div class="loading-state"><div class="spinner"></div>Loading meetings...</div>
+      </div>
+    </div>
+
+    <div class="slide-panel" id="emailsPanel">
+      <div class="slide-header">
+        <h2>Emails By Sender</h2>
+        <button class="slide-close" onclick="window.app.closePanel()">✕</button>
+      </div>
+      <div class="slide-body" id="emailsList">
+        <div class="loading-state"><div class="spinner"></div>Loading emails...</div>
+      </div>
+    </div>
+
+    <div class="slide-panel" id="teamsPanel">
+      <div class="slide-header">
+        <h2 id="teamsPanelTitle">Chats This Week</h2>
+        <button class="slide-close" onclick="window.app.closePanel()">✕</button>
+      </div>
+      <div class="slide-body" id="chatsList">
+        <div class="loading-state"><div class="spinner"></div>Loading chats...</div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

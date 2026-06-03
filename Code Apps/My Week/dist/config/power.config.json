@@ -1,0 +1,35 @@
+{
+  "appId": "20fff228-bcea-4934-bbc5-b3d5c0386c49",
+  "appDisplayName": "My Week",
+  "description": "Weekly productivity dashboard showing meetings, emails, and Teams activity",
+  "environmentId": "9b45eff8-d905-e28a-918f-2e315619890d",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "logoPath": "./dist/icon-512.png",
+  "localAppUrl": "http://localhost:3000",
+  "region": "prod",
+  "connectionReferences": {
+    "office365outlook": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+      "displayName": "Office 365 Outlook",
+      "dataSources": [
+        "office365"
+      ],
+      "authenticationType": null,
+      "sharedConnectionId": null,
+      "dataSets": {}
+    },
+    "teams": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_teams",
+      "displayName": "Microsoft Teams",
+      "dataSources": [
+        "teams"
+      ],
+      "authenticationType": null,
+      "sharedConnectionId": null,
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {},
+  "version": "1.0"
+}
