@@ -42,6 +42,12 @@ Template bookmarklet for tracking environment security groups. Update the `data`
 
 Typical use case: maintaining a lightweight lookup list for environment security groups across areas and environment types such as dev, test, or prod.
 
+### Excel Drive Info
+
+Quickly extract metadata for Excel files in SharePoint/OneDrive. Open the Excel file online and click the bookmarklet, this will show the file id and drive id in an alert window and add to clipboard
+
+Typical use case:  The user can configure environment variables in Power Automate Excel actions that use drive Ids and file Ids which are abstracted away in the UI
+
 ## Notes
 
 - These scripts are intended for manual browser use and may need updating if Microsoft changes Power Platform URLs.
