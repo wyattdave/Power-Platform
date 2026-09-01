@@ -1,1 +1,66 @@
+/* Power Bookmarklets: SharePoint List Schema.
+   On any SharePoint list page click the bookmarklet and it will add a json schema of the list to your clipboard, ready to be pasted in your docs.
+   Copy paste bottom url-enocded version into bookmark, top version is for reference only.
+   Standard bookmarklet compatible: yes */
+
+javascript:(async () => {
+    if (
+        typeof _spPageContextInfo === "undefined" ||
+        !_spPageContextInfo.listTitle ||
+        !_spPageContextInfo.listId
+    ) {
+        alert("Please run this on a SharePoint List or Library page.");
+        return;
+    }
+
+    const listId = _spPageContextInfo.listId.replace(/[{}]/g, "");
+
+    const response = await fetch(
+        `${_spPageContextInfo.webAbsoluteUrl}/_api/web/lists/getbytitle('${_spPageContextInfo.listTitle}')/fields?$filter=Hidden eq false and ReadOnlyField eq false`,
+        {
+            headers: {
+                Accept: "application/json; odata=verbose"
+            }
+        }
+    );
+
+    const data = await response.json();
+
+    const schema = {
+        listName: _spPageContextInfo.listTitle,
+        listId: listId,
+        extractDate: new Date().toISOString(),
+
+        columns: data.d.results.map(field => {
+            const column = {
+                name: field.Title,
+                internal: field.InternalName,
+                type: field.TypeAsString,
+                required: field.Required
+            };
+
+            if (
+                (field.TypeAsString === "Choice" ||
+                    field.TypeAsString === "MultiChoice") &&
+                field.Choices &&
+                field.Choices.results
+            ) {
+                column.choices = field.Choices.results;
+            }
+
+            return column;
+        })
+    };
+
+    const json = JSON.stringify(schema, null, 2);
+
+    console.log(json);
+
+    await navigator.clipboard.writeText(json);
+
+    alert("JSON Schema copied to clipboard!");
+})();
+
+/* URL-encoded bookmarklet (paste this entire line into a bookmark URL):
 javascript:(async()=>{if(typeof _spPageContextInfo==="undefined"||!_spPageContextInfo.listTitle||!_spPageContextInfo.listId){alert("Please run this on a SharePoint List or Library page.");return;}const listId=_spPageContextInfo.listId.replace(/[{}]/g,"");const r=await fetch(`${_spPageContextInfo.webAbsoluteUrl}/_api/web/lists/getbytitle('${_spPageContextInfo.listTitle}')/fields?$filter=Hidden eq false and ReadOnlyField eq false`,{headers:{Accept:"application/json; odata=verbose"}});const d=await r.json();const s={listName:_spPageContextInfo.listTitle,listId:listId,extractDate:new Date().toISOString(),columns:d.d.results.map(f=>{const c={name:f.Title,internal:f.InternalName,type:f.TypeAsString,required:f.Required};if((f.TypeAsString==="Choice"||f.TypeAsString==="MultiChoice")&&f.Choices&&f.Choices.results){c.choices=f.Choices.results;}return c;})};const j=JSON.stringify(s,null,2);console.log(j);await navigator.clipboard.writeText(j);alert("JSON Schema copied to clipboard!");})();
+*/
