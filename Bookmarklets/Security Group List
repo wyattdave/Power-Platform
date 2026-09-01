@@ -1,4 +1,8 @@
-//// To help track environment security groups. Example use Filter1 for area, Filter2 for Dev/Test/Prod. Simply add rows to data array. if prompt left blank will return all from that filter
+/* Power Bookmarklets: Security Group List
+   To help track environment security groups. Example use Filter1 for area, Filter2 for Dev/Test/Prod. Simply add rows to data array. 
+   if prompt left blank will return all from that filter.
+   Standard bookmarklet compatible: yes */
+
 javascript:(function () {
   let data = [
     ["Filter1", "Filter2", "Security Group Name"],
