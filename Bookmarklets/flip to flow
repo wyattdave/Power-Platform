@@ -1,4 +1,4 @@
-/* Power Bookmarklets: Open in Power Automate
+/* Power Bookmarklets: Flip to Flow
    Opens a Power Apps cloud flow or flow list in the equivalent Power Automate page.
    Supports regular and Default-<guid> environment IDs.
    Copy paste bottom url-enocded version into bookmark, top version is for reference only.
