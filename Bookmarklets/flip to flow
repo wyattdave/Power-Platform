@@ -1,32 +1,28 @@
-javascript: (() => {
-    try {
-        const u = new URL(location.href);
+/* Power Bookmarklets: Open in Power Automate
+   Opens a Power Apps cloud flow or flow list in the equivalent Power Automate page.
+   Supports regular and Default-<guid> environment IDs.
+   Copy paste bottom url-enocded version into bookmark, top version is for reference only.
+   Standard bookmarklet compatible: yes */
+(() => {
+  const sGuid = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
+  const oRoute = new RegExp(
+    '^https://make\\.powerapps\\.com/environments/((?:default-)?' + sGuid + ')' +
+    '/(?:solutions/' + sGuid + '/objects/cloudflows/(' + sGuid + ')(?:/(?:view|edit))?|logicflows)' +
+    '/?(?:[?#].*)?$',
+    'i'
+  );
+  const aMatch = location.href.match(oRoute);
 
-        if (u.hostname === 'make.powerautomate.com') {
-            return;
-        }
-        if (u.hostname !== 'make.powerapps.com') {
-            alert('This is not a Power Apps cloud flow URL.');
-            return;
-        }
-        const aParts = u.pathname.split('/').filter(Boolean);
-        const iEnv = aParts.indexOf('environments');
-        const iSol = aParts.indexOf('solutions');
-        const iObj = aParts.indexOf('objects');
-        const iCloud = aParts.indexOf('cloudflows');
-        if (iEnv < 0 || iSol < 0 || iObj < 0 || iCloud < 0) {
-            alert('This does not look like a Power Apps cloud flow URL inside a solution.');
-            return;
-        }
-        let sEnv = parts[iEnv + 1] || '';
-        sEnv = sEnv.replace(/^default/i, 'Default');
-        const sSol = aParts[iSol + 1];
-        const sFlow = aParts[iCloud + 1];
-        const sNewPath = `/environments/${sEnv}/solutions/${sSol}/flows/${sFlow}/`;
-        const sTarget = `https://make.powerautomate.com${sNewPath}${u.search || ''}${u.hash || ''}`;
-        location.href = target;
-    } catch (e) {
-        alert('Could not transform URL: ' + e);
-    }
+  if (!aMatch) {
+    alert('Open this bookmarklet from a Power Apps cloud flow or cloud flows page.');
+    return;
+  }
+
+  const sTarget = 'https://make.powerautomate.com/environments/' + aMatch[1] +
+    '/flows' + (aMatch[2] ? '/' + aMatch[2] : '');
+  location.assign(sTarget);
 })();
-''
+
+/* URL-encoded bookmarklet (paste this entire line into a bookmark URL):
+javascript:%2F*%20Power%20Bookmarklets%3A%20Open%20in%20Power%20Automate%0D%0A%20%20%20Opens%20a%20Power%20Apps%20cloud%20flow%20or%20flow%20list%20in%20the%20equivalent%20Power%20Automate%20page.%0D%0A%20%20%20Supports%20regular%20and%20Default-%3Cguid%3E%20environment%20IDs.%0D%0A%20%20%20Standard%20bookmarklet%20compatible%3A%20yes%20*%2F%0D%0A(()%20%3D%3E%20%7B%0D%0A%20%20const%20sGuid%20%3D%20'%5B0-9a-f%5D%7B8%7D-%5B0-9a-f%5D%7B4%7D-%5B0-9a-f%5D%7B4%7D-%5B0-9a-f%5D%7B4%7D-%5B0-9a-f%5D%7B12%7D'%3B%0D%0A%20%20const%20oRoute%20%3D%20new%20RegExp(%0D%0A%20%20%20%20'%5Ehttps%3A%2F%2Fmake%5C%5C.powerapps%5C%5C.com%2Fenvironments%2F((%3F%3Adefault-)%3F'%20%2B%20sGuid%20%2B%20')'%20%2B%0D%0A%20%20%20%20'%2F(%3F%3Asolutions%2F'%20%2B%20sGuid%20%2B%20'%2Fobjects%2Fcloudflows%2F('%20%2B%20sGuid%20%2B%20')(%3F%3A%2F(%3F%3Aview%7Cedit))%3F%7Clogicflows)'%20%2B%0D%0A%20%20%20%20'%2F%3F(%3F%3A%5B%3F%23%5D.*)%3F%24'%2C%0D%0A%20%20%20%20'i'%0D%0A%20%20)%3B%0D%0A%20%20const%20aMatch%20%3D%20location.href.match(oRoute)%3B%0D%0A%0D%0A%20%20if%20(!aMatch)%20%7B%0D%0A%20%20%20%20alert('Open%20this%20bookmarklet%20from%20a%20Power%20Apps%20cloud%20flow%20or%20cloud%20flows%20page.')%3B%0D%0A%20%20%20%20return%3B%0D%0A%20%20%7D%0D%0A%0D%0A%20%20const%20sTarget%20%3D%20'https%3A%2F%2Fmake.powerautomate.com%2Fenvironments%2F'%20%2B%20aMatch%5B1%5D%20%2B%0D%0A%20%20%20%20'%2Fflows'%20%2B%20(aMatch%5B2%5D%20%3F%20'%2F'%20%2B%20aMatch%5B2%5D%20%3A%20'')%3B%0D%0A%20%20location.assign(sTarget)%3B%0D%0A%7D)()%3B
+*/
