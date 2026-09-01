@@ -1,3 +1,7 @@
+/* Power Bookmarklets: Share Legacy Flow
+   Allows you as a Power Platform Admin to quickly share flows that are not solution aware.
+   Standard bookmarklet compatible: yes */
+
 javascript: (
     function () { 
         let sEnvironment = prompt("Enter the environment id"); 
