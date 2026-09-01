@@ -1,3 +1,7 @@
+/* Power Bookmarklets: Legacy Role
+   When on a Dataverse Security Role in the new UI clicking the bookmarklet converts the page to classic Dynamics UI (will more options then new UI)
+   Standard bookmarklet compatible: yes */
+
 javascript:(() => {
   try {
     const sUrl = new URL(window.location.href);
